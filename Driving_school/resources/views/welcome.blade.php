@@ -116,29 +116,21 @@
 </head>
 <body>
 
-<nav>
-    <a href="welcome.blade.php">🏠 Accueil</a>
-    <a href="cours.blade.php">📘 Cours</a>
-    <a href="quiz.blade.php">🧠 Quiz</a>
-</nav>
+@extends('layouts.app')
 
-<header>
-    Bienvenue au Driving School !
-</header>
+@section('title', 'Accueil')
 
-<main>
-    <div class="home-box">
-        <h1>Prêt(e) à tester tes connaissances ?</h1>
-        <div class="buttons">
-            <a href="index.php?id=1">🎯 Commencer le Quiz</a>
-            <a href="#">📊 Voir les Scores</a>
-        </div>
-    </div>
-</main>
+@section('content')
+<div class="container mt-4"> <div class="text-center mb-5"> <h1 class="display-5 fw-bold text-primary">Bienvenue au Driving School !</h1> <p class="lead">Prêt(e) à tester tes connaissances ?</p> </div>
+<div class="d-flex flex-column align-items-center gap-4">
+    <a href="{{ route('quiz.start') }}" class="btn btn-lg btn-quiz px-5 py-3">
+        🎯 Commencer le Quiz
+    </a>
+    <a href="#" class="btn btn-outline-secondary px-4 py-2">
+        📊 Voir les Scores
+    </a>
+</div>
+<br><br><br><br><br><br><br>
 
-<footer>
-    &copy; <?= date("Y") ?> Driving School. Tous droits réservés.
-</footer>
-
-</body>
 </html>
+ </div> @endsection 

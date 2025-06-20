@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 19 juin 2025 à 23:03
+-- Généré le : ven. 20 juin 2025 à 08:26
 -- Version du serveur : 8.0.42-0ubuntu0.24.04.1
 -- Version de PHP : 8.3.6
 
@@ -24,6 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `cache`
+--
+
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cache_locks`
+--
+
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `definitions`
 --
 
@@ -39,34 +63,118 @@ CREATE TABLE `definitions` (
 --
 
 INSERT INTO `definitions` (`id`, `terme`, `definition`, `chapitre`) VALUES
-(515, 'Code de la route', 'Le code de la route est l’ensemble des conventions et protocoles destinés à faciliter une circulation routière sûre et rapide. Son but est d’indiquer ou de rappeler les diverses prescriptions aux usagers de la route.', 'non défini'),
-(516, 'Route', 'La route est un passage spécialement aménagé et ouvert à la circulation publique. Elle peut être revêtue ou non. À la traversée d’une ville, la route devient une rue.', 'non défini'),
-(517, 'Route pour automobile', 'Passage spécialement aménagé et ouvert à la circulation des véhicules à moteur à l’exception des cyclomoteurs. Elle est composée de deux chaussées séparées par des glissières de sécurité ou un terre-plein central, et peut comporter des intersections.', 'non défini'),
-(518, 'Intersection de route', 'Lieu de jonction ou de croisement de deux ou plusieurs chaussées quels que soient les angles des axes de ces chaussées.', 'non défini'),
-(519, 'Autoroute', 'Route à deux chaussées séparées par un terre-plein central, réservée à la circulation rapide des véhicules à moteur. Elle ne comporte pas d’intersection et est accessible seulement à des points aménagés. L’accès y est interdit à certaines catégories d’usagers.', 'non défini'),
-(520, 'Chaussée', 'Partie de la route réservée pour la circulation des véhicules.', 'non défini'),
-(521, 'Voie', 'L’une des subdivisions de la chaussée ayant une largeur suffisante pour permettre la circulation d’une file de véhicules.', 'non défini'),
-(522, 'Agglomération', 'Espace sur lequel sont groupés les immeubles bâtis rapprochés. L’entrée et la sortie de l’agglomération sont généralement signalées par des panneaux placés le long de la route.', 'non défini'),
-(523, 'Piste cyclable', 'Passage longeant une chaussée ou non, exclusivement réservé aux cycles et cyclomoteurs.', 'non défini'),
-(524, 'Bande cyclable', 'Voie exclusivement réservée aux cycles et aux cyclomoteurs sur une chaussée à plusieurs voies.', 'non défini'),
-(525, 'Permis de conduire', 'Autorisation officielle de conduire les véhicules à moteur d’une catégorie donnée.', 'non défini'),
-(526, 'Véhicule', 'Moyen de déplacement ou de transport terrestre muni ou non d’un moteur.', 'non défini'),
-(527, 'Panneaux de danger', 'Panneaux triangulaires à listel rouge placés avant une zone dangereuse. Ils informent l’usager de ralentir (50m en ville, 150m hors agglomération).', 'non défini'),
-(528, 'Panneaux de prescriptions absolues', 'Se divisent en interdiction (ronds rouges), obligation (ronds bleus), fin d’obligation (ronds bleus barrés de rouge), fin d’interdiction (ronds blancs barrés de noir).', 'non défini'),
-(529, 'Panneaux d’indication et de renseignement', 'De forme carrée ou rectangulaire, ils informent les usagers.', 'non défini'),
-(530, 'Panneaux relatifs aux intersections et au régime de priorité', 'Diverses formes selon le type d’intersection et de priorité.', 'non défini'),
-(531, 'Balises', 'Dispositifs implantés le long des routes pour signaler la position d’obstacles dangereux. Exemples : balise de virage, d’intersection, de manche à air, de tête d’îlot, de passages à niveau, d’obstacle, etc.', 'non défini'),
-(532, 'Véhicules prioritaires', 'Véhicules de police, gendarmerie, sapeurs-pompiers, SAMU et SMUR lorsqu’ils sont en mission avec avertisseurs sonores ou lumineux.', 'non défini'),
-(533, 'Permis B', 'Autorise la conduite de véhicules de transport de personnes ou marchandises de PTAC ≤ 3,5 t et 8 places max hors conducteur. Remorque autorisée ≤ 750 kg. Âge minimal : 18 ans.', 'non défini'),
-(534, 'Permis A1', 'Vélomoteurs/cyclomoteurs jusqu’à 75 cm³. Âge : 16 ans.', 'non défini'),
-(535, 'Permis A2', 'Motos ou quadricycles de 75 à 400 cm³. Âge : 18 ans.', 'non défini'),
-(536, 'Permis A3', 'Motocycles, tricycles ou quadricycles > 400 cm³. Âge : 21 ans.', 'non défini'),
-(537, 'Permis C', 'Véhicules de transport de marchandises PTAC ≤ 18 t.', 'non défini'),
-(538, 'Permis C1', 'Véhicules de transport de marchandises PTAC > 18 t. Âge : 21 ans.', 'non défini'),
-(539, 'Permis Dr (TCR)', 'Véhicules de transport en commun ≤ 18 places, PTAC ≤ 3,5 t. Âge : 21 ans.', 'non défini'),
-(540, 'Permis D', 'Véhicules de transport en commun > 18 places, PTAC > 3,5 t. Âge : 21 ans.', 'non défini'),
-(541, 'Permis F', 'Destiné aux conducteurs handicapés physiques.', 'non défini'),
-(542, 'Notions générales', 'Incluent les règles de circulation (priorités, dépassements, croisement), le secourisme, et le fonctionnement du moteur. Ces notions sont approfondies en auto-école.', 'non défini');
+(1, 'Code de la route', 'Le code de la route est l’ensemble des conventions et protocoles destinés à faciliter une circulation routière sûre et rapide. Son but est d’indiquer ou de rappeler les diverses prescriptions aux usagers de la route.', 'non défini'),
+(2, 'Route', 'La route est un passage spécialement aménagé et ouvert à la circulation publique. Elle peut être revêtue ou non. À la traversée d’une ville, la route devient une rue.', 'non défini'),
+(3, 'Route pour automobile', 'Passage spécialement aménagé et ouvert à la circulation des véhicules à moteur à l’exception des cyclomoteurs. Elle est composée de deux chaussées séparées par des glissières de sécurité ou un terre-plein central, et peut comporter des intersections.', 'non défini'),
+(4, 'Intersection de route', 'Lieu de jonction ou de croisement de deux ou plusieurs chaussées quels que soient les angles des axes de ces chaussées.', 'non défini'),
+(5, 'Autoroute', 'Route à deux chaussées séparées par un terre-plein central, réservée à la circulation rapide des véhicules à moteur. Elle ne comporte pas d’intersection et est accessible seulement à des points aménagés. L’accès y est interdit à certaines catégories d’usagers.', 'non défini'),
+(6, 'Chaussée', 'Partie de la route réservée pour la circulation des véhicules.', 'non défini'),
+(7, 'Voie', 'L’une des subdivisions de la chaussée ayant une largeur suffisante pour permettre la circulation d’une file de véhicules.', 'non défini'),
+(8, 'Agglomération', 'Espace sur lequel sont groupés les immeubles bâtis rapprochés. L’entrée et la sortie de l’agglomération sont généralement signalées par des panneaux placés le long de la route.', 'non défini'),
+(9, 'Piste cyclable', 'Passage longeant une chaussée ou non, exclusivement réservé aux cycles et cyclomoteurs.', 'non défini'),
+(10, 'Bande cyclable', 'Voie exclusivement réservée aux cycles et aux cyclomoteurs sur une chaussée à plusieurs voies.', 'non défini'),
+(11, 'Permis de conduire', 'Autorisation officielle de conduire les véhicules à moteur d’une catégorie donnée.', 'non défini'),
+(12, 'Véhicule', 'Moyen de déplacement ou de transport terrestre muni ou non d’un moteur.', 'non défini'),
+(13, 'Panneaux de danger', 'Panneaux triangulaires à listel rouge placés avant une zone dangereuse. Ils informent l’usager de ralentir (50m en ville, 150m hors agglomération).', 'non défini'),
+(14, 'Panneaux de prescriptions absolues', 'Se divisent en interdiction (ronds rouges), obligation (ronds bleus), fin d’obligation (ronds bleus barrés de rouge), fin d’interdiction (ronds blancs barrés de noir).', 'non défini'),
+(15, 'Panneaux d’indication et de renseignement', 'De forme carrée ou rectangulaire, ils informent les usagers.', 'non défini'),
+(16, 'Panneaux relatifs aux intersections et au régime de priorité', 'Diverses formes selon le type d’intersection et de priorité.', 'non défini'),
+(17, 'Balises', 'Dispositifs implantés le long des routes pour signaler la position d’obstacles dangereux. Exemples : balise de virage, d’intersection, de manche à air, de tête d’îlot, de passages à niveau, d’obstacle, etc.', 'non défini'),
+(18, 'Véhicules prioritaires', 'Véhicules de police, gendarmerie, sapeurs-pompiers, SAMU et SMUR lorsqu’ils sont en mission avec avertisseurs sonores ou lumineux.', 'non défini'),
+(19, 'Permis B', 'Autorise la conduite de véhicules de transport de personnes ou marchandises de PTAC ≤ 3,5 t et 8 places max hors conducteur. Remorque autorisée ≤ 750 kg. Âge minimal : 18 ans.', 'non défini'),
+(20, 'Permis A1', 'Vélomoteurs/cyclomoteurs jusqu’à 75 cm³. Âge : 16 ans.', 'non défini'),
+(21, 'Permis A2', 'Motos ou quadricycles de 75 à 400 cm³. Âge : 18 ans.', 'non défini'),
+(22, 'Permis A3', 'Motocycles, tricycles ou quadricycles > 400 cm³. Âge : 21 ans.', 'non défini'),
+(23, 'Permis C', 'Véhicules de transport de marchandises PTAC ≤ 18 t.', 'non défini'),
+(24, 'Permis C1', 'Véhicules de transport de marchandises PTAC > 18 t. Âge : 21 ans.', 'non défini'),
+(25, 'Permis Dr (TCR)', 'Véhicules de transport en commun ≤ 18 places, PTAC ≤ 3,5 t. Âge : 21 ans.', 'non défini'),
+(26, 'Permis D', 'Véhicules de transport en commun > 18 places, PTAC > 3,5 t. Âge : 21 ans.', 'non défini'),
+(27, 'Permis F', 'Destiné aux conducteurs handicapés physiques.', 'non défini'),
+(28, 'Notions générales', 'Incluent les règles de circulation (priorités, dépassements, croisement), le secourisme, et le fonctionnement du moteur. Ces notions sont approfondies en auto-école.', 'non défini');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `job_batches`
+--
+
+CREATE TABLE `job_batches` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '0001_01_01_000000_create_users_table', 1),
+(2, '0001_01_01_000001_create_cache_table', 1),
+(3, '0001_01_01_000002_create_jobs_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -106,7 +214,7 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (15, 15, 'A la vue du panneau C13', '{\"a\": \"Je suis sur un chemin sans issue.\", \"b\": \"Je suis prioritaire à la prochaine intersection\", \"c\": \"Je dois aller tout droit seulement\"}', 'a', 'non défini', 'question_15.png'),
 (16, 16, 'A la rencontre du panneau \"STOP\" que dois-je faire ?', '{\"a\": \"Je cède le passage à droite\", \"b\": \"Je cède le passage à droite et à gauche\", \"c\": \"Je m’arrête avant le panneau et je cède le passage aux usagers venant de \\nma droite et de ma gauche\", \"d\": \"Je m’arrête après le panneau et je cède le passage aux usagers venant de \\nma gauche et de ma droite\"}', 'd', 'non défini', 'question_16.png'),
 (17, 17, 'Que signifie le panneau A15 c ?', '{\"a\": \"Voie réservée aux chevaux\", \"b\": \"Endroits fréquentés par les animaux domestiques\", \"c\": \"Passage de cavaliers.\"}', 'c', 'non défini', 'question_17.png'),
-(18, 18, 'Que m’indique le panneau A19 ?', '{\"a\": \"Chute de grêle\", \"b\": \"Chute de neige\", \"c\": \"Risque de chute de pierres sur la chaussée.\", \"d\": \"Présence de pierres  sur la chaussée\"}', 'ce', 'non défini', 'question_18.png'),
+(18, 18, 'Que m’indique le panneau A19 ?', '{\"a\": \"Chute de grêle\", \"b\": \"Chute de neige\", \"c\": \"Risque de chute de pierres sur la chaussée.\", \"d\": \"Présence de pierres  sur la chaussée\"}', 'c', 'non défini', 'question_18.png'),
 (19, 19, 'Que signifie le panneau A21a ?', '{\"a\": \"Voie réservée aux cyclistes\", \"b\": \"Débouché de cyclistes ou cyclomotoristes venant de droite ou de \\ngauche\", \"c\": \"Débouché de cyclistes ou de cyclomotoristes venant de droite \\nseulement.\"}', 'b', 'non défini', 'question_19.png'),
 (20, 20, 'Devant le panneau triangulaire pointe en bas, que dois-je faire ?', '{\"a\": \"Je cède le passage à droite et à gauche\", \"b\": \"Je cède le passage à droite seulement\", \"c\": \"Je passe\"}', 'a', 'non défini', 'question_20.png'),
 (21, 21, 'Qu’indique le panneau triangulaire portant une flèche barrée ?', '{\"a\": \"Arrêt obligatoire\", \"b\": \"Priorité à droite\"}', '', 'non défini', 'question_21.png'),
@@ -123,11 +231,11 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (32, 33, 'Quel danger signale le panneau A6 ?', '{\"a\": \"Descente dangereuse\", \"b\": \"Débouché sur un pont mobile\", \"c\": \"Débouché sur un quai ou une berge\"}', 'b', 'non défini', 'question_33.png'),
 (33, 34, 'Que signifie le panneau B6a1 ?', '{\"a\": \"Stationnement interdit avant le panneau\", \"b\": \"Arrêt et stationnement interdits\", \"c\": \"Stationnement interdit à partir du panneau\"}', 'c', 'non défini', 'question_34.png'),
 (34, 36, 'A la vue du panneau B6b1', '{\"a\": \"Je peux stationner dans la première rue à droite après le panneau\", \"b\": \"Je peux stationner dans la rue où se trouve le panneau mais à gauche\", \"c\": \"Je ne peux stationner nulle part dans la rue où se trouve le panneau\"}', 'c', 'non défini', 'question_36.png'),
-(35, 37, 'Le panneau B0', '{\"a\": \"M’interdit de circuler dans les deux sens\", \"b\": \"M’interdit quelque chose qui sera indiqué après\", \"c\": \"M’oblige à faire demi-tour si possible\"}', 'a-c', 'non défini', 'question_37.png'),
+(35, 37, 'Le panneau B0', '{\"a\": \"M’interdit de circuler dans les deux sens\", \"b\": \"M’interdit quelque chose qui sera indiqué après\", \"c\": \"M’oblige à faire demi-tour si possible\"}', 'a', 'non défini', 'question_37.png'),
 (36, 38, 'Le panneau B7a :', '{\"a\": \"Interdit aux motocyclistes de dépasser les voitures\", \"b\": \"Interdit l’accès aux autos et aux motos\", \"c\": \"Interdit l’accès aux deux roues\"}', 'b', 'non défini', 'question_38.png'),
 (37, 39, 'A la vue du panneau B25 :', '{\"a\": \"Je peux rouler à 25km/h\", \"b\": \"Je peux rouler à 40km/h\", \"c\": \"Je dois rouler au moins à 30 km/h\"}', '', 'non défini', 'question_39.png'),
 (38, 40, 'Le panneau B21-1 m’oblige à :', '{\"a\": \"Tourner à droite à la prochaine intersection\", \"b\": \"Tourner à droite avant le panneau\", \"c\": \"Tourner à droite après le panneau\"}', 'b', 'non défini', 'question_40.jpeg'),
-(39, 43, 'Le panneau A25 signifie :', '{\"a\": \"Carrefour à sens giratoire\", \"b\": \"Terre-plein à contourner par la droite\", \"c\": \"Céder le passage aux usagers venant de droite\", \"d\": \"Céder le passage aux usagers venant de gauche\"}', 'a-b-d', 'non défini', 'question_43.png'),
+(39, 43, 'Le panneau A25 signifie :', '{\"a\": \"Carrefour à sens giratoire\", \"b\": \"Terre-plein à contourner par la droite\", \"c\": \"Céder le passage aux usagers venant de droite\", \"d\": \"Céder le passage aux usagers venant de gauche\"}', 'a', 'non défini', 'question_43.png'),
 (40, 44, 'Que signifie le panneau B15 ?', '{\"a\": \"Chaussée à double sens\", \"b\": \"Céder le passage aux usagers venant en sens inverse\", \"c\": \"Circulation à sens unique\"}', 'b', 'non défini', 'question_44.png'),
 (41, 45, 'Quel danger signale le panneau A18 ?', '{\"a\": \"Céder le passage aux usagers venant en sens inverse\", \"b\": \"Circulation dangereuse dans les deux sens\", \"c\": \"Chaussée rétrécie dans les deux sens\"}', 'b', 'non défini', 'question_45.png'),
 (42, 46, 'A quelle distance du danger est implanté le panneau A18 ?', '{\"a\": \"150m\", \"b\": \"50m\", \"c\": \"0m\"}', 'c', 'non défini', 'question_46.png'),
@@ -142,7 +250,7 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (51, 57, 'Que signifie le panneau B9g ?', '{\"a\": \"Accès interdit aux cyclomoteurs\", \"b\": \"Accès interdit aux motocyclistes\", \"c\": \"Accès interdit aux cyclomoteurs et aux motocyclistes\", \"d\": \"Voie réservée aux cyclomoteurs\"}', 'a', 'non défini', 'question_57.png'),
 (52, 58, 'Que signifie le panneau B10a ?', '{\"a\": \"Accès interdit aux véhicules dont la longueur dépasse 10m avec ou \\nsans chargement\", \"b\": \"Accès interdit uniquement aux véhicules de transport de marchandises \\ndont la longueur dépasse 10m\", \"c\": \"Accès interdit uniquement aux  véhicules de transport en commun de personnes dont la \\nlongueur dépasse 10m\"}', 'a', 'non défini', 'question_58.png'),
 (53, 59, 'Que signifie le panneau B14(3) ?', '{\"a\": \"Vitesse limitée à 60km/h pour les deux roues\", \"b\": \"Vitesse limitée à 60km/h pour les cyclomoteurs\", \"c\": \"Vitesse limitée à 60km/h pour les motocyclettes\", \"d\": \"Vitesse limitée à 60km/h pour les cyclomoteurs et les \\nmotocyclettes\"}', 'c', 'non défini', 'question_59.png'),
-(54, 61, 'Le panneau B8 interdit l’accès :', '{\"a\": \"A tout véhicule de transport de marchandises\", \"b\": \"Aux véhicules de transport de marchandises dont le PTAC est \\nsupérieur à 3,5T\", \"c\": \"A tout véhicule de transport\"}', 'a-b', 'non défini', 'question_61.jpeg'),
+(54, 61, 'Le panneau B8 interdit l’accès :', '{\"a\": \"A tout véhicule de transport de marchandises\", \"b\": \"Aux véhicules de transport de marchandises dont le PTAC est \\nsupérieur à 3,5T\", \"c\": \"A tout véhicule de transport\"}', 'a', 'non défini', 'question_61.jpeg'),
 (55, 64, 'A la rencontre d’un panneau de danger, que dois-je faire ?', '{\"a\": \"Accélérer et passer le danger  signalé\", \"b\": \"Ralentir, serrer sa droite et passer en faisant attention au danger\", \"c\": \"Serrer sa droite, accélérer et passer\", \"d\": \"Faire demi-tour\"}', 'b', 'non défini', 'question_64.png'),
 (56, 65, 'A la rencontre du panneau A7, que dois-je faire ?', '{\"a\": \"Accélérer et passer\", \"b\": \"Ralentir, serrer ma droite et passer avec prudence\", \"c\": \"Ralentir, serrer ma droite et klaxonner\"}', 'b', 'non défini', 'question_65.png'),
 (57, 66, 'A quoi peut-on s’attendre à la vue du panneau A7 ?', '{\"a\": \"A voir les rails uniquement\", \"b\": \"A voir une barrière et des rails\", \"c\": \"A voir une barrière automatique\"}', 'b', 'non défini', 'question_66.png'),
@@ -150,7 +258,7 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (59, 68, 'Que doit-on faire à la vue du panneau A8', '{\"a\": \"Accélérer et passer en vérifiant la gauche et la droite\", \"b\": \"Ralentir, regarder à gauche et à droite avant de traverser les rails\", \"c\": \"Accélérer et passer tout simplement\"}', 'b', 'non défini', 'question_68.png'),
 (60, 69, 'Que doit-on faire à la rencontre du panneau A13a ?', '{\"a\": \"Passer en utilisant son avertisseur sonore pour faire dégager les \\nenfants qui se trouveraient sur la route\", \"b\": \"Ralentir, faire attention aux enfants et s’arrêter au besoin pour les \\nlaisser passer\", \"c\": \"Klaxonner et passer rapidement\"}', 'b', 'non défini', 'question_69.png'),
 (61, 70, 'A la rencontre du panneau A3, que faire lorsqu’un véhicule arrive en sens \ninverse ?', '{\"a\": \"S’arrêter et laisser le véhicule passer\", \"b\": \"Poursuivre sa route\", \"c\": \"Serrer sa droite, s’arrêter et laisser le véhicule passer\"}', 'c', 'non défini', 'question_70.png'),
-(62, 71, 'Que peut-on faire à la vue du panneau B1 ?', '{\"a\": \"Poursuivre sa route en ralentissant\", \"b\": \"Garer son véhicule\", \"c\": \"Changer de direction\", \"d\": \"Faire demi-tour\"}', 'b-c-d', 'non défini', 'question_71.png'),
+(62, 71, 'Que peut-on faire à la vue du panneau B1 ?', '{\"a\": \"Poursuivre sa route en ralentissant\", \"b\": \"Garer son véhicule\", \"c\": \"Changer de direction\", \"d\": \"Faire demi-tour\"}', 'b', 'non défini', 'question_71.png'),
 (63, 72, 'A la vue du panneau B3 :', '{\"a\": \"Un véhicule peut dépasser un autre véhicule\", \"b\": \"Une voiture peut dépasser un camion\", \"c\": \"Un camion peut dépasser un autre camion\", \"d\": \"Aucun dépassement n’est autorisé\"}', 'd', 'non défini', 'question_72.png'),
 (64, 73, 'A la rencontre du panneau B33, il est interdit', '{\"a\": \"A un véhicule poids lourd, de dépasser une voiture\", \"b\": \"A un véhicule poids lourd, de dépasser un autre véhicule poids lourd\", \"c\": \"A un petit véhicule de dépasser un véhicule poids lourd\"}', '', 'non défini', 'question_73.jpeg'),
 (65, 74, 'A quelle vitesse peut-on rouler à la vue du panneau B14 ?', '{\"a\": \"A moins de 50km /h\", \"b\": \"A 50km/h\", \"c\": \"A plus de 50km/h\"}', '', 'non défini', 'question_74.png'),
@@ -177,7 +285,7 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (86, 96, 'Quel est le rôle de l’agent de sécurité à l’intersection ?', '{\"a\": \"Réglementer la circulation\", \"b\": \"Perturber la circulation\", \"c\": \"Contrôler les pièces\", \"d\": \"Surveiller les passants\"}', 'a', 'non défini', 'question_96.png'),
 (87, 97, 'Lorsque vous voyez de profil l’agent réglementant la circulation, que faire ?', '{\"a\": \"Je m’arrête\", \"b\": \"Je cède le passage à droite\", \"c\": \"Je passe\", \"d\": \"Je ralentis pour céder le passage\"}', 'c', 'non défini', 'question_97.png'),
 (88, 98, 'Lorsque je vois de face ou de dos l’agent réglementant la circulation, que faire ?', '{\"a\": \"Je passe\", \"b\": \"Je ralentis et je passe\", \"c\": \"Je m’arrête\", \"d\": \"J’accélère\"}', 'c', 'non défini', 'question_98.png'),
-(89, 99, 'Quand l’agent de sécurité réglementant la circulation lève le bras, que faire ?', '{\"a\": \"Je passe si je suis engagé dans l’intersection\", \"b\": \"Je ralentis et je passe, si je le vois de face\", \"c\": \"Je ralentis et je m’arrête, si je le vois de face\"}', 'a-c', 'non défini', 'question_99.png'),
+(89, 99, 'Quand l’agent de sécurité réglementant la circulation lève le bras, que faire ?', '{\"a\": \"Je passe si je suis engagé dans l’intersection\", \"b\": \"Je ralentis et je passe, si je le vois de face\", \"c\": \"Je ralentis et je m’arrête, si je le vois de face\"}', 'a', 'non défini', 'question_99.png'),
 (90, 100, 'De toutes les signalisations routières, laquelle prime sur les autres ?', '{\"a\": \"La signalisation lumineuse\", \"b\": \"La signalisation horizontale\", \"c\": \"La signalisation verticale\", \"d\": \"Les signes des agents\"}', 'd', 'non défini', 'question_100.png'),
 (91, 101, 'A la vue de face ou de dos d’un agent réglementant la circulation :', '{\"a\": \"Je passe\", \"b\": \"Je m’arrête\", \"c\": \"J’applique la règle de la priorité à droite\"}', 'b', 'non défini', 'question_101.png'),
 (92, 102, 'A la vue de profil d’un agent réglementant la circulation :', '{\"a\": \"Je passe\", \"b\": \"Je m’arrête\", \"c\": \"J’applique la règle de priorité à droite\"}', 'a', 'non défini', 'question_102.jpeg'),
@@ -187,26 +295,26 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (96, 106, 'A la vue du panneau \"STOP\" ‘AB4), que dois-je faire ?', '{\"a\": \"Je cède le passage à droite\", \"b\": \"Je cède le passage à droite et à gauche\", \"c\": \"Je m’arrête et je cède le passage aux usagers venant de ma droite et de \\nma gauche\"}', 'c', 'non défini', 'question_106.png'),
 (97, 107, 'A la vue du panneau triangle pointe en bas (AB3a), que dois-je faire ?', '{\"a\": \"Je passe\", \"b\": \"Je cède le passage à droite seulement\", \"c\": \"Je cède le passage à droite et à gauche\"}', 'c', 'non défini', 'question_107.png'),
 (98, 108, 'Le panneau B7b :', '{\"a\": \"Interdit le stationnement à tout véhicule à moteur sauf les camions\", \"b\": \"Interdit l’accès à tous les véhicules à moteur\", \"c\": \"Interdit l’accès à tous les véhicules sauf les camions\"}', 'b', 'non défini', 'question_108.png'),
-(99, 109, 'A la vue du panneau B6d :', '{\"a\": \"Je ne peux pas m’arrêter\", \"b\": \"Je ne peux pas m’arrêter mais je peux stationner\", \"c\": \"Je ne peux ni m’arrêter ni stationner\"}', 'a-c', 'non défini', 'question_109.png'),
+(99, 109, 'A la vue du panneau B6d :', '{\"a\": \"Je ne peux pas m’arrêter\", \"b\": \"Je ne peux pas m’arrêter mais je peux stationner\", \"c\": \"Je ne peux ni m’arrêter ni stationner\"}', 'a', 'non défini', 'question_109.png'),
 (100, 110, 'Que signifie le panneau B9c ?', '{\"a\": \"Accès interdit aux chevaux\", \"b\": \"Accès interdit aux véhicules agricoles à moteur\", \"c\": \"Accès interdit aux véhicules à traction animal\"}', 'c', 'non défini', 'question_110.jpeg'),
 (101, 119, 'Que signifie le panneau A21b ?', '{\"a\": \"Voie réservée au cycliste\", \"b\": \"Voie interdite au cycliste\", \"c\": \"Débouché de cycliste venant de gauche seulement\"}', 'c', 'non défini', 'question_119.png'),
-(102, 121, 'A la vue du panneau B14 :', '{\"a\": \"Je peux rouler à plus de 50km/h\", \"b\": \"je peux rouler à moins de 50km/h\", \"c\": \"Je peux rouler à 50km/h strictement\", \"d\": \"Je ne suis pas concerner pas cette signalisation\"}', 'b-c', 'non défini', 'question_121.png'),
-(103, 122, 'En voiture à la vue du panneau B14 (3) hors agglomération :', '{\"a\": \"Je peux rouler à plus de 60km/h\", \"b\": \"Je peux rouler à moins de 60km/h\", \"c\": \"Je peux rouler à 60km/h strictement\", \"d\": \"Je ne suis pas concerné par cette signalisation\"}', 'a-b-c-d', 'non défini', 'question_122.jpeg'),
-(104, 124, 'A la vue du panneau indiquant l’entrée d’une localité, quelles sont les règles à observer ?', '{\"a\": \"vitesse limitée à 50km/h\", \"b\": \"perte du caractère prioritaire de la route\", \"c\": \"usage de l’avertisseur sonore interdit, sauf cas de danger\"}', 'a-b-c', 'non défini', 'question_124.jpeg'),
+(102, 121, 'A la vue du panneau B14 :', '{\"a\": \"Je peux rouler à plus de 50km/h\", \"b\": \"je peux rouler à moins de 50km/h\", \"c\": \"Je peux rouler à 50km/h strictement\", \"d\": \"Je ne suis pas concerner pas cette signalisation\"}', 'b', 'non défini', 'question_121.png'),
+(103, 122, 'En voiture à la vue du panneau B14 (3) hors agglomération :', '{\"a\": \"Je peux rouler à plus de 60km/h\", \"b\": \"Je peux rouler à moins de 60km/h\", \"c\": \"Je peux rouler à 60km/h strictement\", \"d\": \"Je ne suis pas concerné par cette signalisation\"}', 'a', 'non défini', 'question_122.jpeg'),
+(104, 124, 'A la vue du panneau indiquant l’entrée d’une localité, quelles sont les règles à observer ?', '{\"a\": \"vitesse limitée à 50km/h\", \"b\": \"perte du caractère prioritaire de la route\", \"c\": \"usage de l’avertisseur sonore interdit, sauf cas de danger\"}', 'a', 'non défini', 'question_124.jpeg'),
 (105, 125, 'Sur une chaussée à double sens comportant plus de deux voies, les flèches de rabattement peintes \nsur une voie :', '{\"a\": \"me demande de quitter le plus tôt cette voie\", \"b\": \"m’annoncent la présence très proche d’une ligne continue\", \"c\": \"me demandent de garer sur l’accotement\", \"d\": \"me demandent de tourner à droite à la prochaine intersection\"}', 'a', 'non défini', 'question_125.jpeg'),
-(106, 126, 'Sur une chaussée à plusieurs voies, des flèches de sélection aussi appelées flèches directionnelles \npeuvent jouer les rôles suivants :', '{\"a\": \"m’indiquent la voie que je dois emprunter selon la direction ou je veux aller.je gagne \\ncette voie dès la première flèche\", \"b\": \"pour tourner, je me place dans la voie comportant des flèches orientées vers la direction \\nque je veux emprunter\", \"c\": \"pour aller tout droit, je me place dans la voie comportant des flèches droites\", \"d\": \"les voies peuvent comporter des flèches bifides (à deux pointes), donnant le choix entre \\ndeux directions\", \"e\": \"m’obligeant à m’arrêter pour chercher la direction dans laquelle je dois aller\"}', 'a-b-c-d', 'non défini', 'question_126.png'),
+(106, 126, 'Sur une chaussée à plusieurs voies, des flèches de sélection aussi appelées flèches directionnelles \npeuvent jouer les rôles suivants :', '{\"a\": \"m’indiquent la voie que je dois emprunter selon la direction ou je veux aller.je gagne \\ncette voie dès la première flèche\", \"b\": \"pour tourner, je me place dans la voie comportant des flèches orientées vers la direction \\nque je veux emprunter\", \"c\": \"pour aller tout droit, je me place dans la voie comportant des flèches droites\", \"d\": \"les voies peuvent comporter des flèches bifides (à deux pointes), donnant le choix entre \\ndeux directions\", \"e\": \"m’obligeant à m’arrêter pour chercher la direction dans laquelle je dois aller\"}', 'a', 'non défini', 'question_126.png'),
 (107, 127, 'A la vue du panneau A18-1:', '{\"a\": \"La circulation est alternée à 150m\", \"b\": \"La circulation est alternée sur 150m\", \"c\": \"Circulation à  double sens à 150m\"}', 'c', 'non défini', 'question_127.png'),
 (108, 128, 'A la vue du panneau B6a1 il est interdit :', '{\"a\": \"de s’arrêter avant le panneau\", \"b\": \"de stationner avant le panneau\", \"c\": \"de s’arrêter après le panneau\", \"d\": \"de stationner après le panneau\"}', '', 'non défini', 'question_128.png'),
 (109, 129, 'Les balises (J3) à anneau rouge :', '{\"a\": \"Indiquent  le régime de priorité à appliquer\", \"b\": \"Précisent la position d’une intersection\", \"c\": \"Délimitent la chaussée\"}', 'b', 'non défini', 'question_129.jpeg'),
-(110, 130, 'Cette  signalisation indique :', '{\"a\": \"une entrée d’agglomération\", \"b\": \"une fin d’interdiction de klaxonner\", \"c\": \"une limitation de vitesse\", \"d\": \"une interdiction de klaxonner\"}', 'a-c-d', 'non défini', 'question_130.png'),
-(111, 131, 'Le panneau (B31) peut mettre fin à une interdiction :', '{\"a\": \"de dépasser\", \"b\": \"de s’arrêter\", \"c\": \"de stationner\", \"d\": \"de rouler à plus de 70km\"}', 'a-d', 'non défini', 'question_131.png'),
-(112, 132, 'A la vue de ce panneau A 1c:', '{\"a\": \"je vais aborder une succession de virage\", \"b\": \"je dois accélérer pour réduire les effets de la force centrifuge\", \"c\": \"je dois réduire ma vitesse avant le premier  virage pour \\ndiminuer les effets de la force centrifuge\"}', 'a-c', 'non défini', 'question_132.png'),
+(110, 130, 'Cette  signalisation indique :', '{\"a\": \"une entrée d’agglomération\", \"b\": \"une fin d’interdiction de klaxonner\", \"c\": \"une limitation de vitesse\", \"d\": \"une interdiction de klaxonner\"}', 'a', 'non défini', 'question_130.png'),
+(111, 131, 'Le panneau (B31) peut mettre fin à une interdiction :', '{\"a\": \"de dépasser\", \"b\": \"de s’arrêter\", \"c\": \"de stationner\", \"d\": \"de rouler à plus de 70km\"}', 'a', 'non défini', 'question_131.png'),
+(112, 132, 'A la vue de ce panneau A 1c:', '{\"a\": \"je vais aborder une succession de virage\", \"b\": \"je dois accélérer pour réduire les effets de la force centrifuge\", \"c\": \"je dois réduire ma vitesse avant le premier  virage pour \\ndiminuer les effets de la force centrifuge\"}', 'a', 'non défini', 'question_132.png'),
 (113, 133, 'Quelle couleur utilise-t-on pour distinguer la signalisation temporaire de la permanente ?', '{\"a\": \"verte\", \"b\": \"rouge\", \"c\": \"jaune\", \"d\": \"bleue \\n150m \\nSAVE \\nRIE\"}', '', 'non défini', 'question_133.png'),
 (114, 134, 'Les feux bicolores permettent de réglementer :', '{\"a\": \"la circulation par voie\", \"b\": \"la circulation par véhicule\", \"c\": \"la circulation par conducteur poids lourds\"}', 'a', 'non défini', 'question_134.png'),
 (115, 135, 'A la vue du panneau A7-1  je dois rencontrer un passage à niveau équipé de :', '{\"a\": \"deux barrières à fonctionnement manuel\", \"b\": \"deux demi – barrière à fonctionnement automatique\", \"c\": \"deux demi – barrière à fonctionnement automatique avec \\nfeux clignotant\"}', 'c', 'non défini', 'question_135.png'),
 (116, 136, 'Le panneau B31 peut signaler la fin :', '{\"a\": \"d’une route à caractère prioritaire\", \"b\": \"d’une limitation de vitesse\", \"c\": \"d’une interdiction de stationnement\", \"d\": \"d’une interdiction d’arrêter\"}', 'b', 'non défini', 'question_136.png'),
 (117, 137, 'A la vue du panneau AB2, j’ai la priorité :', '{\"a\": \"a la prochaine intersection\", \"b\": \"A toutes les intersections\", \"c\": \"Seulement avant la prochaine intersection\"}', 'a', 'non défini', 'question_137.jpeg'),
-(118, 138, 'A la vue du panneau AB7, je peux rencontrer un panneau :', '{\"a\": \"Cédez le passage\", \"b\": \"Stop\", \"c\": \"Sens interdit\", \"d\": \"D’intersection de routes de même nature\"}', 'a-b-d', 'non défini', 'question_138.png'),
+(118, 138, 'A la vue du panneau AB7, je peux rencontrer un panneau :', '{\"a\": \"Cédez le passage\", \"b\": \"Stop\", \"c\": \"Sens interdit\", \"d\": \"D’intersection de routes de même nature\"}', 'a', 'non défini', 'question_138.png'),
 (119, 139, 'En rase campagne, le panneau AB1 est implanté à quelle distance de l’intersection ?', '{\"a\": \"0m\", \"b\": \"30m\", \"c\": \"50m\", \"d\": \"150m\", \"e\": \"Rien de tout ce qui précède\"}', 'd', 'non défini', 'question_139.png'),
 (120, 140, 'En rase campagne, le panneau AB2 est implanté à combien de mètre environ de l’intersection :', '{\"a\": \"100 mètres\", \"b\": \"50 mètres\", \"c\": \"150 mètres\", \"d\": \"0 mètres\", \"e\": \"Rien de tout ce qui précède\"}', 'c', 'non défini', 'question_140.png'),
 (121, 141, 'En agglomération, le panneau AB2 est implanté à combien de mètre environ de l’intersection :', '{\"a\": \"100 mètres\", \"b\": \"50  mètres\", \"c\": \"150 mètres\", \"d\": \"0 mètre\", \"e\": \"A proximité de l’intersection\"}', 'e', 'non défini', 'question_141.png'),
@@ -233,9 +341,9 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (142, 220, 'A cette intersection I14, quel doit être l’ordre de passage des véhicules?', '{\"a\": \"1. le véhicule bleu démarre, fait ¼ de tour et s’arrête \\n2. le véhicule rouge   passe ensuite \\n3. le véhicule jaune passe  \\n4. le véhicule bleu après\", \"b\": \"1. le véhicule bleu démarre, fait ¼ de tour et s’arrête \\n2. le véhicule jaune passe, \\n3. le véhicule rouge passe ensuite \\n4. le véhicule bleu passe après\"}', 'b', 'non défini', 'question_220.png'),
 (143, 221, 'A une intersection munie de feux tricolores où un agent de sécurité réglemente la circulation, que \ndois-je faire ?', '{\"a\": \"Je respecte les feux\", \"b\": \"Je passe si le feu est au vert\", \"c\": \"Je suis les indications de l’agent\"}', 'c', 'non défini', 'question_221.png'),
 (144, 222, 'A l’intersection d’une route revêtue et d’une route en terre, quelle est la règle de priorité à \nobserver en agglomération ?', '{\"a\": \"La priorité de passage\", \"b\": \"La perte de priorité\", \"c\": \"La priorité à droite\"}', 'c', 'non défini', 'question_222.png'),
-(145, 224, 'Dans quels cas dois-je céder le passage aux usagers venant de gauche comme de droite ?', '{\"a\": \"Devant le feu rouge\", \"b\": \"Devant le triangle pointe en bas\", \"c\": \"Devant le feu vert\", \"d\": \"Quand je roule sur une route prioritaire\"}', 'a-b', 'non défini', 'question_224.png'),
+(145, 224, 'Dans quels cas dois-je céder le passage aux usagers venant de gauche comme de droite ?', '{\"a\": \"Devant le feu rouge\", \"b\": \"Devant le triangle pointe en bas\", \"c\": \"Devant le feu vert\", \"d\": \"Quand je roule sur une route prioritaire\"}', 'a', 'non défini', 'question_224.png'),
 (146, 225, 'Quel doit être l’ordre de passage des véhicules à cette intersection I3 ?', '{\"a\": \"Le véhicule rouge, le véhicule jaune et le véhicule bleu\", \"b\": \"Le véhicule bleu, le véhicule jaune et le véhicule rouge\", \"c\": \"Les véhicules jaune, rouge et bleu\"}', 'b', 'non défini', 'question_225.png'),
-(147, 226, 'A  cette intersection I7 :', '{\"a\": \"Il faut appliquer la règle de la priorité à droite\", \"b\": \"Il faut appliquer la règle de courtoisie\", \"c\": \"La voiture jaune doit céder le passage à la rouge\", \"d\": \"La voiture rouge doit céder le passage à la jaune\"}', 'a-d', 'non défini', 'question_226.png'),
+(147, 226, 'A  cette intersection I7 :', '{\"a\": \"Il faut appliquer la règle de la priorité à droite\", \"b\": \"Il faut appliquer la règle de courtoisie\", \"c\": \"La voiture jaune doit céder le passage à la rouge\", \"d\": \"La voiture rouge doit céder le passage à la jaune\"}', 'a', 'non défini', 'question_226.png'),
 (148, 227, 'A l’intersection I9 :', '{\"a\": \"Le véhicule jaune peut tourner immédiatement à droite\", \"b\": \"Le véhicule jaune peut tourner immédiatement à gauche\", \"c\": \"Le véhicule jaune peut aller immédiatement tout droit\"}', 'a', 'non défini', 'question_227.jpeg'),
 (149, 228, 'A cette intersection  I7, en agglomération, le véhicule rouge est sur la chaussée revêtue et le \nvéhicule jaune est sur la chaussée en terre, quelle est la règle de priorité à observer ?', '{\"a\": \"La règle de courtoisie\", \"b\": \"La règle de la priorité à droite\", \"c\": \"La règle de la perte de priorité\", \"d\": \"La règle de la priorité de passage\"}', 'b', 'non défini', 'question_228.png'),
 (150, 230, 'A cette intersection I8, quel doit être l’ordre de passage des véhicules ?', '{\"a\": \"1. les véhicules, jaune, bleu et la moto passent simultanément \\n2. le véhicule rouge passe après\", \"b\": \"1. les véhicules jaune et bleu passent \\n2. le véhicule rouge passe \\n3. la moto passe après\"}', 'b', 'non défini', 'question_230.png'),
@@ -246,7 +354,7 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (155, 240, 'Sur cette image PN1, le véhicule bleu doit :', '{\"a\": \"S’arrêter devant la demi-barrière et attendre le passage du train\", \"b\": \"Attendre que la demi-barrière s’élève et que le feu rouge s’éteigne avant de démarrer\", \"c\": \"Pouvoir se faufiler entre les demi-barrières pour partir après le passage du train\"}', 'b', 'non défini', 'question_240.png'),
 (156, 241, 'Sur cette image PN3, les véhicules rouge et bleu doivent :', '{\"a\": \"Passer\", \"b\": \"Attendre devant le premier panneau de signalisation et passer après l’avion\", \"c\": \"Attendre devant le deuxième panneau d e signalisation et ne passer qu’après l’extinction du \\nfeu\"}', 'c', 'non défini', 'question_241.png'),
 (157, 242, 'Sur cette image PN1, le véhicule jaune se situe à :', '{\"a\": \"150m environ du passage à niveau\", \"b\": \"100m environ du passage à niveau\", \"c\": \"50m environ du passage à niveau\"}', 'b', 'non défini', 'question_242.png'),
-(158, 243, 'Sur une route où il y a un panneau STOP, l’arrêt se fait :', '{\"a\": \"Exactement devant le panneau\", \"b\": \"A la limite de la visibilité en l’absence de ligne blanche au sol\", \"c\": \"Si à la ligne blanche, la visibilité est insuffisante, on marque un second arrêt à la limite de \\nla chaussée abordée\"}', 'b-c', 'non défini', 'question_243.png'),
+(158, 243, 'Sur une route où il y a un panneau STOP, l’arrêt se fait :', '{\"a\": \"Exactement devant le panneau\", \"b\": \"A la limite de la visibilité en l’absence de ligne blanche au sol\", \"c\": \"Si à la ligne blanche, la visibilité est insuffisante, on marque un second arrêt à la limite de \\nla chaussée abordée\"}', 'b', 'non défini', 'question_243.png'),
 (159, 245, 'A cette intersection I12, quel est le véhicule qui passera définitivement le premier ?', '{\"a\": \"le véhicule rouge\", \"b\": \"le véhicule bleu\", \"c\": \"le véhicule vert\"}', 'b', 'non défini', 'question_245.png'),
 (160, 246, 'A cette intersection I24, quel sera  l’ordre de passage ?', '{\"a\": \"1- le véhicule bleu \\n         2- le véhicule rouge ensuite \\n         3- le véhicule vert après\", \"b\": \"1- le véhicule vert \\n         2- le véhicule bleu ensuite \\n         3- le véhicule rouge après\"}', 'b', 'non défini', 'question_246.png'),
 (161, 247, 'A cette intersection I26, quel est le véhicule qui passera le premier ?', '{\"a\": \"Le véhicule vert\", \"b\": \"Le véhicule  Jaune\", \"c\": \"Le véhicule Rouge\", \"d\": \"Le véhicule bleu\"}', 'c', 'non défini', 'question_247.png'),
@@ -254,12 +362,12 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (163, 250, 'A cette intersection I1, quel est l’ordre de passage ?', '{\"a\": \"1- Le véhicule jaune \\n       2- Le véhicule rouge  \\n       3- Le véhicule vert\", \"b\": \"1- Le véhicule rouge \\n       2- Les véhicules jaune et vert ensuite\"}', 'b', 'non défini', 'question_250.png'),
 (164, 252, 'A cette intersection I14, quel sera l’ordre de passage ?', '{\"a\": \"1- le véhicule bleu passe \\n         2- le véhicule jaune passe ensuite \\n         3- Enfin le véhicule rouge passe\", \"b\": \"1-le véhicule bleu démarre, fait un quart de tour et s’arrête \\n        2- le véhicule rouge passe \\n        3- le véhicule bleu passe ensuite \\n        4- enfin le véhicule jaune passe\", \"c\": \"1- le véhicule bleu démarre fait un quart de tour et s’arrête  \\n       2- le véhicule jaune passe \\n      3- le véhicule rouge passe ensuite \\n      4 – enfin le véhicule bleu passe\"}', 'c', 'non défini', 'question_252.png'),
 (165, 254, 'A cette intersection I 26, quel sera l’ordre de passage ?', '{\"a\": \"1- les véhicules jaune et vert passent \\n      2- le véhicule bleu et le véhicule rouge marque un arrêt\", \"b\": \"1- les véhicules jaune, bleu et vert marquent un arrêt \\n      2- le véhicule rouge passe \\n                         3- les véhicules qui auront le feu vert passeront après le véhicule rouge\"}', 'b', 'non défini', 'question_254.png'),
-(166, 255, 'Quel panneau le conducteur du véhicule vert peut rencontrer à cette intersection I15 ?', '{\"a\": \"Panneau d’intersection de deux routes de même nature\", \"b\": \"Panneau d’intersection d’une route à grande circulation et d’une route secondaire\", \"c\": \"Panneau indiquant le caractère prioritaire d’une route\", \"d\": \"Panneau indiquant la fin du caractère prioritaire d’une route\"}', 'b-c', 'non défini', 'question_255.png'),
+(166, 255, 'Quel panneau le conducteur du véhicule vert peut rencontrer à cette intersection I15 ?', '{\"a\": \"Panneau d’intersection de deux routes de même nature\", \"b\": \"Panneau d’intersection d’une route à grande circulation et d’une route secondaire\", \"c\": \"Panneau indiquant le caractère prioritaire d’une route\", \"d\": \"Panneau indiquant la fin du caractère prioritaire d’une route\"}', 'b', 'non défini', 'question_255.png'),
 (167, 256, 'A cette intersection I23, quel est le véhicule qui passera le dernier ?', '{\"a\": \"Le véhicule jaune\", \"b\": \"Le véhicule Bleu\", \"c\": \"Les véhicules Jaune et bleu\"}', 'a', 'non défini', 'question_256.png'),
 (168, 258, 'Que doit faire un conducteur qui est sur le point d’être dépassé ?', '{\"a\": \"Il serre sa gauche sans accélérer\", \"b\": \"Il serre sa droite en accélérant\", \"c\": \"Il serre sa droite sans accélérer\", \"d\": \"Il reste au milieu de la chaussée en accélérant\", \"e\": \"Il serre sa droite en ralentissant\"}', 'c', 'non défini', 'question_258.png'),
 (169, 259, 'Dans quels cas est-il interdit de dépasser ?', '{\"a\": \"Lorsque je gène un usager venant de derrière\", \"b\": \"Lorsque je suis au sommet d’une côte où dans un virage\", \"c\": \"Lorsque je suis en présence d’un panneau d’interdiction de dépasser\", \"d\": \"Lorsque je suis sur le point d’être dépassé\"}', '', 'non défini', 'question_259.png'),
 (170, 260, 'La nuit, pour dépasser,', '{\"a\": \"J’utilise mes avertisseurs sonores\", \"b\": \"J’utilise mes avertisseurs lumineux\", \"c\": \"Je ne fais rien de tout cela\"}', 'b', 'non défini', 'question_260.png'),
-(171, 261, 'Lorsque la ligne discontinue de la ligne mixte est plus proche du conducteur, on peut franchir cette \nligne :', '{\"a\": \"Pour tourner à droite\", \"b\": \"Pour tourner à gauche\", \"c\": \"Pour dépasser puis se rabattre\"}', 'b-c', 'non défini', 'question_261.png'),
+(171, 261, 'Lorsque la ligne discontinue de la ligne mixte est plus proche du conducteur, on peut franchir cette \nligne :', '{\"a\": \"Pour tourner à droite\", \"b\": \"Pour tourner à gauche\", \"c\": \"Pour dépasser puis se rabattre\"}', 'b', 'non défini', 'question_261.png'),
 (172, 262, 'Quelle est la toute première précaution à observer pour effectuer un dépassement ?', '{\"a\": \"S’assurer que l’on n’est pas dans un cas d’interdiction\", \"b\": \"Accélérer pour dépasser\", \"c\": \"Bien serrer sa droite\"}', 'a', 'non défini', 'question_262.png'),
 (173, 263, 'En général, de quel côté s’effectue le dépassement ?', '{\"a\": \"Par la droite\", \"b\": \"Par la gauche\", \"c\": \"Du côté de votre choix\", \"d\": \"Du côté où c’est possible \\nb,c,d\"}', '', 'non défini', 'question_263.png'),
 (174, 264, 'Dans quel cas peut-on être autorisé, à dépasser par la droite ?', '{\"a\": \"Quand on a une file ininterrompue de véhicules devant soi\", \"b\": \"Quand le véhicule à dépasser a déjà pris  position pour tourner à gauche\", \"c\": \"En abordant une intersection\", \"d\": \"Sur une chaussée à sens unique\"}', 'b', 'non défini', 'question_264.jpeg'),
@@ -271,90 +379,90 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (179, 269, 'Donner l’écart latéral minimal entre deux véhicules automobiles lors d’un dépassement', '{\"a\": \"1m environ\", \"b\": \"0,50m environ\", \"c\": \"0,3m environ\"}', 'b', 'non défini', 'question_269.png'),
 (180, 270, 'Donner l’écart minimal à observer par un automobiliste qui dépasse un piéton ou un cycliste en \nagglomération:', '{\"a\": \"1m environ\", \"b\": \"0,5m environ\", \"c\": \"2,0m environ\"}', 'a', 'non défini', 'question_270.jpeg'),
 (181, 271, 'Quel serait votre comportement quand un usager s’apprête à vous dépasser ?', '{\"a\": \"Je serre ma gauche\", \"b\": \"J’occupe l’axe médian de la chaussée\", \"c\": \"Je serre ma droite\", \"d\": \"Je ralentis\"}', 'c', 'non défini', 'question_271.png'),
-(182, 272, 'A la vue de ce panneau B3 je peux dépasser :', '{\"a\": \"Tous véhicules à moteur qui me précèdent\", \"b\": \"Un motocycliste sans side-car\", \"c\": \"Un véhicule à traction animale\", \"d\": \"Un cyclomotoriste sans side-car\"}', 'b-c-d', 'non défini', 'question_272.png'),
+(182, 272, 'A la vue de ce panneau B3 je peux dépasser :', '{\"a\": \"Tous véhicules à moteur qui me précèdent\", \"b\": \"Un motocycliste sans side-car\", \"c\": \"Un véhicule à traction animale\", \"d\": \"Un cyclomotoriste sans side-car\"}', 'b', 'non défini', 'question_272.png'),
 (183, 273, 'A la vue du panneau B3 :', '{\"a\": \"J’accélère et je passe\", \"b\": \"Je ne dois pas dépasser\", \"c\": \"Je dois dépasser par la droite\"}', 'b', 'non défini', 'question_273.png'),
-(184, 274, 'Dans quels cas doit-on utiliser les clignotants ?', '{\"a\": \"Lorsqu’on veut s’insérer dans la circulation\", \"b\": \"Lorsqu’on veut augmenter ou réduire sa vitesse\", \"c\": \"Lorsqu’on veut dépasser ou se rabattre\", \"d\": \"Lorsqu’on veut changer de direction\", \"e\": \"Lorsqu’on veut croiser\"}', 'a-c-d', 'non défini', 'question_274.png'),
-(185, 275, 'Dans quels cas  utilise t- on ses feux de route ?', '{\"a\": \"En agglomération dans une rue non éclairée\", \"b\": \"Lorsqu’on va croiser un autre usager\", \"c\": \"Lorsqu’on ne risque d’éblouir personne\", \"d\": \"Lorsqu’on quitte une zone éclairée pour une zone sombre\"}', 'a-c-d', 'non défini', 'question_275.png'),
+(184, 274, 'Dans quels cas doit-on utiliser les clignotants ?', '{\"a\": \"Lorsqu’on veut s’insérer dans la circulation\", \"b\": \"Lorsqu’on veut augmenter ou réduire sa vitesse\", \"c\": \"Lorsqu’on veut dépasser ou se rabattre\", \"d\": \"Lorsqu’on veut changer de direction\", \"e\": \"Lorsqu’on veut croiser\"}', 'a', 'non défini', 'question_274.png'),
+(185, 275, 'Dans quels cas  utilise t- on ses feux de route ?', '{\"a\": \"En agglomération dans une rue non éclairée\", \"b\": \"Lorsqu’on va croiser un autre usager\", \"c\": \"Lorsqu’on ne risque d’éblouir personne\", \"d\": \"Lorsqu’on quitte une zone éclairée pour une zone sombre\"}', 'a', 'non défini', 'question_275.png'),
 (186, 276, 'En rase campagne le dépassement est autorisé :', '{\"a\": \"A proximité des intersections\", \"b\": \"Au sommet de côte\", \"c\": \"Dans les virages\", \"d\": \"Rien de tout ce qui précède\"}', 'd', 'non défini', 'question_276.png'),
 (187, 278, 'Lors du dépassement d’un véhicule la nuit, je mets les feux de route,', '{\"a\": \"Immédiatement après avoir déboîter\", \"b\": \"En arrivant à la hauteur du conducteur du véhicule à dépasser\", \"c\": \"Tout de suite après m’être rabattu\"}', 'b', 'non défini', 'question_278.png'),
 (188, 279, 'Comment prévenir  l’usager à dépasser  le jour ?', '{\"a\": \"Par des appels sonores\", \"b\": \"Par des appels lumineux\", \"c\": \"Par le clignotant\"}', 'a', 'non défini', 'question_279.png'),
 (189, 280, 'Comment prévenir l’usager à dépasser la nuit ?', '{\"a\": \"Par des appels sonores\", \"b\": \"Par des appels lumineux\", \"c\": \"Par le clignotant\"}', 'b', 'non défini', 'question_280.png'),
-(190, 281, 'A une intersection de deux routes de même nature peut-on dépasser par la gauche ?', '{\"a\": \"On peut effectuer rapidement le dépassement\", \"b\": \"On ne peut pas effectuer le dépassement\", \"c\": \"On le peut si le véhicule qui me précède signal son intention de tourner à droite\"}', 'b-c', 'non défini', 'question_281.png'),
+(190, 281, 'A une intersection de deux routes de même nature peut-on dépasser par la gauche ?', '{\"a\": \"On peut effectuer rapidement le dépassement\", \"b\": \"On ne peut pas effectuer le dépassement\", \"c\": \"On le peut si le véhicule qui me précède signal son intention de tourner à droite\"}', 'b', 'non défini', 'question_281.png'),
 (191, 282, 'Aux sommets d’une côte :', '{\"a\": \"Je peux dépasser si ma voiture a une réserve d’accélération suffisante\", \"b\": \"Je peux dépasser à la hauteur d’une ligne continue\", \"c\": \"Je ne peux pas dépasser\"}', 'c', 'non défini', 'question_282.png'),
 (192, 283, 'Sur une chaussée à double sens comportant trois voies :', '{\"a\": \"Je suis autorisé à dépasser en 3ème position lorsqu’aucun usager ne vient en face\", \"b\": \"Je suis autorisé à dépasser en 3ème position lorsque je juge suffisante la largeur de la \\nchaussée\", \"c\": \"Je ne suis pas autorisé à dépasser en 3ème position\"}', 'c', 'non défini', 'question_283.png'),
 (193, 284, 'Au niveau des flèches de rabattement', '{\"a\": \"Je suis autorisé à dépasser lorsqu’aucun usager ne vient en face\", \"b\": \"Je suis autorisé à dépasser lorsque je juge la largeur de la chaussée suffisante\", \"c\": \"Je ne suis pas autorisé à dépasser\"}', '', 'non défini', 'question_284.png'),
 (194, 285, 'Au niveau d’une ligne continue accolée à une ligne discontinue plus proche du conducteur, peut-\non effectuer le dépassement ?', '{\"a\": \"On ne peut pas effectuer le dépassement\", \"b\": \"On peut effectuer le dépassement\", \"c\": \"On ne peut pas effectuer le dépassement la nuit\"}', 'b', 'non défini', 'question_285.png'),
 (195, 286, 'A quel passage à niveau le dépassement est-il autorisé ?', '{\"a\": \"A un passage à niveau sans barrière\", \"b\": \"A un passage à niveau avec barrière à fonctionnement manuel\", \"c\": \"A un passage à niveau avec barrière à fonctionnement automatique\", \"d\": \"A aucun passage à niveau\"}', 'd', 'non défini', 'question_286.png'),
-(196, 287, 'Sur cette image D9', '{\"a\": \"Le véhicule bleu est en infraction\", \"b\": \"Le véhicule bleu effectue une bonne manœuvre\", \"c\": \"Le véhicule bleu n’est pas en infraction\", \"d\": \"Le véhicule bleu effectue une mauvaise manœuvre\"}', 'a-d', 'non défini', 'question_287.png'),
+(196, 287, 'Sur cette image D9', '{\"a\": \"Le véhicule bleu est en infraction\", \"b\": \"Le véhicule bleu effectue une bonne manœuvre\", \"c\": \"Le véhicule bleu n’est pas en infraction\", \"d\": \"Le véhicule bleu effectue une mauvaise manœuvre\"}', 'a', 'non défini', 'question_287.png'),
 (197, 288, 'Sur cette chaussée D10 à trois voies et à double sens de circulation :', '{\"a\": \"Le véhicule jaune est en infraction\", \"b\": \"Le véhicule jaune n’est pas en infraction\"}', '', 'non défini', 'question_288.png'),
 (198, 290, 'Sur cette image D12', '{\"a\": \"Le véhicule vert est en infraction\", \"b\": \"Le véhicule vert effectue une bonne manœuvre\", \"c\": \"Le véhicule vert n’est pas en infraction\", \"d\": \"Le véhicule vert effectue une mauvaise manœuvre\"}', '', 'non défini', 'question_290.png'),
-(199, 292, 'Sur cette chaussée D13 à quatre voies et à sens unique :', '{\"a\": \"Le véhicule vert n’est pas en infraction\", \"b\": \"Le véhicule vert effectue une bonne manœuvre\", \"c\": \"Le véhicule vert effectue une mauvaise manœuvre\", \"d\": \"Le véhicule vert est en infraction\"}', 'a-b', 'non défini', 'question_292.png'),
+(199, 292, 'Sur cette chaussée D13 à quatre voies et à sens unique :', '{\"a\": \"Le véhicule vert n’est pas en infraction\", \"b\": \"Le véhicule vert effectue une bonne manœuvre\", \"c\": \"Le véhicule vert effectue une mauvaise manœuvre\", \"d\": \"Le véhicule vert est en infraction\"}', 'a', 'non défini', 'question_292.png'),
 (200, 293, 'Sur cette image D9 :', '{\"a\": \"Le véhicule bleu est en infraction\"}', '', 'non défini', 'question_293.png'),
 (201, 294, 'Sur cette chaussée D10 à trois voies et à sens unique de circulation', '{\"a\": \"Le véhicule jaune est en infraction\", \"b\": \"Le véhicule jaune effectue une bonne manœuvre\", \"c\": \"Le véhicule jaune effectue une mauvaise manœuvre\", \"d\": \"Le véhicule jaune n’est pas en infraction\"}', '', 'non défini', 'question_294.png'),
 (202, 295, 'Sur cette image D4', '{\"a\": \"Le véhicule bleu est en infraction\", \"b\": \"Le véhicule bleu n’est pas en infraction\", \"c\": \"Le véhicule bleu effectue une bonne manœuvre\", \"d\": \"Le véhicule bleu effectue une mauvaise manœuvre\"}', '', 'non défini', 'question_295.png'),
 (203, 296, 'Sur une chaussée à plus de deux voies et à double sens de circulation, le dépassement est interdit :', '{\"a\": \"Sur la voie se trouvant la plus à gauche\", \"b\": \"Sur la voie du milieu\", \"c\": \"Sur toutes les voies\"}', 'a', 'non défini', 'question_296.png'),
 (204, 298, 'Le franchissement ou le chevauchement de la ligne continue est autorisé :', '{\"a\": \"A tout moment\", \"b\": \"A aucun moment\", \"c\": \"Pour effectuer un dépassement\", \"d\": \"Lorsque la chaussée est libre\"}', 'b', 'non défini', 'question_298.png'),
 (205, 299, 'Vous circulez par temps de grand vent ; pour dépasser un autre usager :', '{\"a\": \"Vous diminuez l’écart latéral\", \"b\": \"Vous maintenez l’écart latéral\", \"c\": \"Vous augmentez l’écart latéral\"}', 'c', 'non défini', 'question_299.png'),
-(206, 300, 'Pour effectuer un croisement, je dois :', '{\"a\": \"Accélérer\", \"b\": \"Ralentir\", \"c\": \"Serrer ma droite\"}', 'b-c', 'non défini', 'question_300.png'),
+(206, 300, 'Pour effectuer un croisement, je dois :', '{\"a\": \"Accélérer\", \"b\": \"Ralentir\", \"c\": \"Serrer ma droite\"}', 'b', 'non défini', 'question_300.png'),
 (207, 301, 'Pour effectuer un croisement la nuit, je dois', '{\"a\": \"Klaxonner\", \"b\": \"Circuler en phare\", \"c\": \"Circuler en code\", \"d\": \"Circuler en feux de détresse\"}', 'c', 'non défini', 'question_301.png'),
 (208, 302, 'Quel est le véhicule qui doit s’arrêter à temps à cause d’un croisement difficile sur un terrain plat ?', '{\"a\": \"Le véhicule léger\", \"b\": \"Le véhicule encombrant\", \"c\": \"Le véhicule qui veut\"}', 'b', 'non défini', 'question_302.png'),
 (209, 303, 'Sur une pente, quel est le véhicule qui doit s’arrêter à temps à cause d’un croisement difficile ?', '{\"a\": \"Le véhicule montant\", \"b\": \"Le véhicule descendant\", \"c\": \"Le véhicule qui le désire\"}', 'b', 'non défini', 'question_303.png'),
 (210, 304, 'En agglomération, quel est le véhicule qui doit s’arrêter à temps à cause d’un croisement difficile ?', '{\"a\": \"L’autobus\"}', '', 'non défini', 'question_304.png'),
 (211, 305, 'Lorsque deux véhicules de même catégorie se retrouvent sur une pente, lequel doit faire la marche \narrière à cause d’un croisement difficile ?', '{\"a\": \"Le véhicule montant\", \"b\": \"Le véhicule descendant\", \"c\": \"Le véhicule qui veut\"}', 'b', 'non défini', 'question_305.png'),
-(212, 306, 'Dans quels cas dois-je m’arrêter pour laisser passer l’usager venant en sens inverse ?', '{\"a\": \"Devant le panneau \\\"chaussée rétrécie\\\" et un obstacle devant moi\", \"b\": \"Devant le panneau \\\"céder le passage\\\" aux usagers venant en sens inverse et devant un \\npanneau \\\"chaussée rétrécie\\\"\", \"c\": \"Devant le panneau sens interdit et un obstacle devant moi\"}', 'a-b', 'non défini', 'question_306.png'),
+(212, 306, 'Dans quels cas dois-je m’arrêter pour laisser passer l’usager venant en sens inverse ?', '{\"a\": \"Devant le panneau \\\"chaussée rétrécie\\\" et un obstacle devant moi\", \"b\": \"Devant le panneau \\\"céder le passage\\\" aux usagers venant en sens inverse et devant un \\npanneau \\\"chaussée rétrécie\\\"\", \"c\": \"Devant le panneau sens interdit et un obstacle devant moi\"}', 'a', 'non défini', 'question_306.png'),
 (213, 307, 'Sur une pente, quel est le véhicule qui doit faciliter le passage lors d’un croisement difficile ?', '{\"a\": \"L’autobus chargé\", \"b\": \"Le camion\", \"c\": \"Le véhicule qui le désire\"}', 'b', 'non défini', 'question_307.png'),
 (214, 308, 'Sur une pente, quel est le véhicule qui doit faire la marche arrière à cause d’un croisement \ndifficile ?', '{\"a\": \"Le véhicule isolé\", \"b\": \"Le véhicule articulé\", \"c\": \"Le véhicule qui veut\"}', 'a', 'non défini', 'question_308.png'),
 (215, 309, 'La nuit, pour éviter d’être ébloui :', '{\"a\": \"Je regarde le bord droit de la chaussée\", \"b\": \"Je ferme les yeux pendant un court instant\", \"c\": \"Je porte des verres teintés\", \"d\": \"J’allume mes feux de route\"}', 'a', 'non défini', 'question_309.png'),
 (216, 310, 'L’écart minimal de vitesse recommandé pour un véhicule qui veut effectuer le dépassement est \nde :', '{\"a\": \"30km/h\", \"b\": \"25 km/h\", \"c\": \"40 km/h\", \"d\": \"20 km/h\", \"e\": \"10 km/h\"}', 'd', 'non défini', 'question_310.png'),
 (217, 311, 'Sur une chaussée à forte déclivité, quel est le véhicule qui doit s’arrêter à temps lorsque le \ncroisement se révèle difficile ?', '{\"a\": \"Le véhicule descendant\", \"b\": \"Le véhicule qui le désire\", \"c\": \"Le véhicule montant\"}', 'a', 'non défini', 'question_311.png'),
-(218, 312, 'Je laisse passer l’usager d’en face en m’arrêtant :', '{\"a\": \"Quand se dresse un obstacle devant  moi\", \"b\": \"Devant un panneau de circulation à sens unique\", \"c\": \"Quand je suis au volant d’un véhicule encombrant\"}', 'a-c', 'non défini', 'question_312.png'),
-(219, 313, 'Quel doit être mon comportement lorsqu’un usager manifeste son intention de me dépasser ?', '{\"a\": \"Je ne l’empêche pas si la manœuvre est régulière\", \"b\": \"Je serre ma droite le plus possible\", \"c\": \"J’accélère\", \"d\": \"Je maintiens mon allure et, au besoin je ralentis\", \"e\": \"La nuit, je passe en feu de croisement quand il arrive à ma hauteur\"}', 'a-b-d-e', 'non défini', 'question_313.png'),
-(220, 314, 'Dans quels cas  devez vous céder le passage de gauche comme de droite ?', '{\"a\": \"devant le feu vert ou jaune clignotant\", \"b\": \"devant le feu  rouge\", \"c\": \"devant le panneau « STOP »\", \"d\": \"devant le panneau « Triangle pointe en bas »\", \"e\": \"en sortant d’un chemin de terre, d’un garage ou d’un parking\"}', 'b-c-d-e', 'non défini', 'question_314.png'),
-(221, 315, 'Hors agglomération, le panneau à caractère prioritaire est répété :', '{\"a\": \"tous les 5km\", \"b\": \"après chaque intersection\", \"c\": \"tous les 2km\", \"d\": \"après chaque virage\", \"e\": \"tous les kilomètres\"}', 'a-b', 'non défini', 'question_315.png'),
+(218, 312, 'Je laisse passer l’usager d’en face en m’arrêtant :', '{\"a\": \"Quand se dresse un obstacle devant  moi\", \"b\": \"Devant un panneau de circulation à sens unique\", \"c\": \"Quand je suis au volant d’un véhicule encombrant\"}', 'a', 'non défini', 'question_312.png'),
+(219, 313, 'Quel doit être mon comportement lorsqu’un usager manifeste son intention de me dépasser ?', '{\"a\": \"Je ne l’empêche pas si la manœuvre est régulière\", \"b\": \"Je serre ma droite le plus possible\", \"c\": \"J’accélère\", \"d\": \"Je maintiens mon allure et, au besoin je ralentis\", \"e\": \"La nuit, je passe en feu de croisement quand il arrive à ma hauteur\"}', 'a', 'non défini', 'question_313.png'),
+(220, 314, 'Dans quels cas  devez vous céder le passage de gauche comme de droite ?', '{\"a\": \"devant le feu vert ou jaune clignotant\", \"b\": \"devant le feu  rouge\", \"c\": \"devant le panneau « STOP »\", \"d\": \"devant le panneau « Triangle pointe en bas »\", \"e\": \"en sortant d’un chemin de terre, d’un garage ou d’un parking\"}', 'b', 'non défini', 'question_314.png'),
+(221, 315, 'Hors agglomération, le panneau à caractère prioritaire est répété :', '{\"a\": \"tous les 5km\", \"b\": \"après chaque intersection\", \"c\": \"tous les 2km\", \"d\": \"après chaque virage\", \"e\": \"tous les kilomètres\"}', 'a', 'non défini', 'question_315.png'),
 (222, 316, 'En agglomération, le panneau à caractère prioritaire est répété :', '{\"a\": \"tous les 5 kilomètres\", \"b\": \"après chaque intersection\", \"c\": \"Tous les 2 kilomètres\", \"d\": \"Après chaque virage\", \"e\": \"Tous les kilomètres\"}', 'e', 'non défini', 'question_316.png'),
-(223, 317, 'Quel est le but des ronds-points ?', '{\"a\": \"faciliter l’écoulement des trafics\", \"b\": \"briser les vitesses\", \"c\": \"permettre le stationnement des véhicules\"}', 'a-', 'non défini', 'question_317.png'),
-(224, 318, 'A quoi peut-on s’attendre lors d’un croisement ou dépassement d’un véhicule à deux roues ?', '{\"a\": \"non respect des signaux\", \"b\": \"non respect des règles de priorité\", \"c\": \"des écarts sans avertir, sans contrôler\"}', 'a-b-c', 'non défini', 'question_318.png'),
+(223, 317, 'Quel est le but des ronds-points ?', '{\"a\": \"faciliter l’écoulement des trafics\", \"b\": \"briser les vitesses\", \"c\": \"permettre le stationnement des véhicules\"}', 'a', 'non défini', 'question_317.png'),
+(224, 318, 'A quoi peut-on s’attendre lors d’un croisement ou dépassement d’un véhicule à deux roues ?', '{\"a\": \"non respect des signaux\", \"b\": \"non respect des règles de priorité\", \"c\": \"des écarts sans avertir, sans contrôler\"}', 'a', 'non défini', 'question_318.png'),
 (225, 360, 'Sur une chaussée à double sens :', '{\"a\": \"Je peux faire demi-tour\", \"b\": \"Je ne peux pas faire demi-tour\", \"c\": \"Je ne peux pas faire marche arrière\"}', 'a', 'non défini', 'question_360.png'),
 (226, 361, 'Les flèches de rabattement m’obligent :', '{\"a\": \"A serrer ma gauche\", \"b\": \"A serrer ma droite\", \"c\": \"A quitter la chaussée\", \"d\": \"A réduire ma vitesse\"}', 'b', 'non défini', 'question_361.png'),
 (227, 362, 'Sur une chaussée à double sens comportant plus de deux voies, il est interdit d’emprunter :', '{\"a\": \"La voie la plus à droite\", \"b\": \"La voie du milieu\", \"c\": \"La voie la plus à gauche\"}', 'c', 'non défini', 'question_362.png'),
 (228, 364, 'Lors d’un arrêt :', '{\"a\": \"Le conducteur est à côté du véhicule\", \"b\": \"Le conducteur s’éloigne du véhicule\", \"c\": \"Le conducteur est à bord du véhicule\"}', '', 'non défini', 'question_364.png'),
 (229, 365, 'En quoi consiste le stationnement', '{\"a\": \"A l’immobilisation momentanée d’un véhicule, conducteur à bord\", \"b\": \"A l’immobilisation momentanée d’un véhicule, conducteur à côté\", \"c\": \"A l’immobilisation momentanée d’un véhicule, conducteur éloigné\", \"d\": \"A l’immobilisation de longue durée d’un véhicule\"}', '', 'non défini', 'question_365.png'),
 (230, 366, 'En présence du panneau de \"stationnement interdit\" je suis autorisé à :', '{\"a\": \"Stationner avant le panneau\", \"b\": \"Stationner après le panneau\", \"c\": \"Stationner avant la prochaine intersection\"}', 'a', 'non défini', 'question_366.jpeg'),
-(231, 368, 'La distance de freinage augmente :', '{\"a\": \"quand la chaussée est mouillée\", \"b\": \"quand les pneus sont usés\", \"c\": \"quand les rotules sont usées\", \"d\": \"quand la chaussée est rétrécie\"}', 'a-b', 'non défini', 'question_368.png'),
+(231, 368, 'La distance de freinage augmente :', '{\"a\": \"quand la chaussée est mouillée\", \"b\": \"quand les pneus sont usés\", \"c\": \"quand les rotules sont usées\", \"d\": \"quand la chaussée est rétrécie\"}', 'a', 'non défini', 'question_368.png'),
 (232, 369, 'A la vue d’un usager qui veut s’insérer dans la circulation :', '{\"a\": \"je klaxonne\", \"b\": \"je ralentis\", \"c\": \"je fais un appel de feux\", \"d\": \"je change de voie\"}', 'b', 'non défini', 'question_369.png'),
-(233, 370, 'La distance d’arrêt augmente :', '{\"a\": \"si le conducteur est fatigué\", \"b\": \"si la chaussée est légèrement mouillée\", \"c\": \"si les pneus sont usés\", \"d\": \"rien de tout ce qui précède\"}', 'a-b-c', 'non défini', 'question_370.png'),
-(234, 371, 'En cas de pluie, je risque :', '{\"a\": \"l’aquaplaning\", \"b\": \"la glissade\", \"c\": \"le blocage des roues\"}', 'a-b', 'non défini', 'question_371.png'),
-(235, 372, 'Plus je roule vite et plus j’augmente :', '{\"a\": \"le temps de réaction\", \"b\": \"la distance d’arrêt\", \"c\": \"la distance de freinage\"}', 'b-c', 'non défini', 'question_372.png'),
+(233, 370, 'La distance d’arrêt augmente :', '{\"a\": \"si le conducteur est fatigué\", \"b\": \"si la chaussée est légèrement mouillée\", \"c\": \"si les pneus sont usés\", \"d\": \"rien de tout ce qui précède\"}', 'a', 'non défini', 'question_370.png'),
+(234, 371, 'En cas de pluie, je risque :', '{\"a\": \"l’aquaplaning\", \"b\": \"la glissade\", \"c\": \"le blocage des roues\"}', 'a', 'non défini', 'question_371.png'),
+(235, 372, 'Plus je roule vite et plus j’augmente :', '{\"a\": \"le temps de réaction\", \"b\": \"la distance d’arrêt\", \"c\": \"la distance de freinage\"}', 'b', 'non défini', 'question_372.png'),
 (236, 373, 'La distance de freinage dépend :', '{\"a\": \"de la vitesse\", \"b\": \"de l’adhérence\", \"c\": \"du temps de réaction\", \"d\": \"de l’état physique du conducteur\", \"e\": \"de l’état des amortisseurs\"}', '', 'non défini', 'question_373.png'),
-(237, 374, 'Un conducteur ayant l’intention de changer de direction doit :', '{\"a\": \"ralentir\", \"b\": \"signaler son intention\", \"c\": \"klaxonner pour faire dégager les piétons engagés sur leur passage\"}', 'a-b', 'non défini', 'question_374.png'),
-(238, 375, 'Quel doit être votre comportement à l’approche d’un lieu-dit :', '{\"a\": \"rouler vite\", \"b\": \"ralentir\", \"c\": \"klaxonner\"}', 'b-c', 'non défini', 'question_375.png'),
-(239, 376, 'Un conducteur ayant l’intention de changer de direction doit :', '{\"a\": \"s’assurer que la route qu’il veut emprunter n’est pas en sens interdit\", \"b\": \"surveiller la route vers l’avant et l’arrière\", \"c\": \"signaler son intention à l’aide du clignotant\", \"d\": \"ralentir sans freiner brusquement pour ne pas surprendre les usagers qui le \\nsuivent\", \"e\": \"respecter les priorités de passage et notamment les piétons qui traversent\"}', 'a-b-c-d-e', 'non défini', 'question_376.png'),
-(240, 377, 'Pour adapter sa vitesse le conducteur doit tenir compte :', '{\"a\": \"de l’importance du trafic\", \"b\": \"des risques prévisibles\", \"c\": \"de l’adhérence\", \"d\": \"de la visibilité\", \"e\": \"de sa propre vigilance\"}', 'a-b-c-d-e', 'non défini', 'question_377.jpeg'),
-(241, 406, 'Pour tourner à droite, je dois :', '{\"a\": \"Accélérer\", \"b\": \"Mettre le clignotant à droite\", \"c\": \"Ralentir\"}', 'b-c', 'non défini', NULL),
+(237, 374, 'Un conducteur ayant l’intention de changer de direction doit :', '{\"a\": \"ralentir\", \"b\": \"signaler son intention\", \"c\": \"klaxonner pour faire dégager les piétons engagés sur leur passage\"}', 'a', 'non défini', 'question_374.png'),
+(238, 375, 'Quel doit être votre comportement à l’approche d’un lieu-dit :', '{\"a\": \"rouler vite\", \"b\": \"ralentir\", \"c\": \"klaxonner\"}', 'b', 'non défini', 'question_375.png'),
+(239, 376, 'Un conducteur ayant l’intention de changer de direction doit :', '{\"a\": \"s’assurer que la route qu’il veut emprunter n’est pas en sens interdit\", \"b\": \"surveiller la route vers l’avant et l’arrière\", \"c\": \"signaler son intention à l’aide du clignotant\", \"d\": \"ralentir sans freiner brusquement pour ne pas surprendre les usagers qui le \\nsuivent\", \"e\": \"respecter les priorités de passage et notamment les piétons qui traversent\"}', 'a', 'non défini', 'question_376.png'),
+(240, 377, 'Pour adapter sa vitesse le conducteur doit tenir compte :', '{\"a\": \"de l’importance du trafic\", \"b\": \"des risques prévisibles\", \"c\": \"de l’adhérence\", \"d\": \"de la visibilité\", \"e\": \"de sa propre vigilance\"}', 'a', 'non défini', 'question_377.jpeg'),
+(241, 406, 'Pour tourner à droite, je dois :', '{\"a\": \"Accélérer\", \"b\": \"Mettre le clignotant à droite\", \"c\": \"Ralentir\"}', 'b', 'non défini', NULL),
 (242, 408, 'A bord d’un véhicule de tourisme pour tourner à gauche sur une chaussée à sens unique, je dois :', '{\"a\": \"Serrer ma droite et mettre le clignotant à gauche\", \"b\": \"Respecter les règles de priorité\", \"c\": \"Serrer ma gauche\"}', '', 'non défini', NULL),
 (243, 409, 'Je dois réduire ma vitesse', '{\"a\": \"A l’approche d’un virage\", \"b\": \"A la hauteur d’une ligne continue\", \"c\": \"A l’approche d’une intersection\"}', '', 'non défini', NULL),
 (244, 410, 'Je dois réduire ma vitesse', '{\"a\": \"A la sortie d’une agglomération\", \"b\": \"A la vue d’un panneau de limitation de vitesse\", \"c\": \"Pendant le dépassement\", \"d\": \"A l’approche d’un passage à niveau\"}', '', 'non défini', NULL),
 (245, 411, 'La bande rouge discontinue de blanc le long du trottoir, interdit :', '{\"a\": \"L’arrêt\", \"b\": \"Le stationnement\", \"c\": \"L’arrêt pour les véhicules légers\"}', 'b', 'non défini', NULL),
 (246, 413, 'Le panneau B7b :', '{\"a\": \"Interdit le stationnement à tout véhicule à moteur sauf les camions\", \"b\": \"Interdit l’accès à tous les véhicules à moteur\", \"c\": \"Interdit l’accès à tous les véhicules sauf les camions\"}', 'b', 'non défini', NULL),
-(247, 414, 'A la vue du panneau B6d :', '{\"a\": \"Je ne peux pas m’arrêter\", \"c\": \"Je ne peux pas m’arrêter mais je peux stationner\", \"d\": \"Je ne peux ni m’arrêter ni stationner\"}', 'a-c', 'non défini', NULL),
-(248, 415, 'Dans quels cas peut-on utiliser le frein moteur ?', '{\"a\": \"Pour s’arrêter\", \"b\": \"Pour ralentir\", \"c\": \"Pour aborder un virage\", \"d\": \"Pour aborder une descente dangereuse\"}', 'b-c-d', 'non défini', NULL),
+(247, 414, 'A la vue du panneau B6d :', '{\"a\": \"Je ne peux pas m’arrêter\", \"c\": \"Je ne peux pas m’arrêter mais je peux stationner\", \"d\": \"Je ne peux ni m’arrêter ni stationner\"}', 'a', 'non défini', NULL),
+(248, 415, 'Dans quels cas peut-on utiliser le frein moteur ?', '{\"a\": \"Pour s’arrêter\", \"b\": \"Pour ralentir\", \"c\": \"Pour aborder un virage\", \"d\": \"Pour aborder une descente dangereuse\"}', 'b', 'non défini', NULL),
 (249, 416, 'Que signifie le panneau B9c ?', '{\"a\": \"Accès interdit aux chevaux\", \"b\": \"Accès interdit aux véhicules agricoles à moteur\", \"c\": \"Accès interdit aux véhicules à traction animale\"}', 'c', 'non défini', NULL),
-(250, 428, 'Le stationnement est dangereux', '{\"a\": \"Dans un virage\", \"b\": \"Derrière les véhicules en stationnement\", \"c\": \"A proximité d’une intersection\"}', 'a-c', 'non défini', NULL),
+(250, 428, 'Le stationnement est dangereux', '{\"a\": \"Dans un virage\", \"b\": \"Derrière les véhicules en stationnement\", \"c\": \"A proximité d’une intersection\"}', 'a', 'non défini', NULL),
 (251, 431, 'A l’approche d’un virage à courbure très prononcée et bordé d’arbres, je dois tenir compte de :', '{\"a\": \"La force centrifuge\", \"b\": \"L’adhérence\", \"c\": \"La visibilité\"}', '', 'non défini', NULL),
 (252, 438, 'Sur une route en rase campagne les véhicules peuvent stationner :', '{\"a\": \"Sur le côté droit seulement\", \"b\": \"Sur le côté droit ou sur le côté gauche\", \"c\": \"Sur le côté gauche seulement\"}', 'b', 'non défini', NULL),
 (253, 474, 'A quoi sert la voie d’accélération ?', '{\"a\": \"Permet d’atteindre la vitesse minimale autorisée sur autoroute\", \"b\": \"Permet de quitter l’autoroute\", \"c\": \"Permet de dépasser les usagers lents\"}', 'a', 'non défini', NULL),
-(254, 477, 'Quelles sont les manœuvres interdites sur autoroute ?', '{\"a\": \"Dépassement\", \"b\": \"Demi-tour\", \"c\": \"Marche arrière\"}', 'b-c', 'non défini', NULL),
+(254, 477, 'Quelles sont les manœuvres interdites sur autoroute ?', '{\"a\": \"Dépassement\", \"b\": \"Demi-tour\", \"c\": \"Marche arrière\"}', 'b', 'non défini', NULL),
 (255, 478, 'Le panneau triangle pointe en bas au début d’une voie d’accélération :', '{\"a\": \"oblige les usagers circulant sur autoroute à me céder le passage\", \"b\": \"oblige à céder le passage aux usagers de l’autoroute\", \"c\": \"oblige à marquer l’arrêt\"}', 'b', 'non défini', NULL),
 (256, 479, 'Les différentes parties d’une rue sont :', '{\"a\": \"Chaussée, accotement\", \"b\": \"Chaussée, terre-plein central, accotement\", \"c\": \"Chaussée, trottoirs\", \"d\": \"Terre plein-central, chaussée, trottoirs\"}', '', 'non défini', NULL),
 (257, 480, 'Le trottoir est la partie d’une rue  réservée :', '{\"a\": \"Pour les vendeuses\", \"b\": \"Pour les piétons\", \"c\": \"Pour le dépassement en cas de bouchon\"}', 'b', 'non défini', NULL),
 (258, 481, 'La chaussée est la partie d’une route réservée :', '{\"a\": \"A la circulation de gros camions uniquement\", \"b\": \"A la circulation des véhicules\", \"c\": \"A la circulation des taxis uniquement\"}', 'b', 'non défini', NULL),
 (259, 482, 'La voie est :', '{\"a\": \"Une partie de la chaussée ou le dépassement est possible\", \"b\": \"Une partie de la chaussée réservée pour la circulation des véhicules\", \"c\": \"Une partie de la chaussée réservée pour la circulation dans un sens\"}', '', 'non défini', NULL),
-(260, 483, 'Où doit-on stationner en cas d’ennui mécanique sur l’autoroute ?', '{\"a\": \"Sur le terre- plein\", \"b\": \"Sur la bande d’arrêt d’urgence\", \"c\": \"Sur l’aire de repos\"}', 'b-c', 'non défini', NULL),
+(260, 483, 'Où doit-on stationner en cas d’ennui mécanique sur l’autoroute ?', '{\"a\": \"Sur le terre- plein\", \"b\": \"Sur la bande d’arrêt d’urgence\", \"c\": \"Sur l’aire de repos\"}', 'b', 'non défini', NULL),
 (261, 484, 'La vitesse maximale autorisée sur une autoroute est :', '{\"a\": \"90km/h\", \"b\": \"200km/h\", \"c\": \"60km/h\", \"d\": \"Fonction de la législation en vigueur dans chaque pays\"}', 'd', 'non défini', NULL),
 (262, 485, 'La vitesse maximale autorisée sur une route pour automobile est :', '{\"a\": \"90km/h\", \"b\": \"130km/h\", \"c\": \"110km/h\", \"d\": \"Fonction de la législation en vigueur dans chaque pays\"}', 'd', 'non défini', NULL),
 (263, 486, 'La vitesse maximale autorisée en agglomération est :', '{\"a\": \"70km/h\", \"b\": \"50km/h\", \"c\": \"90km/h\", \"d\": \"100km/h\"}', 'b', 'non défini', NULL),
 (264, 487, 'Je suis en panne de carburant sur l’autoroute :', '{\"a\": \"Je vais à pied chercher du carburant à la station-service la plus proche\", \"b\": \"Je me fais remorquer par un autre usager jusqu’à la station-service la plus proche\", \"c\": \"J’utilise la cabine d’appel d’urgence pour me faire dépanner\", \"d\": \"Je place mon triangle de pré-signalisation\"}', 'c', 'non défini', NULL),
-(265, 488, 'Mon véhicule tombe en panne sur l’autoroute :', '{\"a\": \"je  gare sur la bande d’arrêt d’urgence\", \"b\": \"J’attends un véhicule de dépannage\", \"c\": \"Je fais du stop pour demander de l’aide\", \"d\": \"Je vais à pied  jusqu\'à la prochaine borne d’appel\"}', 'a-d', 'non défini', NULL),
+(265, 488, 'Mon véhicule tombe en panne sur l’autoroute :', '{\"a\": \"je  gare sur la bande d’arrêt d’urgence\", \"b\": \"J’attends un véhicule de dépannage\", \"c\": \"Je fais du stop pour demander de l’aide\", \"d\": \"Je vais à pied  jusqu\'à la prochaine borne d’appel\"}', 'a', 'non défini', NULL),
 (266, 489, 'La circulation sur les bandes d’arrêt d’urgence de l’autoroute est autorisée :', '{\"a\": \"Aux ambulances effectuant un transport urgent de blessés\", \"b\": \"A tous les véhicules en cas d’embouteillage\", \"c\": \"Aux services d’entretien se rendant sur un lieu d’intervention\", \"d\": \"Aux véhicules prioritaires en mission.\"}', '', 'non défini', NULL),
 (267, 490, 'Sur autoroute les bornes d’appel d’urgence sont placées à :', '{\"a\": \"tous les kilomètres\", \"b\": \"tous les deux kilomètres\", \"c\": \"tous les trois kilomètres\", \"d\": \"tous les cinq kilomètres\"}', 'b', 'non défini', NULL),
 (268, 501, 'Quels sont les types de stationnement ?', '{\"a\": \"Bataille – créneau – perpendiculaire\", \"b\": \"Bataille – épi – créneau\", \"c\": \"Epi – créneau – oblique\", \"d\": \"En double file – épi – parallèle\"}', 'b', 'non défini', NULL),
@@ -363,13 +471,13 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (271, 504, 'En sortant d’un garage pour intégrer la circulation, je dois :', '{\"a\": \"Céder le passage aux usagers venant de la droite seulement\", \"b\": \"Céder le passage aux usagers venant de la gauche seulement\", \"c\": \"Céder le passage aux usagers venant de la droite et de la gauche\"}', 'c', 'non défini', NULL),
 (272, 505, 'En sortant d’un garage pour intégrer la circulation, quelle est la toute première précaution à \nprendre ?', '{\"a\": \"Jeter un coup d’œil à gauche\", \"b\": \"Klaxonner\", \"c\": \"Jeter un coup d’œil à droite\"}', 'a', 'non défini', NULL),
 (273, 508, 'Sur les lignes hachurées appelées zébras :', '{\"a\": \"Je peux stationner\", \"b\": \"Je peux circuler\", \"c\": \"Je ne peux ni circuler, ni stationner\"}', 'c', 'non défini', NULL),
-(274, 509, 'On doit s’abstenir de conduire :', '{\"a\": \"Si on est sous l’effet des boissons alcoolisées ou des médicaments\", \"b\": \"Si on vient de manger sans prendre de l’alcool\", \"c\": \"Si on est fatigué et somnolant\", \"d\": \"Si on se sent nerveux\"}', 'a-c-d', 'non défini', NULL),
-(275, 511, 'A  toute réquisition des forces de sécurité concernant mon véhicule je dois présenter :', '{\"a\": \"La carte grise\", \"b\": \"Les papiers de dédouanement\", \"c\": \"Le papier d’achat\", \"d\": \"L’attestation d’assurance\", \"e\": \"La visite technique\"}', 'a-d-e', 'non défini', NULL),
-(276, 512, 'Les règles de circulation doivent être respectées par :', '{\"a\": \"Les motocyclistes\", \"b\": \"Les piétons\", \"c\": \"Les automobilistes seulement\", \"d\": \"Les automobilistes\"}', 'a-b-d', 'non défini', NULL),
+(274, 509, 'On doit s’abstenir de conduire :', '{\"a\": \"Si on est sous l’effet des boissons alcoolisées ou des médicaments\", \"b\": \"Si on vient de manger sans prendre de l’alcool\", \"c\": \"Si on est fatigué et somnolant\", \"d\": \"Si on se sent nerveux\"}', 'a', 'non défini', NULL),
+(275, 511, 'A  toute réquisition des forces de sécurité concernant mon véhicule je dois présenter :', '{\"a\": \"La carte grise\", \"b\": \"Les papiers de dédouanement\", \"c\": \"Le papier d’achat\", \"d\": \"L’attestation d’assurance\", \"e\": \"La visite technique\"}', 'a', 'non défini', NULL),
+(276, 512, 'Les règles de circulation doivent être respectées par :', '{\"a\": \"Les motocyclistes\", \"b\": \"Les piétons\", \"c\": \"Les automobilistes seulement\", \"d\": \"Les automobilistes\"}', 'a', 'non défini', NULL),
 (277, 513, 'Quand je suis sur le point d’être dépassé, je dois :', '{\"a\": \"Accélérer\", \"b\": \"Je serre ma droite sans accélérer\", \"c\": \"M’arrêter\"}', 'b', 'non défini', NULL),
-(278, 514, 'Dans un véhicule à cinq  places il y a infraction avec :', '{\"a\": \"6 passagers adultes à bord\", \"b\": \"5 passagers adultes à bord\", \"c\": \"4 passagers adultes à bord\"}', 'a-b', 'non défini', NULL),
+(278, 514, 'Dans un véhicule à cinq  places il y a infraction avec :', '{\"a\": \"6 passagers adultes à bord\", \"b\": \"5 passagers adultes à bord\", \"c\": \"4 passagers adultes à bord\"}', 'a', 'non défini', NULL),
 (279, 515, 'Une bonne conduite :', '{\"a\": \"Nécessite une attention soutenue de ma part\", \"b\": \"M’oblige à rouler tantôt à gauche tantôt à droite\", \"c\": \"Me permet de tout regarder sur la route\", \"d\": \"M’oblige  à éviter tous les trous.\"}', 'a', 'non défini', NULL),
-(280, 517, 'Les principaux facteurs d’accident sont :', '{\"a\": \"une bonne tenue de route\", \"b\": \"la fatigue\", \"c\": \"le non respect des règles de circulation\", \"d\": \"la vitesse excessive ou non adapté\", \"e\": \"la conduite dans un état d’ivresse.\"}', 'b-c-d-e', 'non défini', NULL),
+(280, 517, 'Les principaux facteurs d’accident sont :', '{\"a\": \"une bonne tenue de route\", \"b\": \"la fatigue\", \"c\": \"le non respect des règles de circulation\", \"d\": \"la vitesse excessive ou non adapté\", \"e\": \"la conduite dans un état d’ivresse.\"}', 'b', 'non défini', NULL),
 (281, 518, 'En cas de traitement médical en cour et pour faire un long trajet, il est préférable :', '{\"a\": \"de modifier le traitement médical\", \"b\": \"d’arrêter le traitement médical\", \"c\": \"de se renseigner auprès de son médecin\"}', 'e', 'non défini', NULL),
 (282, 519, 'Que dois-je faire en présence d’une flaque d’eau sur la chaussée ?', '{\"a\": \"Accélérer\", \"b\": \"Ralentir\", \"c\": \"M’arrêter\"}', 'b', 'non défini', NULL),
 (283, 520, 'Quel serait votre comportement si le véhicule qui vous précède s’arrête subitement ?', '{\"a\": \"Je m’arrête et j’apprécie la situation\", \"b\": \"Je dépasse rapidement le véhicule\", \"c\": \"Je klaxonne\"}', 'a', 'non défini', NULL),
@@ -379,10 +487,10 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (287, 524, 'En cas de panne sur la route et à défaut des triangles de pré signalisation, je peux utiliser :', '{\"a\": \"des touffes d’herbes\", \"b\": \"les feux de détresse\", \"c\": \"la roue-secours\"}', 'b', 'non défini', NULL),
 (288, 525, 'Lorsque les piétons sont engagés sur le passage clouté, je dois :', '{\"a\": \"leur céder le passage\", \"b\": \"klaxonner pour les empêcher de traverser\", \"c\": \"leur demander d’attendre mon passage\"}', 'a', 'non défini', NULL),
 (289, 526, 'Parmi les véhicules suivants, lesquels sont prioritaires :', '{\"a\": \"Les corbillards\", \"b\": \"Les véhicules des sapeurs-pompiers en mission\", \"c\": \"Les ambulances\", \"d\": \"Les véhicules militaires\"}', 'b', 'non défini', NULL),
-(290, 527, 'Parmi les véhicules suivants ; lesquels peuvent emprunter un sens interdit', '{\"a\": \"les véhicules de police en mission\", \"b\": \"les corbillards\", \"c\": \"les véhicules de SAMU en mission\"}', 'a-c', 'non défini', NULL),
+(290, 527, 'Parmi les véhicules suivants ; lesquels peuvent emprunter un sens interdit', '{\"a\": \"les véhicules de police en mission\", \"b\": \"les corbillards\", \"c\": \"les véhicules de SAMU en mission\"}', 'a', 'non défini', NULL),
 (291, 528, 'Que dois-je faire à la vue d’une personne traversant ou s’apprêtant à s’engager sur la chaussée, \ncanne blanche levée ?', '{\"a\": \"Je passe rapidement\", \"b\": \"Je m’arrête pour la laisser passer\", \"c\": \"Je klaxonne\"}', 'b', 'non défini', NULL),
-(292, 529, 'Pour aider les enfants qui attendent pour traverser la rue :', '{\"a\": \"Je m’arrête et leur adresse un signe de main\", \"b\": \"Je ralentis et me tiens prêt à freiner si ces enfants se décident\", \"c\": \"Je  m’arrête si aucun véhicule ne vient  en sens inverse\", \"d\": \"Je descends de ma voiture pour les aider à traverser\"}', 'c-d', 'non défini', NULL),
-(293, 530, 'Je dois m’abstenir de conduire :', '{\"a\": \"Sous l’effet de boissons alcoolisées\", \"b\": \"Sous l’effet de la fatigue\", \"c\": \"En cas de visibilité insuffisante grave\", \"d\": \"En cas de chaussée rétrécie\", \"e\": \"En cas de défaillance du câble compteur\"}', 'a-b-c', 'non défini', NULL),
+(292, 529, 'Pour aider les enfants qui attendent pour traverser la rue :', '{\"a\": \"Je m’arrête et leur adresse un signe de main\", \"b\": \"Je ralentis et me tiens prêt à freiner si ces enfants se décident\", \"c\": \"Je  m’arrête si aucun véhicule ne vient  en sens inverse\", \"d\": \"Je descends de ma voiture pour les aider à traverser\"}', 'c', 'non défini', NULL),
+(293, 530, 'Je dois m’abstenir de conduire :', '{\"a\": \"Sous l’effet de boissons alcoolisées\", \"b\": \"Sous l’effet de la fatigue\", \"c\": \"En cas de visibilité insuffisante grave\", \"d\": \"En cas de chaussée rétrécie\", \"e\": \"En cas de défaillance du câble compteur\"}', 'a', 'non défini', NULL),
 (294, 531, 'Comment réagir quand le conducteur venant d’en face m’éblouit, malgré mes appels de feux ?', '{\"a\": \"j’allume et je reste en feu de route\", \"b\": \"je me protège les yeux avec la main\", \"c\": \"je ralentis au maximum et je m’arrête au besoin\", \"d\": \"je ralentis et je fixe le bord droit de la chaussée\"}', '', 'non défini', NULL),
 (295, 532, 'Quel est le comportement d’un usager sur un lieu d’accident ?', '{\"a\": \"Alerter, secourir et protéger\", \"b\": \"Secourir, protéger et alerter\", \"c\": \"Protéger, alerter et secourir\"}', 'c', 'non défini', NULL),
 (296, 533, 'Pour éteindre un début d’incendie dans une voiture, j’utilise :', '{\"a\": \"le sable uniquement\", \"b\": \"l’eau\", \"c\": \"l’extincteur\"}', 'c', 'non défini', NULL),
@@ -396,7 +504,7 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (304, 541, 'Comment réanimer une personne asphyxiée ?', '{\"a\": \"en desserrant les vêtements de la victime\", \"b\": \"en pratiquant la respiration bouche à bouche après désobstruction des voies aériennes \\nsupérieures\", \"c\": \"en pratiquant la respiration bouche à nez sans désobstruction des voies aériennes \\nsupérieures\", \"d\": \"en mettant le blessé dans la Position Latérale de Sécurité (P.L.S.)\", \"e\": \"en lui donnant à boire\"}', '', 'non défini', NULL),
 (305, 542, 'Quels sont les signes qui apparaissent en cas d’entorse ?', '{\"a\": \"douleur, gonflement, mouvements impossibles\", \"b\": \"Douleur, saignement, mouvements possibles\", \"c\": \"Douleur, gonflement, mouvements possibles\"}', 'c', 'non défini', NULL),
 (306, 543, 'L’hémorragie est :', '{\"a\": \"La sortie du sang hors des vaisseaux sanguins\", \"b\": \"Une mauvaise circulation du sang\", \"c\": \"Le passage du sang dans le cœur\"}', 'a', 'non défini', NULL),
-(307, 544, 'Il y a hémorragie externe lorsque le sang s’écoule :', '{\"a\": \"D’un orifice naturel\", \"b\": \"A l’extérieur du corps par une plaie\", \"c\": \"D’un orifice naturel ou à l’extérieur du corps par une plaie\", \"d\": \"A l’intérieur du corps\"}', 'a-b-c', 'non défini', NULL),
+(307, 544, 'Il y a hémorragie externe lorsque le sang s’écoule :', '{\"a\": \"D’un orifice naturel\", \"b\": \"A l’extérieur du corps par une plaie\", \"c\": \"D’un orifice naturel ou à l’extérieur du corps par une plaie\", \"d\": \"A l’intérieur du corps\"}', 'a', 'non défini', NULL),
 (308, 545, 'Il y a hémorragie interne lorsque le sang s’écoule :', '{\"a\": \"A l’extérieur du corps\", \"b\": \"A l’intérieur du corps hors des vaisseaux\", \"c\": \"A l’intérieur des vaisseaux\"}', 'b', 'non défini', NULL),
 (309, 546, 'En cas de brûlure grave par le feu, vêtements enflammés :', '{\"a\": \"Je déshabille la victime avant de l’évacuer à l’hôpital\", \"b\": \"J’empêche la victime de courir, je l’enroule dans une couverture et je l’évacue à \\nl’hôpital\", \"c\": \"Je l’arrose de l’extincteur\"}', 'b', 'non défini', NULL),
 (310, 547, 'En cas de brûlure par  liquide bouillant ou par vapeur :', '{\"a\": \"Je déshabille la victime, je la douche le plus vite possible et je le fais évacuer vers un \\ncentre médical\", \"b\": \"Je l’enroule de couverture\", \"c\": \"Je l’évacue sans rien faire\"}', 'a', 'non défini', NULL),
@@ -414,25 +522,25 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (322, 559, 'Secourir un accident de la route est-il obligatoire ?', '{\"a\": \"Oui\", \"b\": \"Non\", \"c\": \"Facultatif\"}', 'a', 'non défini', NULL),
 (323, 560, 'Quel effet l’alcool produit-il sur un conducteur ?', '{\"a\": \"Permet au conducteur de mieux voir\", \"b\": \"Permet au conducteur de respecter le code de la route\", \"c\": \"Ré duit les facultés mentales et physiques du conducteur\"}', 'c', 'non défini', NULL),
 (324, 561, 'Quel est le bon comportement d’un usager sur un lieu d’accident :', '{\"a\": \"alerter – secourir – et protéger\", \"b\": \"secourir – protéger – et alerter\", \"c\": \"secourir – alerter – et protéger\", \"d\": \"rien de tout ce qui précède\"}', 'd', 'non défini', NULL),
-(325, 562, 'Sur autoroute, je commets une infraction en m’insérant sur l’axe principal :', '{\"a\": \"si je fais ralentir un véhicule\", \"b\": \"si j’oblige un usager à changer de voie\", \"c\": \"si je cède le passage à un usager circulant sur l’axe principal\"}', 'a-b', 'non défini', NULL),
-(326, 563, 'En cas d’accident sur autoroute je peux prévenir les secours :', '{\"a\": \"à l’aide des bornes d’appel d’urgence placées tous les 2km\", \"b\": \"à l’aide de mon téléphone portable en composant le numéro d’un service \\nsecours\", \"c\": \"avec l’aide d’un autre usager\"}', 'a-b', 'non défini', NULL),
-(327, 564, 'Pour m’installer à mon poste de conduite, dans l’ordre :', '{\"a\": \"je mets la ceinture, je règle les rétroviseurs puis le siège\", \"b\": \"je règle le siège puis les rétroviseurs et je mets la ceinture\", \"c\": \"je règle les rétroviseurs puis le siège et je mets la ceinture\"}', 'b-', 'non défini', NULL),
-(328, 565, 'Titulaire du permis de conduire depuis 18mois, je peux rouler  à :', '{\"a\": \"80km/h\", \"b\": \"70km/h\", \"c\": \"60km/h\", \"d\": \"100km/h\"}', 'a-b-c', 'non défini', NULL),
+(325, 562, 'Sur autoroute, je commets une infraction en m’insérant sur l’axe principal :', '{\"a\": \"si je fais ralentir un véhicule\", \"b\": \"si j’oblige un usager à changer de voie\", \"c\": \"si je cède le passage à un usager circulant sur l’axe principal\"}', 'a', 'non défini', NULL),
+(326, 563, 'En cas d’accident sur autoroute je peux prévenir les secours :', '{\"a\": \"à l’aide des bornes d’appel d’urgence placées tous les 2km\", \"b\": \"à l’aide de mon téléphone portable en composant le numéro d’un service \\nsecours\", \"c\": \"avec l’aide d’un autre usager\"}', 'a', 'non défini', NULL),
+(327, 564, 'Pour m’installer à mon poste de conduite, dans l’ordre :', '{\"a\": \"je mets la ceinture, je règle les rétroviseurs puis le siège\", \"b\": \"je règle le siège puis les rétroviseurs et je mets la ceinture\", \"c\": \"je règle les rétroviseurs puis le siège et je mets la ceinture\"}', 'b', 'non défini', NULL),
+(328, 565, 'Titulaire du permis de conduire depuis 18mois, je peux rouler  à :', '{\"a\": \"80km/h\", \"b\": \"70km/h\", \"c\": \"60km/h\", \"d\": \"100km/h\"}', 'a', 'non défini', NULL),
 (329, 566, 'Le taux d’alcoolémie est :', '{\"a\": \"le degré de l’état d’ivresse\", \"b\": \"la quantité de bière dans le sang\", \"c\": \"la quantité d’alcool contenue dans un litre de sang\", \"d\": \"la quantité de vin contenu dans le sang\"}', 'c', 'non défini', NULL),
-(330, 567, 'Le dépistage de l’alcoolémie se fait par :', '{\"a\": \"l’air expiré par la bouche\", \"b\": \"l’alcotest\", \"c\": \"la prise de sang\", \"d\": \"l’éthylotest\"}', 'b-d', 'non défini', NULL),
-(331, 568, 'Le dosage de l’alcoolémie se fait par :', '{\"a\": \"l’alcooltest\", \"b\": \"analyse de sang\", \"c\": \"éthylomètre\", \"d\": \"éthylotest\"}', 'b-c', 'non défini', NULL),
+(330, 567, 'Le dépistage de l’alcoolémie se fait par :', '{\"a\": \"l’air expiré par la bouche\", \"b\": \"l’alcotest\", \"c\": \"la prise de sang\", \"d\": \"l’éthylotest\"}', 'b', 'non défini', NULL),
+(331, 568, 'Le dosage de l’alcoolémie se fait par :', '{\"a\": \"l’alcooltest\", \"b\": \"analyse de sang\", \"c\": \"éthylomètre\", \"d\": \"éthylotest\"}', 'b', 'non défini', NULL),
 (332, 569, 'Quelle est la bonne position des mains au volant d’un conducteur en marche normale, en \nconsidérant le volant comme le cadran d’une montre', '{\"a\": \"11h 05mn\", \"b\": \"9h 15mn \\n12 mois\"}', '', 'non défini', NULL),
 (333, 570, 'Au volant de mon véhicule je peux :', '{\"a\": \"recevoir un appel\", \"b\": \"appeler un ami\", \"c\": \"communiquer si mon portable est équipé d’un écouteur\", \"d\": \"rien de tout ce qui précède\"}', 'd', 'non défini', NULL),
 (334, 571, 'Au volant de mon véhicule je peux :', '{\"a\": \"manger\", \"b\": \"boire\", \"c\": \"fumer\", \"d\": \"écouter la radio\"}', 'd', 'non défini', NULL),
-(335, 572, 'Dans une agglomération éclairée je peux circuler :', '{\"a\": \"sans feux\", \"b\": \"en feux de position\", \"c\": \"en feux de croisement\", \"d\": \"en feux de route\"}', 'b-c', 'non défini', NULL),
-(336, 573, 'Je peux être condamné pour délit de fuite si je ne m’arrête pas après avoir :', '{\"a\": \"occasionné un accident matériel\", \"b\": \"occasionné un accident corporel\", \"c\": \"ignoré l’injonction d’un agent de force réglementant la circulation\"}', 'a-b', 'non défini', NULL),
-(337, 574, 'La vigilance au volant est dégradé si :', '{\"a\": \"Je téléphone\", \"b\": \"Je mange un sandwich\", \"c\": \"Je bavarde avec les passagers\", \"d\": \"Je me concentre à la conduite\"}', 'a-b-c', 'non défini', NULL),
-(338, 575, 'La consommation de la drogue peut provoquer', '{\"a\": \"des effets d’ivresse\", \"b\": \"une diminution du champ visuel\", \"c\": \"l’euphorie\"}', 'a-b-c', 'non défini', NULL),
+(335, 572, 'Dans une agglomération éclairée je peux circuler :', '{\"a\": \"sans feux\", \"b\": \"en feux de position\", \"c\": \"en feux de croisement\", \"d\": \"en feux de route\"}', 'b', 'non défini', NULL),
+(336, 573, 'Je peux être condamné pour délit de fuite si je ne m’arrête pas après avoir :', '{\"a\": \"occasionné un accident matériel\", \"b\": \"occasionné un accident corporel\", \"c\": \"ignoré l’injonction d’un agent de force réglementant la circulation\"}', 'a', 'non défini', NULL),
+(337, 574, 'La vigilance au volant est dégradé si :', '{\"a\": \"Je téléphone\", \"b\": \"Je mange un sandwich\", \"c\": \"Je bavarde avec les passagers\", \"d\": \"Je me concentre à la conduite\"}', 'a', 'non défini', NULL),
+(338, 575, 'La consommation de la drogue peut provoquer', '{\"a\": \"des effets d’ivresse\", \"b\": \"une diminution du champ visuel\", \"c\": \"l’euphorie\"}', 'a', 'non défini', NULL),
 (339, 576, 'Que doit faire un conducteur impliqué dans un accident de circulation ?', '{\"a\": \"dégager la chaussée après marquage pour ne pas gêner la circulation\"}', '', 'non défini', NULL),
-(340, 577, 'Quel doit être le comportement d’un conducteur vis-à-vis d’un véhicule prioritaire en mission ?', '{\"a\": \"céder le passage aux intersections\", \"b\": \"céder le passage aux intersections munies de feux tricolores\", \"c\": \"faciliter leurs manœuvres, de croissement\", \"d\": \"attendre l’ordre d’un agent règlementant la circulation\"}', 'a-b-c', 'non défini', NULL),
-(341, 584, 'L’alcool :', '{\"a\": \"diminue le champ de vision,\", \"b\": \"réduit la vigilance\", \"c\": \"allonge le temps de réaction\", \"d\": \"Augmente le champ de vision\"}', 'a-b', 'non défini', NULL),
+(340, 577, 'Quel doit être le comportement d’un conducteur vis-à-vis d’un véhicule prioritaire en mission ?', '{\"a\": \"céder le passage aux intersections\", \"b\": \"céder le passage aux intersections munies de feux tricolores\", \"c\": \"faciliter leurs manœuvres, de croissement\", \"d\": \"attendre l’ordre d’un agent règlementant la circulation\"}', 'a', 'non défini', NULL),
+(341, 584, 'L’alcool :', '{\"a\": \"diminue le champ de vision,\", \"b\": \"réduit la vigilance\", \"c\": \"allonge le temps de réaction\", \"d\": \"Augmente le champ de vision\"}', 'a', 'non défini', NULL),
 (342, 635, 'Je commets un délit de fuite si je ne m’arrête pas :', '{\"a\": \"Lorsque je suis témoin d’un accident\", \"b\": \"Lorsqu’un agent de sécurité me fait signe de m’arrêter\", \"c\": \"Lorsque je suis impliqué dans un accident\"}', 'c', 'non défini', NULL),
-(343, 636, 'Je dois m’abstenir de conduire :', '{\"a\": \"Si je prends un verre de jus de raisin\", \"b\": \"Si je suis sous l’effet de boissons alcoolisées ou de certains médicaments\", \"c\": \"Si je suis fatigué\", \"d\": \"Si je me sens nerveux ou surexcité\", \"e\": \"Après un bon sommeil.\"}', 'b-c-d', 'non défini', NULL),
+(343, 636, 'Je dois m’abstenir de conduire :', '{\"a\": \"Si je prends un verre de jus de raisin\", \"b\": \"Si je suis sous l’effet de boissons alcoolisées ou de certains médicaments\", \"c\": \"Si je suis fatigué\", \"d\": \"Si je me sens nerveux ou surexcité\", \"e\": \"Après un bon sommeil.\"}', 'b', 'non défini', NULL),
 (344, 637, 'L’absorption d’alcool :', '{\"a\": \"Permet de bien conduire\", \"b\": \"Augmente le temps de réaction\", \"c\": \"Permet de bien apprécier les distances\", \"d\": \"Augmente le champ visuel.\"}', 'b', 'non défini', NULL),
 (345, 638, 'On peut passer le feu rouge allumé à une intersection munie de feux tricolores :', '{\"a\": \"Quand on s’y retrouve seul\", \"b\": \"Quand on s’y retrouve seul tard dans la nuit\", \"c\": \"A aucun moment\", \"d\": \"Si je veux tourner à droite\"}', 'c', 'non défini', NULL),
 (346, 639, 'Avant de me mettre au volant :', '{\"a\": \"Je peux prendre de l’alcool\", \"b\": \"Je peux prendre de l’alcool sans me soûler\", \"c\": \"Je dois m’abstenir de prendre de l’alcool\"}', 'c', 'non défini', NULL),
@@ -442,75 +550,75 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (350, 643, 'Après le  retrait de mon permis de conduire suite à un accident, je peux :', '{\"a\": \"Procéder au remplacement de mon permis de conduire\", \"b\": \"Demander le duplicata du permis de conduire\", \"c\": \"Continuer à conduire mon véhicule avec un certificat de perte\", \"d\": \"Rien de tout ce qui précède\"}', 'd', 'non défini', NULL),
 (351, 644, 'Les travaux de la Commission Spéciale de Retrait de permis de conduire sont organisés par :', '{\"a\": \"La Direction Générale des Transports Terrestres\", \"b\": \"La Direction Générale des Travaux Publics\", \"c\": \"La Gendarmerie\", \"d\": \"Le Centre National de Sécurité Routière\"}', 'd', 'non défini', NULL),
 (352, 645, 'L’original du permis de conduire retiré par les Forces de Sécurité Publique suite à un accident est \ntransmis :', '{\"a\": \"Au parquet\", \"b\": \"Au Centre National de Sécurité Routière\", \"c\": \"La Direction Générale des Transports Terrestres\"}', 'b', 'non défini', NULL),
-(353, 646, 'Sur une motocyclette, le passager :', '{\"a\": \"Peut-être assis devant le conducteur\", \"b\": \"Peut-être assis dans la position dite « en amazone »\", \"c\": \"Doit être assis sur le siège arrière\", \"d\": \"Doit faire corps avec la moto et son conducteur\"}', 'c-d', 'non défini', NULL),
+(353, 646, 'Sur une motocyclette, le passager :', '{\"a\": \"Peut-être assis devant le conducteur\", \"b\": \"Peut-être assis dans la position dite « en amazone »\", \"c\": \"Doit être assis sur le siège arrière\", \"d\": \"Doit faire corps avec la moto et son conducteur\"}', 'c', 'non défini', NULL),
 (354, 647, 'En cas de panne de ma motocyclette :', '{\"a\": \"Je peux trainer ma moto sur le trottoir, le moteur arrêté\", \"b\": \"Je ne peux pas trainer ma moto sur le trottoir, le  moteur arrêté\", \"c\": \"Je peux la garer sur le trottoir et attendre un dépanneur\"}', 'a', 'non défini', NULL),
 (355, 648, 'Dans une circulation en files ininterrompues :', '{\"a\": \"Je peux me faufiler entre les véhicules\", \"b\": \"Je peux me faufiler entre les véhicules si la circulation s’arrête\", \"c\": \"Je dois rester dans ma file sauf pour préparer un changement de direction\"}', 'c', 'non défini', NULL),
 (356, 649, 'Avec mon véhicule à deux roues, je peux traverser une voie ferrée :', '{\"a\": \"En passant par le portillon d’une barrière fermée avant le passage d’un train\", \"b\": \"En passant les demi-barrières fermées avant le passage du train\", \"c\": \"Après le relèvement de la barrière\"}', 'c', 'non défini', NULL),
 (357, 650, 'Le clignotant est obligatoire :', '{\"a\": \"Pour les cyclomoteurs\", \"b\": \"Pour les motocyclettes\", \"c\": \"Pour tous les véhicules à deux roues\", \"d\": \"Pour les automobiles seulement\"}', 'b', 'non défini', NULL),
 (358, 651, 'Avec mon permis de conduire catégorie A1, je peux conduire des motocyclettes dont la cylindrée', '{\"a\": \"N’excède pas 75cm3\", \"b\": \"Excède 75cm3\", \"c\": \"Est égale à 100cm3\"}', 'a', 'non défini', NULL),
-(359, 652, 'Avec mon permis de conduire catégorie A2, je peux conduire des motocyclettes dont la cylindrée', '{\"a\": \"N’excède pas 450cm3\", \"b\": \"Excède 400cm3\", \"c\": \"Est inférieur à 400cm3\", \"d\": \"Est égale à 400cm3\"}', 'c-d', 'non défini', NULL),
-(360, 653, 'Avec mon permis de conduire catégorie A3, je peux conduire des motocyclettes dont la cylindrée', '{\"a\": \"N’excède pas 450cm3\", \"b\": \"Excède 400cm3\", \"c\": \"Est inférieure à 400cm3\", \"d\": \"Est égale à 400cm3\"}', 'a-b-c-d', 'non défini', NULL),
-(361, 654, 'Quels sont les contrôles de niveau à effectuer avant le départ sur les motocyclettes dont la \ncylindrée est supérieure ou égale à 400cm3 ?', '{\"a\": \"Niveau d’huile à moteur\", \"b\": \"Eau dans le radiateur\", \"c\": \"Essence dans le réservoir\", \"d\": \"Eau du bocal de l’essuie-glace\"}', 'a-b-c', 'non défini', NULL),
+(359, 652, 'Avec mon permis de conduire catégorie A2, je peux conduire des motocyclettes dont la cylindrée', '{\"a\": \"N’excède pas 450cm3\", \"b\": \"Excède 400cm3\", \"c\": \"Est inférieur à 400cm3\", \"d\": \"Est égale à 400cm3\"}', 'c', 'non défini', NULL),
+(360, 653, 'Avec mon permis de conduire catégorie A3, je peux conduire des motocyclettes dont la cylindrée', '{\"a\": \"N’excède pas 450cm3\", \"b\": \"Excède 400cm3\", \"c\": \"Est inférieure à 400cm3\", \"d\": \"Est égale à 400cm3\"}', 'a', 'non défini', NULL),
+(361, 654, 'Quels sont les contrôles de niveau à effectuer avant le départ sur les motocyclettes dont la \ncylindrée est supérieure ou égale à 400cm3 ?', '{\"a\": \"Niveau d’huile à moteur\", \"b\": \"Eau dans le radiateur\", \"c\": \"Essence dans le réservoir\", \"d\": \"Eau du bocal de l’essuie-glace\"}', 'a', 'non défini', NULL),
 (362, 655, 'Dans quelle position met-on la motocyclette pour effectuer les contrôles de niveau ?', '{\"a\": \"Sur la béquille centrale\", \"b\": \"Sur la béquille latérale\", \"c\": \"Couchée\"}', 'a', 'non défini', NULL),
-(363, 656, 'En longeant les véhicules en stationnement, à quoi doit-on faire attention ?', '{\"a\": \"Aux piétons qui pourraient surgir\", \"b\": \"Aux véhicules qui pourraient surgir\", \"c\": \"Aux portières qui pourraient s’ouvrir\", \"d\": \"Aux véhicules qui pourraient quitter leur stationnement\"}', 'a-c-d', 'non défini', NULL);
+(363, 656, 'En longeant les véhicules en stationnement, à quoi doit-on faire attention ?', '{\"a\": \"Aux piétons qui pourraient surgir\", \"b\": \"Aux véhicules qui pourraient surgir\", \"c\": \"Aux portières qui pourraient s’ouvrir\", \"d\": \"Aux véhicules qui pourraient quitter leur stationnement\"}', 'a', 'non défini', NULL),
+(364, 657, 'Les précautions à prendre pour la conduite d’une nouvelle motocyclette :', '{\"a\": \"S’habituer progressivement\", \"b\": \"Augmenter la distance de sécurité\", \"c\": \"Réduire la distance de sécurité\", \"d\": \"Adopter une bonne position de conduite, de freinage et de tenue de route\"}', 'a', 'non défini', NULL);
 INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`, `chapitre`, `image`) VALUES
-(364, 657, 'Les précautions à prendre pour la conduite d’une nouvelle motocyclette :', '{\"a\": \"S’habituer progressivement\", \"b\": \"Augmenter la distance de sécurité\", \"c\": \"Réduire la distance de sécurité\", \"d\": \"Adopter une bonne position de conduite, de freinage et de tenue de route\"}', 'a-b-d', 'non défini', NULL),
-(365, 658, 'Quels sont les contrôles à effectuer avant chaque départ ?', '{\"a\": \"Position des béquilles\", \"b\": \"Bon ajustement du casque (conducteur et passager)\", \"c\": \"Resserrage des rayons\", \"d\": \"Réglage des rétroviseurs\"}', 'a-b-d', 'non défini', NULL),
+(365, 658, 'Quels sont les contrôles à effectuer avant chaque départ ?', '{\"a\": \"Position des béquilles\", \"b\": \"Bon ajustement du casque (conducteur et passager)\", \"c\": \"Resserrage des rayons\", \"d\": \"Réglage des rétroviseurs\"}', 'a', 'non défini', NULL),
 (366, 659, 'Quels sont les différents types de casques pour les motocyclettes et les cyclomoteurs ?', '{\"a\": \"Casque à couverture ignifugée\"}', '', 'non défini', NULL),
-(367, 660, 'Quelle est la bonne position d’un conducteur à motocyclette ?', '{\"a\": \"Etre bien assis sur la selle\", \"b\": \"Avoir les bras légèrement fléchis\", \"c\": \"Avoir le cou raide\", \"d\": \"Garder les genoux contre le réservoir\"}', 'a-b-d', 'non défini', NULL),
+(367, 660, 'Quelle est la bonne position d’un conducteur à motocyclette ?', '{\"a\": \"Etre bien assis sur la selle\", \"b\": \"Avoir les bras légèrement fléchis\", \"c\": \"Avoir le cou raide\", \"d\": \"Garder les genoux contre le réservoir\"}', 'a', 'non défini', NULL),
 (368, 661, 'Quel est l’âge minimum pour un candidat à l’examen du permis de conduire A1', '{\"a\": \"14ans\", \"b\": \"16ans\", \"c\": \"17ans\"}', 'b', 'non défini', NULL),
 (369, 662, 'Le feu stop est obligatoire :', '{\"a\": \"Sur les cyclomoteurs\", \"b\": \"Sur les motocyclettes\", \"c\": \"Sur tous les véhicules à deux roues\"}', 'b', 'non défini', NULL),
 (370, 663, 'Le rétroviseur est-il obligatoire pour les motocyclettes ?', '{\"a\": \"Oui\", \"b\": \"Non\"}', 'a', 'non défini', NULL),
 (371, 664, 'Combien de passagers un conducteur de deux roues peut-il transporter ?', '{\"a\": \"deux\", \"b\": \"un\", \"c\": \"trois\"}', 'b', 'non défini', NULL),
-(372, 665, 'Le port de casque est obligatoire sur les véhicules à deux roues :', '{\"a\": \"Seulement quand je remorque un passager\", \"b\": \"Si je suis seul\", \"c\": \"Pour tous les occupants\"}', 'b-c', 'non défini', NULL),
+(372, 665, 'Le port de casque est obligatoire sur les véhicules à deux roues :', '{\"a\": \"Seulement quand je remorque un passager\", \"b\": \"Si je suis seul\", \"c\": \"Pour tous les occupants\"}', 'b', 'non défini', NULL),
 (373, 666, 'Le port de casque protège contre :', '{\"a\": \"Le soleil et la pluie\", \"b\": \"Le traumatisme crânien\", \"c\": \"La poussière\"}', 'b', 'non défini', NULL),
 (374, 667, 'Quel est l’âge minimum du candidat à l’examen de permis de conduire A2 ?', '{\"a\": \"15ans\", \"b\": \"20ans\", \"c\": \"18ans\"}', 'c', 'non défini', NULL),
 (375, 668, 'Pour le transport d’un enfant de moins de 5ans sur une motocyclette il faut :', '{\"a\": \"Avoir un simple siège\", \"b\": \"Avoir un siège muni de courroie-attache\", \"c\": \"Bien régler son casque\"}', 'b', 'non défini', NULL),
 (376, 669, 'Quel est l’âge minimum pour un candidat à l’examen de permis de conduire A3 ?', '{\"a\": \"17ans\", \"b\": \"18ans\", \"c\": \"21ans\"}', 'c', 'non défini', NULL),
 (377, 670, 'Que signifie le panneau A21b ?', '{\"a\": \"Voie réservée au cycliste\", \"b\": \"Voie interdite au cycliste\", \"c\": \"Débouché de cycliste venant de gauche seulement\"}', 'c', 'non défini', NULL),
-(378, 671, 'Sur ma moto, à la vue du panneau B14(3) hors agglomération :', '{\"a\": \"Je peux rouler à plus de 60km/h\", \"b\": \"Je peux rouler à moins de 60km/h\", \"c\": \"Je peux rouler à 60km/h strictement\", \"d\": \"Je ne suis pas concerné par cette signalisation\"}', 'b-c', 'non défini', NULL),
+(378, 671, 'Sur ma moto, à la vue du panneau B14(3) hors agglomération :', '{\"a\": \"Je peux rouler à plus de 60km/h\", \"b\": \"Je peux rouler à moins de 60km/h\", \"c\": \"Je peux rouler à 60km/h strictement\", \"d\": \"Je ne suis pas concerné par cette signalisation\"}', 'b', 'non défini', NULL),
 (379, 672, 'Le panneau B14-3 :', '{\"a\": \"concerne uniquement les conducteurs à moto\", \"b\": \"concerne tous les conducteurs sauf les motocyclistes\", \"c\": \"concerne aussi les 4 roues\"}', 'a', 'non défini', NULL),
 (380, 673, 'Le port de casque est obligatoire :', '{\"a\": \"seulement en rase campagne ou la grande vitesse est possible\", \"b\": \"seulement en ville à cause du grand nombre de véhicules\", \"c\": \"seulement sur les voies pavées ou bitumées\", \"d\": \"rien de tout ce  qui précède\"}', 'd', 'non défini', NULL),
 (381, 674, 'La circulation à deux de front pour les véhicules à deux roues :', '{\"a\": \"Est autorisée sur les chaussées à double sens de circulation\", \"b\": \"Est autorisée sur les chaussées à sens unique de circulation\", \"c\": \"N’est pas autorisée\", \"d\": \"Est autorisée seulement sur les voies réservées aux véhicules à deux roues\"}', 'c', 'non défini', NULL),
-(382, 675, 'Avec mon permis de conduire catégorie A2, je peux conduire des motocyclettes dont la cylindrée \nn’excède pas :', '{\"a\": \"200cm3\", \"b\": \"400cm3\", \"c\": \"600cm3\"}', 'a-b', 'non défini', NULL),
-(383, 676, 'Les motocyclettes sont des véhicules à deux roues :', '{\"a\": \"Avec moteur auxiliaire\", \"b\": \"Pourvus d’un moteur thermique\", \"c\": \"Dont la cylindrée  ne dépasse pas 50cm3\", \"d\": \"Dont la cylindrée dépasse 50cm3\"}', 'b-d', 'non défini', NULL),
+(382, 675, 'Avec mon permis de conduire catégorie A2, je peux conduire des motocyclettes dont la cylindrée \nn’excède pas :', '{\"a\": \"200cm3\", \"b\": \"400cm3\", \"c\": \"600cm3\"}', 'a', 'non défini', NULL),
+(383, 676, 'Les motocyclettes sont des véhicules à deux roues :', '{\"a\": \"Avec moteur auxiliaire\", \"b\": \"Pourvus d’un moteur thermique\", \"c\": \"Dont la cylindrée  ne dépasse pas 50cm3\", \"d\": \"Dont la cylindrée dépasse 50cm3\"}', 'b', 'non défini', NULL),
 (384, 677, 'Les cyclomoteurs sont des véhicules à deux roues :', '{\"a\": \"Pourvus d’un moteur thermique\", \"b\": \"Dont la cylindrée ne dépasse pas 50cm3\", \"c\": \"Dont la cylindrée dépasse 50cm3\"}', 'b', 'non défini', NULL),
-(385, 678, 'Sont obligatoires sur les motocyclettes :', '{\"a\": \"Les avertisseurs\", \"b\": \"les deux rétroviseurs\", \"c\": \"le rétroviseur gauche\", \"d\": \"le rétroviseur droit\", \"e\": \"le frein avant\"}', 'a-c-e', 'non défini', NULL),
-(386, 679, 'Pour tourner à droite je dois :', '{\"a\": \"Accélérer\", \"b\": \"Mettre le clignotant\", \"c\": \"Ralentir\"}', 'b-c', 'non défini', NULL),
+(385, 678, 'Sont obligatoires sur les motocyclettes :', '{\"a\": \"Les avertisseurs\", \"b\": \"les deux rétroviseurs\", \"c\": \"le rétroviseur gauche\", \"d\": \"le rétroviseur droit\", \"e\": \"le frein avant\"}', 'a', 'non défini', NULL),
+(386, 679, 'Pour tourner à droite je dois :', '{\"a\": \"Accélérer\", \"b\": \"Mettre le clignotant\", \"c\": \"Ralentir\"}', 'b', 'non défini', NULL),
 (387, 680, 'Pour tourner à gauche sur une chaussée à double sens je dois :', '{\"a\": \"Serrer ma droite\", \"b\": \"Me déporter au milieu\", \"c\": \"Serrer ma gauche\"}', 'b', 'non défini', NULL),
-(388, 681, 'Le PTAC de ma remorque est de 800kg ; le poids à vide de ma voiture est 700kg :', '{\"a\": \"pour tracter ma remorque je dois détenir le permis E (B)\", \"b\": \"je dois mettre à l’arrière de ma remorque une plaque d’immatriculation \\nidentique à celle de ma voiture\", \"c\": \"pour tracter ma remorque je dois détenir le permis C\", \"d\": \"ma remorque  doit porter sa propre plaque d’immatriculation\"}', 'a-d', 'non défini', NULL),
-(389, 682, 'A la vue du panneau B14 :', '{\"a\": \"Je peux rouler à plus de 50km/h\", \"b\": \"Je ne peux pas rouler à moins de 50km/h\", \"c\": \"Je peux rouler à 50km/h strictement\", \"d\": \"Je ne suis pas concerné pas cette signalisation\", \"e\": \"Je peux rouler à moins de 50km/h\"}', 'c-e', 'non défini', NULL),
-(390, 683, 'Avec mon permis de conduire catégorie B :', '{\"a\": \"je peux conduire un véhicule dont le PTAC est inférieur ou égal à 3,5T\", \"b\": \"je peux conduire tous les véhicules\", \"c\": \"je ne peux conduire que les véhicules dont le PTAC est compris entre 3,5T et 18T\", \"d\": \"je peux conduire une camionnette dont le PTAC est égal ou inférieur à 3,5T\"}', 'a-d', 'non défini', NULL),
+(388, 681, 'Le PTAC de ma remorque est de 800kg ; le poids à vide de ma voiture est 700kg :', '{\"a\": \"pour tracter ma remorque je dois détenir le permis E (B)\", \"b\": \"je dois mettre à l’arrière de ma remorque une plaque d’immatriculation \\nidentique à celle de ma voiture\", \"c\": \"pour tracter ma remorque je dois détenir le permis C\", \"d\": \"ma remorque  doit porter sa propre plaque d’immatriculation\"}', 'a', 'non défini', NULL),
+(389, 682, 'A la vue du panneau B14 :', '{\"a\": \"Je peux rouler à plus de 50km/h\", \"b\": \"Je ne peux pas rouler à moins de 50km/h\", \"c\": \"Je peux rouler à 50km/h strictement\", \"d\": \"Je ne suis pas concerné pas cette signalisation\", \"e\": \"Je peux rouler à moins de 50km/h\"}', 'c', 'non défini', NULL),
+(390, 683, 'Avec mon permis de conduire catégorie B :', '{\"a\": \"je peux conduire un véhicule dont le PTAC est inférieur ou égal à 3,5T\", \"b\": \"je peux conduire tous les véhicules\", \"c\": \"je ne peux conduire que les véhicules dont le PTAC est compris entre 3,5T et 18T\", \"d\": \"je peux conduire une camionnette dont le PTAC est égal ou inférieur à 3,5T\"}', 'a', 'non défini', NULL),
 (391, 684, 'Avec le permis de conduire catégorie B, je peux conduire un véhicule :', '{\"a\": \"poids lourd\", \"b\": \"autobus\", \"c\": \"poids léger\"}', 'c', 'non défini', NULL),
 (392, 685, 'Ma voiture mesure 4m de long, comment transporter de jour, une échelle de 5m ?', '{\"a\": \"Je fais dépasser l’échelle de 0,5m à l’avant et 0,5m à l’arrière\", \"b\": \"Je fais dépasser l’échelle de 1m à l’avant\", \"c\": \"Je fais dépasser l’échelle de 1m à l’arrière\"}', 'c', 'non défini', NULL),
 (393, 686, 'Mon permis de conduire a 8mois d’âge, je ne peux rouler à plus de :', '{\"a\": \"100km/h\", \"b\": \"120km/h\", \"c\": \"90km/h\", \"d\": \"60km/h\"}', 'c', 'non défini', NULL),
-(394, 687, 'A la vue du panneau B14 :', '{\"a\": \"Je peux rouler à plus de 50km/h\", \"b\": \"je peux rouler à moins de 50km/h\", \"c\": \"Je peux rouler à 50km/h strictement\", \"d\": \"Je ne suis pas concerné pas cette signalisation\"}', 'b-c', 'non défini', NULL),
+(394, 687, 'A la vue du panneau B14 :', '{\"a\": \"Je peux rouler à plus de 50km/h\", \"b\": \"je peux rouler à moins de 50km/h\", \"c\": \"Je peux rouler à 50km/h strictement\", \"d\": \"Je ne suis pas concerné pas cette signalisation\"}', 'b', 'non défini', NULL),
 (395, 688, 'La remorque doit avoir sa propre carte grise si le PTAC est supérieur à :', '{\"a\": \"450kg\", \"b\": \"500kg\", \"c\": \"400kg\"}', 'b', 'non défini', NULL),
 (396, 689, 'Quel est l’âge minimal du candidat au permis de conduire catégorie C1 ?', '{\"a\": \"17ans\", \"b\": \"18ans\", \"c\": \"20ans\", \"d\": \"21ans\"}', 'd', 'non défini', NULL),
 (397, 690, 'Pour les transports exceptionnels la réglementation (concernant les pièces de grande longueur) \nprévoit que le chargement du véhicule isolé peut déborder de :', '{\"a\": \"3m au plus à l’avant et 5m à l’arrière\", \"b\": \"4m au plus à l’avant et 7m à l’arrière\", \"c\": \"0m à l’avant et 6m à l’arrière\"}', 'a', 'non défini', NULL),
 (398, 691, 'Un véhicule articulé est composé :', '{\"a\": \"d’un véhicule tracteur et d’une remorque\", \"b\": \"d’un véhicule tracteur et d’une semi- remorque\", \"c\": \"d’un véhicule tracteur routier et d’une semi-remorque\", \"d\": \"d’un véhicule tracteur routier et d’une remorque\"}', 'c', 'non défini', NULL),
-(399, 692, 'Un train double est composé :', '{\"a\": \"d’un tracteur et d’une remorque\", \"b\": \"d’un tracteur routier et de deux semi-remorques\", \"c\": \"d’un véhicule articulé et d’une semi-remorque\", \"d\": \"d’un tracteur et d’une semi-remorque.\"}', 'b-c', 'non défini', NULL),
+(399, 692, 'Un train double est composé :', '{\"a\": \"d’un tracteur et d’une remorque\", \"b\": \"d’un tracteur routier et de deux semi-remorques\", \"c\": \"d’un véhicule articulé et d’une semi-remorque\", \"d\": \"d’un tracteur et d’une semi-remorque.\"}', 'b', 'non défini', NULL),
 (400, 693, 'La longueur d’un véhicule articulé peut atteindre :', '{\"a\": \"22m\", \"b\": \"26m\", \"c\": \"16,5m\", \"d\": \"18m\"}', 'c', 'non défini', NULL),
 (401, 694, 'Quel est l’âge minimal du candidat au permis de conduire catégorie C ?', '{\"a\": \"17ans\", \"b\": \"18ans\", \"c\": \"21ans\"}', 'c', 'non défini', NULL),
 (402, 695, 'Les véhicules dont le PTAC dépasse 3,5T doivent être munis d’un appareil de contrôle appelé :', '{\"a\": \"Totaliseur\", \"b\": \"Chrono tachygraphe\", \"c\": \"Ethylotest\"}', '', 'non défini', NULL),
-(403, 696, 'Le chrono tachygraphe permet l’enregistrement', '{\"a\": \"Des tours des roues avant\", \"b\": \"De la vitesse du véhicule et la distance parcoure\", \"c\": \"Du temps de conduite et de repos\"}', 'b-c', 'non défini', NULL),
+(403, 696, 'Le chrono tachygraphe permet l’enregistrement', '{\"a\": \"Des tours des roues avant\", \"b\": \"De la vitesse du véhicule et la distance parcoure\", \"c\": \"Du temps de conduite et de repos\"}', 'b', 'non défini', NULL),
 (404, 697, 'Pour conduire un véhicule de transport de marchandises ou de matériels dont le PTAC est compris \nentre 3,5 et18T, je dois :', '{\"a\": \"Etre titulaire du permis de conduire catégorie B\", \"b\": \"Etre titulaire du permis de conduire catégorie B et E\", \"c\": \"Etre titulaire du permis de conduire catégorie C\"}', 'c', 'non défini', NULL),
 (405, 698, 'Quel intervalle minimal entre deux véhicules poids lourds de plus de 7m de long qui se suivent, \ndoivent-ils respecter lorsqu’ils roulent à la même vitesse ?', '{\"a\": \"20m\", \"b\": \"30m\", \"c\": \"90m\", \"d\": \"Rien de tout cela\"}', 'd', 'non défini', NULL),
 (406, 699, 'Avant d’aborder une descente rapide avec mon véhicule poids lourd, je dois :', '{\"a\": \"Mettre le véhicule au point mort et freiner\", \"b\": \"Rétrograder et utiliser au maximum le frein moteur\", \"c\": \"Rester à la même vitesse\"}', 'b', 'non défini', NULL),
 (407, 700, 'A bord d’un véhicule poids lourd et pour une hauteur de 4ou 5m du sol chargement compris, je \ndois :', '{\"a\": \"Circuler sans aucune précaution\", \"b\": \"Circuler en jetant des coups d’œil sur les installations et passer\", \"c\": \"M’assurer que je peux circuler sans causer de dommage aux ouvrages d’art, aux \\ninstallations aériennes situés au-dessus des voies publiques\"}', 'c', 'non défini', NULL),
 (408, 701, 'Quelle longueur maximale peut atteindre le porte-à-faux arrière d’un véhicule poids lourd ou de \ntransport en commun ?', '{\"a\": \"3,5m\", \"b\": \"5m\", \"c\": \"2m\"}', 'a', 'non défini', NULL),
-(409, 702, 'A quoi sert le ralentisseur sur un véhicule poids lourd ?', '{\"a\": \"Permet de descendre à une allure réduite dans une longue et forte pente\", \"b\": \"Permet de freiner\", \"c\": \"Permet de s’arrêter\", \"d\": \"Permet d’éviter l’usure précoce des tambours et des garnitures\"}', 'a-d', 'non défini', NULL),
+(409, 702, 'A quoi sert le ralentisseur sur un véhicule poids lourd ?', '{\"a\": \"Permet de descendre à une allure réduite dans une longue et forte pente\", \"b\": \"Permet de freiner\", \"c\": \"Permet de s’arrêter\", \"d\": \"Permet d’éviter l’usure précoce des tambours et des garnitures\"}', 'a', 'non défini', NULL),
 (410, 703, 'Le chargement de grande longueur peut dépasser l’extrémité avant du véhicule de :', '{\"a\": \"1m\", \"b\": \"0m\", \"c\": \"1,5m\"}', 'b', 'non défini', NULL),
 (411, 704, 'Le chargement de grande longueur peut dépasser au maximum l’extrémité arrière du véhicule de :', '{\"a\": \"3m\", \"b\": \"5m\", \"c\": \"3,5m\"}', 'a', 'non défini', NULL),
-(412, 705, 'Pour tourner à droite sur une chaussée à sens unique, je dois :', '{\"a\": \"Serrer ma droite\", \"b\": \"Serrer ma gauche\", \"c\": \"Me déporter au milieu\"}', 'b-c', 'non défini', NULL),
-(413, 706, 'Pour tourner à gauche sur une chaussée à sens unique, je dois', '{\"a\": \"Serrer ma droite et mettre le clignotant à gauche\", \"b\": \"Respecter les règles de priorité\", \"c\": \"Serrer ma gauche et mettre le clignotant à gauche\"}', 'a-b', 'non défini', NULL),
+(412, 705, 'Pour tourner à droite sur une chaussée à sens unique, je dois :', '{\"a\": \"Serrer ma droite\", \"b\": \"Serrer ma gauche\", \"c\": \"Me déporter au milieu\"}', 'b', 'non défini', NULL),
+(413, 706, 'Pour tourner à gauche sur une chaussée à sens unique, je dois', '{\"a\": \"Serrer ma droite et mettre le clignotant à gauche\", \"b\": \"Respecter les règles de priorité\", \"c\": \"Serrer ma gauche et mettre le clignotant à gauche\"}', 'a', 'non défini', NULL),
 (414, 707, 'Avec mon permis de conduire de la catégorie C :', '{\"a\": \"Je peux conduire un véhicule de 15tonnes, chargement compris\", \"b\": \"Je peux conduire un véhicule de 20tonnes, chargement compris\", \"c\": \"Je peux conduire un minicar de 15places\"}', 'a', 'non défini', NULL),
-(415, 708, 'Avec mon permis de conduire de la catégorie C1 :', '{\"a\": \"Je peux conduire un car de 50 places\", \"b\": \"Je peux conduire un véhicule de 36tonnes, chargement compris\", \"c\": \"Je peux conduire un véhicule de 7tonnes, chargement compris\"}', 'b-c', 'non défini', NULL),
+(415, 708, 'Avec mon permis de conduire de la catégorie C1 :', '{\"a\": \"Je peux conduire un car de 50 places\", \"b\": \"Je peux conduire un véhicule de 36tonnes, chargement compris\", \"c\": \"Je peux conduire un véhicule de 7tonnes, chargement compris\"}', 'b', 'non défini', NULL),
 (416, 709, 'Sur une pente, quel est le véhicule qui doit faciliter le passage lors d’un croisement difficile ?', '{\"a\": \"L’autobus\", \"b\": \"Le camion\", \"c\": \"le véhicule qui le désire\"}', 'b', 'non défini', NULL),
-(417, 710, 'Que faut-il faire pour éviter de polluer l’environnement par le gaz de votre moteur ?', '{\"a\": \"Bien régler les injecteurs de mon moteur\", \"b\": \"Utiliser un carburant de bonne qualité\", \"c\": \"Rouler à vive allure\"}', 'a-b', 'non défini', NULL),
-(418, 711, 'Les feux de gabarit sont obligatoires sur les véhicules de largeur supérieure ou égale à :', '{\"a\": \"2,10m\", \"b\": \"2,15m\", \"c\": \"2,20m\", \"d\": \"1,80m\"}', 'a-b-c', 'non défini', NULL),
-(419, 712, 'Sur cette image PN2 le camion doit :', '{\"a\": \"faire un demi-tour si sa hauteur est supérieure à 4,5m\", \"b\": \"ralentir, vérifier la gauche et la droite puis passer si sa hauteur ne dépasse pas 4,5m\", \"c\": \"passer sans danger\"}', 'a-b', 'non défini', NULL),
-(420, 713, 'Les feux d’encombrement :', '{\"a\": \"Sont toujours de couleur jaune\", \"b\": \"Sont de couleur blanche à l’avant\", \"c\": \"Eclairent à 400m\", \"d\": \"Sont de couleur  rouge à l’arrière\"}', 'b-d', 'non défini', NULL),
+(417, 710, 'Que faut-il faire pour éviter de polluer l’environnement par le gaz de votre moteur ?', '{\"a\": \"Bien régler les injecteurs de mon moteur\", \"b\": \"Utiliser un carburant de bonne qualité\", \"c\": \"Rouler à vive allure\"}', 'a', 'non défini', NULL),
+(418, 711, 'Les feux de gabarit sont obligatoires sur les véhicules de largeur supérieure ou égale à :', '{\"a\": \"2,10m\", \"b\": \"2,15m\", \"c\": \"2,20m\", \"d\": \"1,80m\"}', 'a', 'non défini', NULL),
+(419, 712, 'Sur cette image PN2 le camion doit :', '{\"a\": \"faire un demi-tour si sa hauteur est supérieure à 4,5m\", \"b\": \"ralentir, vérifier la gauche et la droite puis passer si sa hauteur ne dépasse pas 4,5m\", \"c\": \"passer sans danger\"}', 'a', 'non défini', NULL),
+(420, 713, 'Les feux d’encombrement :', '{\"a\": \"Sont toujours de couleur jaune\", \"b\": \"Sont de couleur blanche à l’avant\", \"c\": \"Eclairent à 400m\", \"d\": \"Sont de couleur  rouge à l’arrière\"}', 'b', 'non défini', NULL),
 (421, 714, 'L’intervalle de sécurité entre deux véhicules de plus de 7mètres de long permet :', '{\"a\": \"D’éviter le choc en cas de freinage\"}', '', 'non défini', NULL),
 (422, 715, 'Sur la chaussée comportant trois (3) voies affectées à un même sens de circulation, les véhicules \nde 3,5T de PTAC et de plus de 7m de long doivent normalement :', '{\"a\": \"Emprunter toutes les voies\", \"b\": \"Emprunter la voie de droite\", \"c\": \"Emprunter les deux voies les plus à gauche\"}', 'b', 'non défini', NULL),
 (423, 716, 'Un véhicule articulé est composé :', '{\"a\": \"d’un véhicule tracteur et d’une remorque\", \"b\": \"d’un véhicule tracteur et d’une semi-remorque\", \"c\": \"d’un véhicule tracteur routier et d’une remorque\", \"d\": \"rien de tout ce qui précède\"}', 'd', 'non défini', NULL),
@@ -518,36 +626,36 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (425, 718, 'La longueur maximale d’un  train double est de :', '{\"a\": \"18m\", \"b\": \"22m\", \"c\": \"25m\", \"d\": \"16m\"}', 'a', 'non défini', NULL),
 (426, 719, 'Quelle est la durée minimale obligatoire de repos pour un conducteur de véhicule de plus de 3,5T \nde PTAC après 4heures30mn de route ?', '{\"a\": \"1h\", \"b\": \"45mn\", \"c\": \"55mn\", \"d\": \"1h30mn\"}', 'b', 'non défini', NULL),
 (427, 720, 'En rase campagne, quel intervalle minimal de sécurité doit respecter deux véhicules de plus 3,5T \nde PTAC et de plus de 7m de long qui se suivent lorsqu’ils roulent à la même vitesse ?', '{\"a\": \"40m environ\", \"b\": \"50m environ\", \"c\": \"60m environ\", \"d\": \"80m environ\"}', 'b', 'non défini', NULL),
-(428, 721, 'Dans une descente dangereuse :', '{\"a\": \"Je ralentis\", \"b\": \"J’utilise le ralentisseur\", \"c\": \"Je rétrograde\", \"d\": \"J’utilise le frein à main\"}', 'a-b-c', 'non défini', NULL),
-(429, 722, 'A la rencontre de panneau B2a1, il est interdit :', '{\"a\": \"à tout véhicule de transport de marchandises de tourner à \\ngauche\", \"b\": \"aux véhicules de transport de marchandises dont le PTAC \\nest inférieur à 3,5T de tourner à gauche\", \"c\": \"aux véhicules de transport de marchandises dont le PTAC est \\nsupérieur à 3,5T de tourner à gauche\", \"d\": \"à tout véhicule de transport de tourner à gauche\"}', 'a-b-c', 'non défini', NULL),
-(430, 723, 'A la vue du panneau B3-3 il est interdit :', '{\"a\": \"à un véhicule de transport de marchandise de dépasser un petit \\nvéhicule\", \"b\": \"aux véhicules de transport de marchandises dont le PTAC excède \\n3,5T de dépasser tout véhicule à moteur à l’exception des véhicules à deux \\nroues sans side-car\", \"c\": \"aux véhicules de transport de marchandises dont le PTAC est \\ninférieur à 3,5T de dépasser tout petit véhicule\", \"d\": \"à un véhicule poids lourd de dépasser une voiture\"}', 'b-d', 'non défini', NULL),
+(428, 721, 'Dans une descente dangereuse :', '{\"a\": \"Je ralentis\", \"b\": \"J’utilise le ralentisseur\", \"c\": \"Je rétrograde\", \"d\": \"J’utilise le frein à main\"}', 'a', 'non défini', NULL),
+(429, 722, 'A la rencontre de panneau B2a1, il est interdit :', '{\"a\": \"à tout véhicule de transport de marchandises de tourner à \\ngauche\", \"b\": \"aux véhicules de transport de marchandises dont le PTAC \\nest inférieur à 3,5T de tourner à gauche\", \"c\": \"aux véhicules de transport de marchandises dont le PTAC est \\nsupérieur à 3,5T de tourner à gauche\", \"d\": \"à tout véhicule de transport de tourner à gauche\"}', 'a', 'non défini', NULL),
+(430, 723, 'A la vue du panneau B3-3 il est interdit :', '{\"a\": \"à un véhicule de transport de marchandise de dépasser un petit \\nvéhicule\", \"b\": \"aux véhicules de transport de marchandises dont le PTAC excède \\n3,5T de dépasser tout véhicule à moteur à l’exception des véhicules à deux \\nroues sans side-car\", \"c\": \"aux véhicules de transport de marchandises dont le PTAC est \\ninférieur à 3,5T de dépasser tout petit véhicule\", \"d\": \"à un véhicule poids lourd de dépasser une voiture\"}', 'b', 'non défini', NULL),
 (431, 724, 'Que signifie le panneau B8-1 :', '{\"a\": \"voie réservée aux véhicules de transport de marchandises dont le \\nPTAC est inférieur ou égal à 5,5T\", \"b\": \"accès interdit aux véhicules poids lourds dont le PTAC est égal à \\n5,5T\", \"c\": \"accès interdit aux véhicules de transport de marchandises dont le \\nPTAC excède 5 ,5T\"}', 'c', 'non défini', NULL),
 (432, 725, 'Que signifie le panneau B13a,', '{\"a\": \"Accès interdit aux véhicules pesant 2,5T\", \"b\": \"Accès interdit aux véhicules pesant sur un essieu plus de 2,5T\", \"c\": \"Accès interdit aux véhicules pesant plus de 2,5T\", \"d\": \"Accès interdit aux véhicules pesant sur un essieu 2,5T\"}', 'b', 'non défini', NULL),
 (433, 726, 'Le panneau B29-1 :', '{\"a\": \"m’indique une signalisation de position à 500m\"}', '', 'non défini', NULL),
 (434, 727, 'Que m’indique le panneau B18b ?', '{\"a\": \"Accès interdit aux véhicules transportant plus d’une certaine \\nquantité de produits de nature à polluer l’eau\", \"b\": \"Accès interdit aux véhicules transportant plus d’une certaine \\nquantité de produits explosifs ou facilement inflammables.\"}', 'a', 'non défini', NULL),
 (435, 728, 'Effectuer un transport sous le régime « TIR » permet de simplifier le contrôle  de :', '{\"a\": \"La police sur la route\", \"b\": \"La douane aux frontières\", \"c\": \"La douane sur la route\"}', 'b', 'non défini', NULL),
-(436, 729, 'Vous effectuez un transport sous convention TIR :', '{\"a\": \"Toutes les portes à l’exception de celles de la cabine doivent être scellées\", \"b\": \"Le véhicule peut circuler sans bâche sans élingues\", \"c\": \"Les portes de la cabine doivent être scellées\", \"d\": \"Les élingues d’attache de la bâche doivent être scellées\"}', 'a-d', 'non défini', NULL),
+(436, 729, 'Vous effectuez un transport sous convention TIR :', '{\"a\": \"Toutes les portes à l’exception de celles de la cabine doivent être scellées\", \"b\": \"Le véhicule peut circuler sans bâche sans élingues\", \"c\": \"Les portes de la cabine doivent être scellées\", \"d\": \"Les élingues d’attache de la bâche doivent être scellées\"}', 'a', 'non défini', NULL),
 (437, 730, 'La mention TIR peut être inscrite sur le véhicule pour un transport :', '{\"a\": \"local\", \"b\": \"international\", \"c\": \"inter urbain\"}', 'b', 'non défini', NULL),
-(438, 731, 'Le poids total autorisé en charge (P. T. A C) est inscrit sur :', '{\"a\": \"la carte grise\", \"b\": \"la plaque de tare\", \"c\": \"la vignette fiscale\", \"d\": \"la quittance de la douane\", \"e\": \"la plaque du constructeur\"}', 'a-b-e', 'non défini', NULL),
+(438, 731, 'Le poids total autorisé en charge (P. T. A C) est inscrit sur :', '{\"a\": \"la carte grise\", \"b\": \"la plaque de tare\", \"c\": \"la vignette fiscale\", \"d\": \"la quittance de la douane\", \"e\": \"la plaque du constructeur\"}', 'a', 'non défini', NULL),
 (439, 732, 'On appelle transports « exceptionnels » ceux dont les dimensions ou le poids du chargement \ndépassent les limites fixées par :', '{\"a\": \"La Préfecture\", \"b\": \"La Direction Générale des transports terrestres\", \"c\": \"Le code de la route\", \"d\": \"Le ministère des transports\"}', 'c', 'non défini', NULL),
-(440, 733, 'Quels sont les renseignements qu’on peut retrouver sur la plaque de tare ou de surface ?', '{\"a\": \"Le poids à vide\", \"b\": \"Le poids total autorisé en charge\", \"c\": \"Le poids total roulant autorisé\", \"d\": \"La surface\"}', 'a-bc-d', 'non défini', NULL),
+(440, 733, 'Quels sont les renseignements qu’on peut retrouver sur la plaque de tare ou de surface ?', '{\"a\": \"Le poids à vide\", \"b\": \"Le poids total autorisé en charge\", \"c\": \"Le poids total roulant autorisé\", \"d\": \"La surface\"}', 'a', 'non défini', NULL),
 (441, 734, 'Pour tourner à droite sur une chaussée à sens unique je dois :', '{\"a\": \"Serrer ma droite\", \"b\": \"Serrer ma gauche\", \"c\": \"Me déporter au milieu de la chaussée\"}', 'b', 'non défini', NULL),
-(442, 735, 'Pour tourner à droite, je dois :', '{\"a\": \"Accélérer\", \"b\": \"Mettre le clignotant à droite\", \"c\": \"Ralentir\"}', 'b-c', 'non défini', NULL),
-(443, 736, 'Pour tourner à droite sur une chaussée à double sens, je dois :', '{\"a\": \"Serrer ma droite\", \"b\": \"Me déporter au milieu\", \"c\": \"Serrer ma gauche\"}', 'b-c', 'non défini', NULL),
+(442, 735, 'Pour tourner à droite, je dois :', '{\"a\": \"Accélérer\", \"b\": \"Mettre le clignotant à droite\", \"c\": \"Ralentir\"}', 'b', 'non défini', NULL),
+(443, 736, 'Pour tourner à droite sur une chaussée à double sens, je dois :', '{\"a\": \"Serrer ma droite\", \"b\": \"Me déporter au milieu\", \"c\": \"Serrer ma gauche\"}', 'b', 'non défini', NULL),
 (444, 737, 'Pour tourner à gauche sur une chaussée à double sens, je dois :', '{\"a\": \"Mettre le clignotant à gauche, céder le passage à droite\", \"b\": \"Ralentir et serrer la gauche\", \"c\": \"Tourner sans respecter la priorité à droite\"}', 'a', 'non défini', NULL),
-(445, 738, 'Pour tourner à gauche sur une chaussée à sens unique, je dois :', '{\"a\": \"Serrer ma droite et mettre le clignotant à gauche\", \"b\": \"Respecter les règles de priorité\", \"c\": \"Serrer ma gauche\"}', 'a-b', 'non défini', NULL),
+(445, 738, 'Pour tourner à gauche sur une chaussée à sens unique, je dois :', '{\"a\": \"Serrer ma droite et mettre le clignotant à gauche\", \"b\": \"Respecter les règles de priorité\", \"c\": \"Serrer ma gauche\"}', 'a', 'non défini', NULL),
 (446, 739, 'Pour tourner à gauche sur une chaussée à double sens, je dois :', '{\"a\": \"Mettre le clignotant à gauche et appliquer la priorité à droite\", \"b\": \"Accélérer, mettre le clignotant à droite\", \"c\": \"Ralentir et tourner à gauche seulement\"}', 'a', 'non défini', NULL),
-(447, 740, 'Pour tourner à gauche sur une chaussée à sens unique, je dois :', '{\"a\": \"Serrer ma droite et mettre le clignotant à gauche\", \"b\": \"Respecter les règles de priorité\", \"c\": \"Serrer ma gauche\"}', 'a-b', 'non défini', NULL),
+(447, 740, 'Pour tourner à gauche sur une chaussée à sens unique, je dois :', '{\"a\": \"Serrer ma droite et mettre le clignotant à gauche\", \"b\": \"Respecter les règles de priorité\", \"c\": \"Serrer ma gauche\"}', 'a', 'non défini', NULL),
 (448, 741, 'L’autocar est un véhicule de transport en commun de personnes destiné au :', '{\"a\": \"Transport de passagers assis uniquement\", \"b\": \"Transport de marchandises sur une longue distance\", \"c\": \"Transport urbain\", \"d\": \"Transport de passagers debout\", \"e\": \"Transport de passagers assis sur une longue distance\"}', '', 'non défini', NULL),
-(449, 742, 'L’autobus est un véhicule de transport en commun de personnes destiné au :', '{\"a\": \"Transport de passagers assis uniquement\", \"b\": \"Transport sur une longue distance\", \"c\": \"Transport urbain\", \"d\": \"Transport de passagers debout ou assis\", \"e\": \"Transport de passagers assis sur une longue distance\"}', 'c-d', 'non défini', NULL),
-(450, 743, 'Les feux de gabarit sont obligatoires sur les véhicules de largeur égale à :', '{\"a\": \"2,10m\", \"b\": \"2,15m\", \"c\": \"2,20m\", \"d\": \"1,80m\"}', 'a-b-c', 'non défini', NULL),
-(451, 744, 'Les feux d’encombrement :', '{\"a\": \"Sont toujours de couleur jaune\", \"b\": \"Sont de couleur blanche à l’avant\", \"c\": \"Eclairent à 40m\", \"d\": \"Sont de couleur rouge à l’arrière\"}', 'b-d', 'non défini', NULL),
+(449, 742, 'L’autobus est un véhicule de transport en commun de personnes destiné au :', '{\"a\": \"Transport de passagers assis uniquement\", \"b\": \"Transport sur une longue distance\", \"c\": \"Transport urbain\", \"d\": \"Transport de passagers debout ou assis\", \"e\": \"Transport de passagers assis sur une longue distance\"}', 'c', 'non défini', NULL),
+(450, 743, 'Les feux de gabarit sont obligatoires sur les véhicules de largeur égale à :', '{\"a\": \"2,10m\", \"b\": \"2,15m\", \"c\": \"2,20m\", \"d\": \"1,80m\"}', 'a', 'non défini', NULL),
+(451, 744, 'Les feux d’encombrement :', '{\"a\": \"Sont toujours de couleur jaune\", \"b\": \"Sont de couleur blanche à l’avant\", \"c\": \"Eclairent à 40m\", \"d\": \"Sont de couleur rouge à l’arrière\"}', 'b', 'non défini', NULL),
 (452, 745, 'Quels sont les accessoires que le conducteur doit faire connaitre aux passagers avant de prendre la \nroute ?', '{\"a\": \"Le livre de bord et la carte grise\"}', '', 'non défini', NULL),
 (453, 746, 'Quel est l’âge minimum du candidat à l’examen du permis de conduire catégorie D ?', '{\"a\": \"18ans\", \"b\": \"20ans\", \"c\": \"21ans\", \"d\": \"25ans\"}', 'c', 'non défini', NULL),
 (454, 747, 'Un conducteur de véhicule de transport en commun doit disposer d’une boîte de premiers \nsecours :', '{\"a\": \"Sous son siège\", \"b\": \"Cadenassée sous son siège\", \"c\": \"Dans le coffre à bagages\", \"d\": \"Cadenassé dans le porte-bagages intérieur\"}', 'a', 'non défini', NULL),
-(455, 748, 'Que faire en cas d’accident d’un véhicule de transport en commun ?', '{\"a\": \"Arrêter le moteur\", \"b\": \"Faire évacuer les passagers\", \"c\": \"Eviter la panique\", \"d\": \"Attendre la gendarmerie avant d’évacuer les blessés\"}', 'a-b-c', 'non défini', NULL),
-(456, 749, 'Que faire en cas de panne d’un véhicule de transport en commun ?', '{\"a\": \"Fermer le robinet de carburant\", \"b\": \"Couper le circuit électrique\", \"c\": \"Placer les triangles de pré signalisation\", \"d\": \"Alerter la gendarmerie\"}', 'a-b-c', 'non défini', NULL),
-(457, 750, 'Que faire en cas d’incendie d’un véhicule de transport en commun ?', '{\"a\": \"Rassurer les passagers pour éviter la panique\", \"b\": \"Chercher de l’eau pour éteindre l’incendie\", \"c\": \"Couper le circuit électrique\", \"d\": \"Mettre les feux de détresse\", \"e\": \"Briser les issues de secours en utilisant le marteau pic\"}', 'a-c-e', 'non défini', NULL),
+(455, 748, 'Que faire en cas d’accident d’un véhicule de transport en commun ?', '{\"a\": \"Arrêter le moteur\", \"b\": \"Faire évacuer les passagers\", \"c\": \"Eviter la panique\", \"d\": \"Attendre la gendarmerie avant d’évacuer les blessés\"}', 'a', 'non défini', NULL),
+(456, 749, 'Que faire en cas de panne d’un véhicule de transport en commun ?', '{\"a\": \"Fermer le robinet de carburant\", \"b\": \"Couper le circuit électrique\", \"c\": \"Placer les triangles de pré signalisation\", \"d\": \"Alerter la gendarmerie\"}', 'a', 'non défini', NULL),
+(457, 750, 'Que faire en cas d’incendie d’un véhicule de transport en commun ?', '{\"a\": \"Rassurer les passagers pour éviter la panique\", \"b\": \"Chercher de l’eau pour éteindre l’incendie\", \"c\": \"Couper le circuit électrique\", \"d\": \"Mettre les feux de détresse\", \"e\": \"Briser les issues de secours en utilisant le marteau pic\"}', 'a', 'non défini', NULL),
 (458, 751, 'Une boîte de premiers secours est :', '{\"a\": \"Obligatoire dans les véhicules de transport en commun de personnes\", \"b\": \"Conseillée par les véhicules de transport en commun de personnes uniquement\", \"c\": \"Obligatoire dans le cas de transport des enfants uniquement\"}', 'a', 'non défini', NULL),
 (459, 752, 'Le transport de voyageurs dans les remorques attelées à des véhicules de transport en commun \nest :', '{\"a\": \"autorisé\", \"b\": \"toléré\", \"c\": \"interdit\"}', 'c', 'non défini', NULL),
 (460, 753, 'En rase campagne, quelle est la vitesse maximale autorisée pour un véhicule de transport en \ncommun pesant entre 10 et 15 tonnes ?', '{\"a\": \"70km/h\", \"b\": \"90km/h\", \"c\": \"50km/h\", \"d\": \"60km/h\"}', 'b', 'non défini', NULL),
@@ -557,17 +665,17 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (464, 757, 'Quelle est la durée maximale de conduite continue ?', '{\"a\": \"2h\", \"b\": \"6h\", \"c\": \"4h30mn\", \"d\": \"5h30mn\"}', 'c', 'non défini', NULL),
 (465, 758, 'Quelle est la durée maximale de conduite journalière ?', '{\"a\": \"11h\", \"b\": \"9h\", \"c\": \"12h30mn\", \"d\": \"13h25mn\"}', 'b', 'non défini', NULL),
 (466, 759, 'Les véhicules dont le PTAC dépasse 3,5T doivent être munis d’un appareil de contrôle appelé :', '{\"a\": \"Ethylotest\", \"b\": \"Totaliseur\", \"c\": \"Chrono tachygraphe\"}', 'c', 'non défini', NULL),
-(467, 760, 'Le chrono tachygraphe permet l’enregistrement :', '{\"a\": \"Des tours des roues avant\", \"b\": \"De la vitesse du véhicule et de la distance parcourue\", \"c\": \"Du temps de conduite et de repos\"}', 'b-c', 'non défini', NULL),
-(468, 761, 'L’intervalle de sécurité entre deux véhicules de plus de 3,5T et de plus de 7 mètres de long qui se \nsuivent permet :', '{\"a\": \"D’éviter le une collision en cas de freinage brusque\", \"b\": \"De faciliter le dépassement par les véhicules légers\", \"c\": \"De mieux contrôler les organes de conduite\"}', 'a-b', 'non défini', NULL),
+(467, 760, 'Le chrono tachygraphe permet l’enregistrement :', '{\"a\": \"Des tours des roues avant\", \"b\": \"De la vitesse du véhicule et de la distance parcourue\", \"c\": \"Du temps de conduite et de repos\"}', 'b', 'non défini', NULL),
+(468, 761, 'L’intervalle de sécurité entre deux véhicules de plus de 3,5T et de plus de 7 mètres de long qui se \nsuivent permet :', '{\"a\": \"D’éviter le une collision en cas de freinage brusque\", \"b\": \"De faciliter le dépassement par les véhicules légers\", \"c\": \"De mieux contrôler les organes de conduite\"}', 'a', 'non défini', NULL),
 (469, 762, 'Sur les chaussées comportant trois (3) voies affectées à un même sens de circulation, les véhicules \nde plus de 3,5T et les véhicules de plus de 7 mètres de long doivent normalement emprunter :', '{\"a\": \"Toutes les voies\", \"b\": \"La voie de droite\", \"c\": \"Les deux voies les plus à gauche\"}', 'b', 'non défini', NULL),
 (470, 763, 'L’utilisation d’un véhicule de transport de marchandises pour assurer le transport en commun de \npersonnes est :', '{\"a\": \"Autorisée\", \"b\": \"Interdite\", \"c\": \"Facultative\"}', 'b', 'non défini', NULL),
-(471, 764, 'L’utilisation d’un véhicule de transport de marchandises pour assurer le transport en commun de \npersonnes est :', '{\"a\": \"interdite\", \"b\": \"facultative\", \"c\": \"autorisée après homologation  des aménagements\"}', 'a-c', 'non défini', NULL),
+(471, 764, 'L’utilisation d’un véhicule de transport de marchandises pour assurer le transport en commun de \npersonnes est :', '{\"a\": \"interdite\", \"b\": \"facultative\", \"c\": \"autorisée après homologation  des aménagements\"}', 'a', 'non défini', NULL),
 (472, 765, 'Que signifie le panneau B34a ?', '{\"a\": \"Dépassement interdit aux camions\", \"b\": \"Fin d’interdiction de dépasser aux véhicules de transport de \\nmarchandises de plus de 3,5T\", \"c\": \"Interdiction de dépasser tout véhicule\", \"d\": \"Fin d’interdiction de dépasser\"}', 'b', 'non défini', NULL),
 (473, 766, 'Que signifie le panneau B45 ?', '{\"a\": \"Accès interdit aux véhicules de transport en commun de personnes\", \"b\": \"Stationnement interdit aux véhicules de transport en commun de \\npersonnes\", \"c\": \"Fin de voies réservées aux véhicules de transport en commun de \\npersonnes\", \"d\": \"Arrêt interdit aux véhicules de transport en commun de personnes\"}', 'c', 'non défini', NULL),
 (474, 767, 'Que signifie le panneau B27 ?', '{\"a\": \"Arrêt d’autobus\", \"b\": \"Parking réservé aux autobus\", \"c\": \"Voie réservée aux autobus\", \"d\": \"Arrêt obligatoire aux autobus\"}', 'c', 'non défini', NULL),
-(475, 768, 'Un chargement dépassant de plus d’un mètre à l’arrière doit être signalé par :', '{\"a\": \"Un dispositif réfléchissant rouge\", \"b\": \"Un feu rouge visible à 150m en cas de visibilité insuffisante\", \"c\": \"Un chiffon flottant\", \"d\": \"Une lanterne rouge\"}', 'a-b-d', 'non défini', NULL),
+(475, 768, 'Un chargement dépassant de plus d’un mètre à l’arrière doit être signalé par :', '{\"a\": \"Un dispositif réfléchissant rouge\", \"b\": \"Un feu rouge visible à 150m en cas de visibilité insuffisante\", \"c\": \"Un chiffon flottant\", \"d\": \"Une lanterne rouge\"}', 'a', 'non défini', NULL),
 (476, 769, 'Que signifie le panneau B10a ?', '{\"a\": \"Accès interdit aux véhicules ou ensemble de véhicules dont la \\nlongueur dépasse 10m\", \"b\": \"Accès interdit uniquement aux véhicules de transport de \\nmarchandises dont la longueur dépasse 10m\", \"c\": \"Accès interdit uniquement aux véhicules de transport en commun \\nde personnes dont la longueur dépasse 10m\"}', 'a', 'non défini', NULL),
-(477, 770, 'Quelle est la vitesse maximale autorisée sur route pour automobile ?', '{\"a\": \"90km/h\", \"b\": \"60km/h\", \"c\": \"130km/h\", \"d\": \"110km/h  ou selon la législation en vigueur dans chaque pays\"}', 'c-d', 'non défini', NULL),
+(477, 770, 'Quelle est la vitesse maximale autorisée sur route pour automobile ?', '{\"a\": \"90km/h\", \"b\": \"60km/h\", \"c\": \"130km/h\", \"d\": \"110km/h  ou selon la législation en vigueur dans chaque pays\"}', 'c', 'non défini', NULL),
 (478, 771, 'Quelle est la vitesse maximale autorisée en agglomération ?', '{\"a\": \"70km/h\", \"b\": \"50km/h\", \"c\": \"90km/h\", \"d\": \"100km/h\"}', 'b', 'non défini', NULL),
 (479, 772, 'Avec quelle catégorie de permis de conduire pouvez-vous conduire un taxi ?', '{\"a\": \"C\", \"b\": \"C1\", \"c\": \"DR (TCR)\"}', 'c', 'non défini', NULL),
 (480, 773, 'Quel est l’âge minimum du candidat au permis de conduire catégorie D ?', '{\"a\": \"17ans\", \"b\": \"18ans\", \"c\": \"21ans\"}', 'c', 'non défini', NULL),
@@ -581,11 +689,11 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (488, 781, 'De combien de mètres au maximum votre chargement de grande longueur peut-il dépasser \nl’extrémité arrière du véhicule ?', '{\"a\": \"3m\", \"b\": \"5m\", \"c\": \"3,5m\"}', 'a', 'non défini', NULL),
 (489, 782, 'Quelle charge maximale autorisée peut supporter un essieu isolé ?', '{\"a\": \"13tonnes\", \"b\": \"13,5tonnes\", \"c\": \"15tonnes\"}', 'a', 'non défini', NULL),
 (490, 783, 'Dans la définition du poids à vide d’un véhicule on tient compte :', '{\"a\": \"du poids du véhicule, avec le réservoir rempli uniquement\", \"b\": \"du poids du véhicule sans le carburant, sans bâche\", \"c\": \"du poids du véhicule, les réservoirs remplis avec les équipements de bord\"}', 'c', 'non défini', NULL),
-(491, 785, 'Le coupe-batterie permet d’isoler :', '{\"a\": \"les feux de détresse\", \"b\": \"les feux du véhicule\", \"c\": \"l’alimentation électrique du moteur\"}', 'a-b-c', 'non défini', NULL),
+(491, 785, 'Le coupe-batterie permet d’isoler :', '{\"a\": \"les feux de détresse\", \"b\": \"les feux du véhicule\", \"c\": \"l’alimentation électrique du moteur\"}', 'a', 'non défini', NULL),
 (492, 786, 'Quelle est la profondeur minimale des rainures principales d’un pneumatique de poids lourd ?', '{\"a\": \"1mm\", \"b\": \"1,5mm\", \"c\": \"0,5mm\"}', 'a', 'non défini', NULL),
 (493, 787, 'A l’intérieur d’un autocar, je peux transporter :', '{\"a\": \"des sacs de maïs\", \"b\": \"des colis contenant des liquides inflammables\", \"c\": \"des colis contenant des couteaux et objets pointus\", \"d\": \"mon sac à main\"}', 'd', 'non défini', NULL),
-(494, 788, 'Pour le transport des bagages dans un véhicule de transport en commun, j’utilise :', '{\"a\": \"la soute pour tous les bagages\", \"b\": \"la remorque pour le transport des combustibles inflammables\", \"c\": \"le porte-bagage de l’intérieur pour les colis légers\", \"d\": \"le porte-bagage du dessus du toit pour les bagages légers\"}', 'a-c-d', 'non défini', NULL),
-(495, 789, 'J’utilise les feux de détresse d’un véhicule de transport en commun d’enfants :', '{\"a\": \"lors de la montée et de la descente des enfants\", \"b\": \"lors de l’arrêt du véhicule\", \"c\": \"pour le transport d’enfants en excursion\", \"d\": \"pour signaler la présence à bord des enfants en fête\"}', 'a-b', 'non défini', NULL),
+(494, 788, 'Pour le transport des bagages dans un véhicule de transport en commun, j’utilise :', '{\"a\": \"la soute pour tous les bagages\", \"b\": \"la remorque pour le transport des combustibles inflammables\", \"c\": \"le porte-bagage de l’intérieur pour les colis légers\", \"d\": \"le porte-bagage du dessus du toit pour les bagages légers\"}', 'a', 'non défini', NULL),
+(495, 789, 'J’utilise les feux de détresse d’un véhicule de transport en commun d’enfants :', '{\"a\": \"lors de la montée et de la descente des enfants\", \"b\": \"lors de l’arrêt du véhicule\", \"c\": \"pour le transport d’enfants en excursion\", \"d\": \"pour signaler la présence à bord des enfants en fête\"}', 'a', 'non défini', NULL),
 (496, 790, 'A partir de 55ans, quelle est la périodicité des visites médicales pour un conducteur de transport en \ncommun :', '{\"a\": \"1an\", \"b\": \"2ans\", \"c\": \"5ans\"}', 'a', 'non défini', NULL),
 (497, 791, 'Quelle est la périodicité des visites médicales pour un conducteur de transport en commun dont \nl’âge est compris entre 45ans et55ans ?', '{\"a\": \"1an\", \"b\": \"2ans\", \"c\": \"3ans\", \"d\": \"5ans\"}', 'b', 'non défini', NULL),
 (498, 792, 'Quelle est la période des visites médicales pour un conducteur de transport en commun de moins \nde 45ans :', '{\"a\": \"1an\", \"b\": \"2ans\", \"c\": \"3ans\", \"d\": \"5ans\"}', 'd', 'non défini', NULL),
@@ -594,33 +702,33 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (501, 795, 'En agglomération quel est le véhicule qui doit s’arrêter à temps à cause d’un croisement difficile ?', '{\"a\": \"L’autobus\", \"b\": \"Le camion\", \"c\": \"Le véhicule qui le désire\"}', 'b', 'non défini', NULL),
 (502, 796, 'Sur une pente, quel est le véhicule qui doit faire marche arrière à cause d’un croisement difficile ?', '{\"a\": \"L’autobus\", \"b\": \"Le véhicule qui le désire\", \"c\": \"Le camion\"}', 'c', 'non défini', NULL),
 (503, 797, 'Pour tourner à droite sur une route à double sens, je dois :', '{\"a\": \"Serrer ma droite\", \"b\": \"Serrer ma gauche\"}', '', 'non défini', NULL),
-(504, 798, 'Pour tourner à droite, je dois :', '{\"a\": \"Accélérer\", \"b\": \"Mettre le clignotant à droite\", \"c\": \"Ralentir\"}', 'b-c', 'non défini', NULL),
+(504, 798, 'Pour tourner à droite, je dois :', '{\"a\": \"Accélérer\", \"b\": \"Mettre le clignotant à droite\", \"c\": \"Ralentir\"}', 'b', 'non défini', NULL),
 (505, 799, 'Pour tourner à gauche sur une chaussée à double sens, je dois :', '{\"a\": \"Serrer ma droite\", \"b\": \"Me déporter au milieu\", \"c\": \"Serrer ma gauche\"}', 'b', 'non défini', NULL),
 (506, 800, 'Lequel des quatre temps ci-après correspond au temps utile ou au temps moteur ?', '{\"a\": \"Echappement\", \"b\": \"Admission\", \"c\": \"Explosion\", \"d\": \"Compression\"}', 'c', 'non défini', NULL),
 (507, 801, 'Donnez la position des soupapes à l’explosion :', '{\"a\": \"Les soupapes s’ouvrent\", \"b\": \"Les deux soupapes sont fermées\", \"c\": \"Les soupapes d’admission et d’échappement sont ouvertes\"}', 'b', 'non défini', NULL),
 (508, 802, 'Donnez la position du piston à l’explosion :', '{\"a\": \"Le piston monte\", \"b\": \"Le piston descend\", \"c\": \"Le piston est sur place\"}', 'b', 'non défini', NULL),
 (509, 803, 'Quel est le rôle du carburateur ?', '{\"a\": \"Le carburateur fournit du carburant\", \"b\": \"Le carburateur fait tourner le moteur\", \"c\": \"Le carburateur produit un mélange gazeux\"}', 'c', 'non défini', NULL),
-(510, 804, 'Quel est le rôle de la batterie ?', '{\"a\": \"La batterie génère le courant\", \"b\": \"La batterie fournit du courant à l’alternateur\", \"c\": \"La batterie accumule le courant\", \"d\": \"La batterie fournit l’énergie nécessaire au démarrage du moteur\"}', 'c-d', 'non défini', NULL),
+(510, 804, 'Quel est le rôle de la batterie ?', '{\"a\": \"La batterie génère le courant\", \"b\": \"La batterie fournit du courant à l’alternateur\", \"c\": \"La batterie accumule le courant\", \"d\": \"La batterie fournit l’énergie nécessaire au démarrage du moteur\"}', 'c', 'non défini', NULL),
 (511, 805, 'Quel est le rôle du radiateur ?', '{\"a\": \"Le radiateur conserve la chaleur du moteur\", \"b\": \"Le radiateur aère le moteur\", \"c\": \"Le radiateur contribue au refroidissement du moteur\", \"d\": \"Le radiateur fait tourner le ventilateur\"}', 'c', 'non défini', NULL),
 (512, 806, 'Entre quels organes du moteur se situe la pompe à essence ?', '{\"a\": \"Le radiateur et la pompe à eau\", \"b\": \"Le réservoir et le carburateur\", \"c\": \"Le filtre à air et le carburateur\"}', 'b', 'non défini', NULL),
 (513, 807, 'Quel est le rôle de la bobine', '{\"a\": \"la bobine transforme le courant primaire de la batterie en courant secondaire\", \"b\": \"La bobine réduit l’intensité électrique\", \"c\": \"La bobine régularise le courant\"}', 'a', 'non défini', NULL),
 (514, 808, 'Quel est le rôle de l’allumeur ?', '{\"a\": \"L’allumeur distribue du courant aux bougies\", \"b\": \"L’allumeur fournit du courant au démarreur\", \"c\": \"L’allumeur absorbe l’étincelle des bougies\"}', 'a', 'non défini', NULL),
 (515, 809, 'Quel est le circuit d’allumage d’un moteur à essence ?', '{\"a\": \"Batterie – bobine – allumeur – bougies\", \"b\": \"Démarreur – allumeur – batterie\", \"c\": \"Allumeur – bobine – vis platinée\"}', 'a', 'non défini', NULL),
 (516, 810, 'De quels éléments le moteur tire-t-il sa force ?', '{\"a\": \"Essence – air – courant électrique\", \"b\": \"Air – essence\", \"c\": \"Courant électrique  – eau – essence\"}', 'a', 'non défini', NULL),
-(517, 811, 'Quels dégâts peut provoquer l’échauffement excessif du moteur', '{\"a\": \"Joint de culasse brûlé\", \"b\": \"Décalage du moteur\", \"c\": \"Culasse bombée\", \"d\": \"Batterie déchargée\"}', 'a-c', 'non défini', NULL),
+(517, 811, 'Quels dégâts peut provoquer l’échauffement excessif du moteur', '{\"a\": \"Joint de culasse brûlé\", \"b\": \"Décalage du moteur\", \"c\": \"Culasse bombée\", \"d\": \"Batterie déchargée\"}', 'a', 'non défini', NULL),
 (518, 812, 'Citer les feux obligatoires à l’arrière d’un véhicule de tourisme :', '{\"a\": \"Deux feux de route – deux feux de croisement – deux feux indicateurs de changement de \\ndirection – deux feux de position - -deux feux stop\", \"b\": \"Deux feux de position – deux clignotants – deux feux stop – deux cataphotes – feux \\nplaques d’immatriculation\", \"c\": \"Deux feux de position – deux clignotants – feu plaque d’immatriculation – deux feux stop \\n– deux cataphotes – deux feux antibrouillard – deux feux de recule\"}', 'b', 'non défini', NULL),
 (519, 813, 'Il est dangereux d’utiliser des pneumatiques usés parce qu’ils assurent :', '{\"a\": \"une bonne adhérence\", \"b\": \"une mauvaise adhérence\", \"c\": \"une conduite aisée\"}', 'b', 'non défini', NULL),
 (520, 814, 'Le véhicule de tourisme possède combien de sortes de freins ?', '{\"a\": \"Quatre sortes\", \"b\": \"Deux sortes\", \"c\": \"Trois sortes\"}', 'c', 'non défini', NULL),
 (521, 815, 'Le lit nacelle est un dispositif qui permet de transporter dans le véhicule les enfants de :', '{\"a\": \"1 à 6 mois uniquement\", \"b\": \"0 à9 mois\", \"c\": \"2 à 10mois\", \"d\": \"3 à 20mois\"}', 'b', 'non défini', NULL),
 (522, 816, 'Le siège homologué (baquet, harnais, réceptacle) sert à transporter dans le véhicule les enfants de :', '{\"a\": \"3 à 4 mois\", \"b\": \"4 à 5mois\", \"c\": \"6 à 8 mois\", \"d\": \"9 mois à 4 ans\"}', 'd', 'non défini', NULL),
-(523, 817, 'Quels dégâts peut provoquer le manque d’huile à moteur ?', '{\"a\": \"Bielles coulées\", \"b\": \"Moteur bloqué\", \"c\": \"Moteur tournant en sous-régime\", \"d\": \"Eclatement du disque d’embrayage\"}', 'a-b', 'non défini', NULL),
+(523, 817, 'Quels dégâts peut provoquer le manque d’huile à moteur ?', '{\"a\": \"Bielles coulées\", \"b\": \"Moteur bloqué\", \"c\": \"Moteur tournant en sous-régime\", \"d\": \"Eclatement du disque d’embrayage\"}', 'a', 'non défini', NULL),
 (524, 818, 'Quelle anomalie occasionne l’éclatement d’une durit à eau ?', '{\"a\": \"Le refroidissement du moteur\", \"b\": \"L’emballement du moteur\", \"c\": \"L’échauffement du moteur\"}', 'c', 'non défini', NULL),
 (525, 819, 'A quel ennui vous expose la rupture de la courroie d’alternateur ?', '{\"a\": \"Le circuit de charge interrompue\", \"b\": \"La charge excessive\", \"c\": \"La charge suffisante\"}', 'a', 'non défini', NULL),
 (526, 820, 'Combien de pompes permettent le bon fonctionnement d’un moteur à essence ?', '{\"a\": \"2 pompes\", \"b\": \"3 pompes\", \"c\": \"4 pompes\", \"d\": \"5 pompes\"}', 'b', 'non défini', NULL),
-(527, 821, 'Quelles sont les pompes qui contribuent au bon fonctionnement d’un moteur à essence ?', '{\"a\": \"Pompe à essence\", \"b\": \"Pompe à huile\", \"c\": \"Pompe à air\", \"d\": \"Pompe à eau\"}', 'a-b-d', 'non défini', NULL),
+(527, 821, 'Quelles sont les pompes qui contribuent au bon fonctionnement d’un moteur à essence ?', '{\"a\": \"Pompe à essence\", \"b\": \"Pompe à huile\", \"c\": \"Pompe à air\", \"d\": \"Pompe à eau\"}', 'a', 'non défini', NULL),
 (528, 822, 'Avec mon feu d’éclairage, la plaque minéralogique doit être lisible à une distance de :', '{\"a\": \"50m\", \"b\": \"20m\", \"c\": \"30m\"}', 'b', 'non défini', NULL),
-(529, 823, 'Par temps de brouillard, tout conducteur de véhicule circulant sur une route doit obligatoirement \nallumer :', '{\"a\": \"Les feux de position\", \"b\": \"Les feux de route\", \"c\": \"Les feux de croisement\"}', 'a-c', 'non défini', NULL),
-(530, 824, 'Par temps de forte pluie, tout conducteur de véhicule circulant sur une route, doit obligatoire \nallumer :', '{\"a\": \"Les feux de position\", \"b\": \"Les feux de route\", \"c\": \"Les feux de croisement\"}', 'a-c', 'non défini', NULL),
+(529, 823, 'Par temps de brouillard, tout conducteur de véhicule circulant sur une route doit obligatoirement \nallumer :', '{\"a\": \"Les feux de position\", \"b\": \"Les feux de route\", \"c\": \"Les feux de croisement\"}', 'a', 'non défini', NULL),
+(530, 824, 'Par temps de forte pluie, tout conducteur de véhicule circulant sur une route, doit obligatoire \nallumer :', '{\"a\": \"Les feux de position\", \"b\": \"Les feux de route\", \"c\": \"Les feux de croisement\"}', 'a', 'non défini', NULL),
 (531, 825, 'Quand vérifie-t-on le niveau d’huile dans le moteur ?', '{\"a\": \"Toutes les semaines\", \"b\": \"Tous les mois\", \"c\": \"Tous les milles kilomètres\", \"d\": \"Tous les jours\"}', 'd', 'non défini', NULL),
 (532, 826, 'Quand vérifie-t-on le niveau de l’eau dans le radiateur ?', '{\"a\": \"Toutes les semaines\", \"b\": \"Tous les jours\", \"c\": \"Tous les milles kilomètres\", \"d\": \"Seulement quand le moteur commence à se chauffer\"}', 'b', 'non défini', NULL),
 (533, 827, 'Pour compléter le liquide de la batterie, j’utilise', '{\"a\": \"L’eau de pluie\", \"b\": \"L’eau de mer\", \"c\": \"L’eau distillée\"}', '', 'non défini', NULL),
@@ -632,69 +740,120 @@ INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`
 (539, 833, 'Quelles sont les pièces administratives obligatoires d’un véhicule automobile ?', '{\"a\": \"–  La carte grise \\n- le certificat d’assurance \\n- la vignette de l’année en cours \\n- la visite technique\", \"b\": \"– le permis de conduire \\n- l’attestation de réglage phares \\n- le papier d’achat\"}', '', 'non défini', NULL),
 (540, 834, 'Un véhicule de tourisme  possède combien de roues ?', '{\"a\": \"quatre\", \"b\": \"cinq\", \"c\": \"six\", \"d\": \"sept\"}', 'b', 'non défini', NULL),
 (541, 835, 'Une automobile est autorisée à circuler :', '{\"a\": \"Sans plaque d’immatriculation, avec assurance\", \"b\": \"Avec la plaque d’immatriculation portant le numéro du châssis\", \"c\": \"Avec la plaque d’immatriculation homologuée par le service chargé des transports\"}', 'c', 'non défini', NULL),
-(542, 836, 'Quand utilise-t-on l’essuie glace ?', '{\"a\": \"Par temps de pluie\", \"b\": \"Quand le pare brise est sale\", \"c\": \"Quand il fait sombre\"}', 'a-b', 'non défini', NULL),
+(542, 836, 'Quand utilise-t-on l’essuie glace ?', '{\"a\": \"Par temps de pluie\", \"b\": \"Quand le pare brise est sale\", \"c\": \"Quand il fait sombre\"}', 'a', 'non défini', NULL),
 (543, 837, 'Les feux de route servent à éclairer jusqu’à :', '{\"a\": \"100m environ\", \"b\": \"30m environ\", \"c\": \"150m et au delà\"}', 'a', 'non défini', NULL),
 (544, 838, 'Quels feux utilisez-vous la nuit, quand vous êtes derrière un autre usager à faible distance sur une \nroute mal éclairée ?', '{\"a\": \"Les feux de route\", \"b\": \"Les feux de croisement\", \"c\": \"Les feux de position\"}', 'b', 'non défini', NULL),
 (545, 839, 'Quels feux utilisez-vous en stationnement en bordure d’une route mal éclairée ?', '{\"a\": \"les feux de détresse\", \"b\": \"les feux de croisement\", \"c\": \"les feux de position\"}', 'c', 'non défini', NULL),
-(546, 840, 'J’utilise mes feux de détresse pour :', '{\"a\": \"indiquer que je vais  tout droit\", \"b\": \"faire marche arrière\", \"c\": \"indiquer que je suis en panne\", \"d\": \"indiquer que je suis le dernier d’un  convoi\", \"e\": \"indiquer que je suis  pressé\"}', 'c-d', 'non défini', NULL),
+(546, 840, 'J’utilise mes feux de détresse pour :', '{\"a\": \"indiquer que je vais  tout droit\", \"b\": \"faire marche arrière\", \"c\": \"indiquer que je suis en panne\", \"d\": \"indiquer que je suis le dernier d’un  convoi\", \"e\": \"indiquer que je suis  pressé\"}', 'c', 'non défini', NULL),
 (547, 841, 'Sans feux arrière la nuit :', '{\"a\": \"Je peux circuler sur une chaussée à double sens\", \"b\": \"Je peux circuler sur une chaussée à sens unique\", \"c\": \"Je ne peux pas circuler\"}', 'c', 'non défini', NULL),
 (548, 842, 'A quoi sert le triangle de pré-signalisation ?', '{\"a\": \"A signaler la position d’un véhicule en panne sur la chaussée\", \"b\": \"A signaler la présence d’un véhicule en stationnement\", \"c\": \"A signaler un arrêt\"}', 'a', 'non défini', NULL),
 (549, 843, 'A quoi sert l’extincteur ?', '{\"a\": \"A éteindre un début d’incendie sur un véhicule\", \"b\": \"A secourir un blessé\", \"c\": \"A refroidir le moteur\"}', 'a', 'non défini', NULL),
 (550, 844, 'La roue secours :', '{\"a\": \"Est obligatoire pour tout déplacement\", \"b\": \"N’est pas obligatoire lorsqu’on circule en ville\", \"c\": \"Est obligatoire seulement pour les longs voyages\"}', 'a', 'non défini', NULL),
-(551, 845, 'Que faut-il faire pour éviter de polluer l’environnement par le gaz d’échappement de votre \nmoteur ?', '{\"a\": \"Bien régler le moteur de mon véhicule\", \"b\": \"Utiliser un carburant de bonne qualité\", \"c\": \"Rouler à vive allure\"}', 'a-b', 'non défini', NULL),
+(551, 845, 'Que faut-il faire pour éviter de polluer l’environnement par le gaz d’échappement de votre \nmoteur ?', '{\"a\": \"Bien régler le moteur de mon véhicule\", \"b\": \"Utiliser un carburant de bonne qualité\", \"c\": \"Rouler à vive allure\"}', 'a', 'non défini', NULL),
 (552, 846, 'Pour vidanger le moteur d’un véhicule bien entretenu, il faut tenir compte :', '{\"a\": \"Du kilométrage parcouru\", \"b\": \"De la vitesse élevée\", \"c\": \"Du nombre de voyages effectués\"}', 'a', 'non défini', NULL),
 (553, 847, 'La vérification de l’huile à frein se fait :', '{\"a\": \"Tous les jours\", \"b\": \"Tous les mois\", \"c\": \"Au bon vouloir du conducteur\"}', 'a', 'non défini', NULL),
-(554, 848, 'Qu’est-ce qui peut causer l’incendie sur un véhicule automobile ?', '{\"a\": \"La chaleur ambiante\", \"b\": \"Un court-circuit\", \"c\": \"Des gouttes d’eau dans le moteur en marche\", \"d\": \"Fuite d’essence\", \"e\": \"Les flammes de la tuyauterie d’échappement\"}', 'b-d-e', 'non défini', NULL),
-(555, 849, 'Quelles sont les causes d’usure prématurée des pneumatiques ?', '{\"a\": \"La surcharge et le défaut de gonflage\", \"b\": \"Le démarrage violent et les coups de trottoir\", \"c\": \"L’utilisation des pneumatiques sur chaussées mouillées\"}', 'a-b', 'non défini', NULL),
-(556, 850, 'Le rétroviseur extérieur côté droit est obligatoire sur :', '{\"a\": \"tous véhicules\", \"b\": \"les véhicules de transport de marchandises\", \"c\": \"les véhicules de transport en commun de personnes\", \"d\": \"les machines agricoles\"}', 'b-c', 'non défini', NULL),
-(557, 851, 'Les dispositifs réfléchissants placés à l’arrière du véhicule sont :', '{\"a\": \"facultatifs\", \"b\": \"obligatoires\", \"c\": \"de couleur rouge\", \"d\": \"visibles la nuit par temps clair à une distance de 100m quand ils sont éclairés par les \\nfeux de route\"}', 'b-c-d', 'non défini', NULL),
-(558, 852, 'Un chargement dépassant de plus d’un mètre à l’arrière d’un véhicule doit être signalé par :', '{\"a\": \"Un dispositif réfléchissant rouge\", \"b\": \"Un feu rouge visible à 150m en cas de visibilité insuffisante\", \"c\": \"Un chiffon flottant\", \"d\": \"Une lanterne rouge\"}', 'a-b-d', 'non défini', NULL),
-(559, 853, 'A quelle distance les feux de  route éclairent t-ils, par  temps  normal ?', '{\"a\": \"50m environ\", \"b\": \"100m environ\"}', '', 'non défini', NULL);
-INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`, `chapitre`, `image`) VALUES
+(554, 848, 'Qu’est-ce qui peut causer l’incendie sur un véhicule automobile ?', '{\"a\": \"La chaleur ambiante\", \"b\": \"Un court-circuit\", \"c\": \"Des gouttes d’eau dans le moteur en marche\", \"d\": \"Fuite d’essence\", \"e\": \"Les flammes de la tuyauterie d’échappement\"}', 'b', 'non défini', NULL),
+(555, 849, 'Quelles sont les causes d’usure prématurée des pneumatiques ?', '{\"a\": \"La surcharge et le défaut de gonflage\", \"b\": \"Le démarrage violent et les coups de trottoir\", \"c\": \"L’utilisation des pneumatiques sur chaussées mouillées\"}', 'a', 'non défini', NULL),
+(556, 850, 'Le rétroviseur extérieur côté droit est obligatoire sur :', '{\"a\": \"tous véhicules\", \"b\": \"les véhicules de transport de marchandises\", \"c\": \"les véhicules de transport en commun de personnes\", \"d\": \"les machines agricoles\"}', 'b', 'non défini', NULL),
+(557, 851, 'Les dispositifs réfléchissants placés à l’arrière du véhicule sont :', '{\"a\": \"facultatifs\", \"b\": \"obligatoires\", \"c\": \"de couleur rouge\", \"d\": \"visibles la nuit par temps clair à une distance de 100m quand ils sont éclairés par les \\nfeux de route\"}', 'b', 'non défini', NULL),
+(558, 852, 'Un chargement dépassant de plus d’un mètre à l’arrière d’un véhicule doit être signalé par :', '{\"a\": \"Un dispositif réfléchissant rouge\", \"b\": \"Un feu rouge visible à 150m en cas de visibilité insuffisante\", \"c\": \"Un chiffon flottant\", \"d\": \"Une lanterne rouge\"}', 'a', 'non défini', NULL),
+(559, 853, 'A quelle distance les feux de  route éclairent t-ils, par  temps  normal ?', '{\"a\": \"50m environ\", \"b\": \"100m environ\"}', '', 'non défini', NULL),
 (560, 854, 'Quels feux utilisez-vous lorsque votre véhicule suit un autre usager à faible distance ?', '{\"a\": \"Feux de route\", \"b\": \"Feux de croisement\", \"c\": \"Feux de détresse\"}', 'b', 'non défini', NULL),
-(561, 855, 'Le moteur au régime élevé fait des à coups, à quoi cela peut-il être dû ?', '{\"a\": \"La batterie mal chargée\", \"b\": \"Les bougies défectueuses\", \"c\": \"L’allumeur déréglé\", \"d\": \"La vis platinée déréglée\"}', 'b-c-d', 'non défini', NULL),
-(562, 856, 'Un véhicule automobile est équipé de combien de rétroviseurs obligatoires ?', '{\"a\": \"Un\", \"b\": \"Deux\", \"c\": \"Trois\"}', 'b', 'non défini', NULL),
-(563, 857, 'Que faut-il  en cas de crevaison ?', '{\"a\": \"Un cric\", \"b\": \"Une roue secours\", \"c\": \"Un extincteur\"}', 'a-b', 'non défini', NULL),
+(561, 855, 'Le moteur au régime élevé fait des à coups, à quoi cela peut-il être dû ?', '{\"a\": \"La batterie mal chargée\", \"b\": \"Les bougies défectueuses\", \"c\": \"L’allumeur déréglé\", \"d\": \"La vis platinée déréglée\"}', 'b', 'non défini', NULL),
+(562, 856, 'Un véhicule automobile est équipé de combien de rétroviseurs obligatoires ?', '{\"a\": \"Un\", \"b\": \"Deux\", \"c\": \"Trois\"}', 'b', 'non défini', NULL);
+INSERT INTO `questions` (`id`, `numero`, `question`, `reponses`, `bonne_reponse`, `chapitre`, `image`) VALUES
+(563, 857, 'Que faut-il  en cas de crevaison ?', '{\"a\": \"Un cric\", \"b\": \"Une roue secours\", \"c\": \"Un extincteur\"}', 'a', 'non défini', NULL),
 (564, 858, 'A quoi sert la ceinture de sécurité ?', '{\"a\": \"Pour régler le siège\", \"b\": \"Permet de maintenir les bagages en sécurité\", \"c\": \"Maintient efficacement le conducteur et les passagers sur leur siège en cas d’accident, de \\ncollision ou de freinage brusque\"}', 'c', 'non défini', NULL),
-(565, 859, 'Quel est le circuit d’alimentation en carburant d’un moteur à essence ?', '{\"a\": \"Réservoir – pompe à essence – carburateur\", \"b\": \"Réservoir – carburateur – pompe à essence\", \"c\": \"Pompe à essence – réservoir – carburateur\", \"d\": \"Réservoir – Pompe à essence – pompe à injection - injecteurs\"}', 'a-d', 'non défini', NULL),
+(565, 859, 'Quel est le circuit d’alimentation en carburant d’un moteur à essence ?', '{\"a\": \"Réservoir – pompe à essence – carburateur\", \"b\": \"Réservoir – carburateur – pompe à essence\", \"c\": \"Pompe à essence – réservoir – carburateur\", \"d\": \"Réservoir – Pompe à essence – pompe à injection - injecteurs\"}', 'a', 'non défini', NULL),
 (566, 860, 'En cas de début d’incendie sur véhicule :', '{\"a\": \"je jette de l’eau sur les flammes\", \"b\": \"je jette du sable ou de la terre à la base des flammes\"}', '', 'non défini', NULL),
 (567, 861, 'Sur mon véhicule, en roulant je peux contrôler visuellement :', '{\"a\": \"certains niveaux\", \"b\": \"l’état des pneumatiques\", \"c\": \"l’état des courroies\"}', 'a', 'non défini', NULL),
-(568, 862, 'En cas de crevaison, pour changer la roue :', '{\"a\": \"je cale le véhicule et sors la roue secours, la clé de roue et le cric,\", \"b\": \"je desserre les écrous\", \"c\": \"je débloque et libère la roue crevée,\", \"d\": \"je mets la roue secours et resserrer les écroues,\", \"e\": \"je soulève le véhicule du coté de la crevaison.\"}', 'a-b-c-d-e', 'non défini', NULL),
+(568, 862, 'En cas de crevaison, pour changer la roue :', '{\"a\": \"je cale le véhicule et sors la roue secours, la clé de roue et le cric,\", \"b\": \"je desserre les écrous\", \"c\": \"je débloque et libère la roue crevée,\", \"d\": \"je mets la roue secours et resserrer les écroues,\", \"e\": \"je soulève le véhicule du coté de la crevaison.\"}', 'a', 'non défini', NULL),
 (569, 863, 'Quelle pièce officielle permet d’identifier le propriétaire d’un véhicule ?', '{\"a\": \"la police d’assurance\", \"b\": \"la carte grise\", \"c\": \"l’attestation de réglage phare\"}', 'b', 'non défini', NULL),
 (570, 864, 'Pour un véhicule léger de transport privé la visite technique doit s’effectuer :', '{\"a\": \"tous les ans\", \"b\": \"tous les six mois\", \"c\": \"tous les trois mois\"}', 'a', 'non défini', NULL),
 (571, 865, 'A quoi sert le contrat d’assurance au tiers ?', '{\"a\": \"A couvrir les dégâts causés lors d’un accident\", \"b\": \"A couvrir les surcharges\", \"c\": \"A couvrir les dégâts causés à autrui\"}', 'c', 'non défini', NULL),
 (572, 866, 'Le contrat d’assurance est valable :', '{\"a\": \"sans la visite technique\", \"b\": \"avec la visite technique\", \"c\": \"avec la vignette\"}', 'b', 'non défini', NULL),
 (573, 867, 'La vignette fiscale est une pièce obligatoire :', '{\"a\": \"pour tout véhicule\", \"b\": \"pour les véhicules de transport en commun de personnes\"}', '', 'non défini', NULL),
-(574, 868, 'Lorsque les pneus sont neufs :', '{\"a\": \"La tenue de route est améliorée\", \"b\": \"Le risque d’aquaplaning est écarté\", \"c\": \"L’adhérence  est bonne\", \"d\": \"Le risque de dérapage augmente\"}', 'a-c', 'non défini', NULL),
+(574, 868, 'Lorsque les pneus sont neufs :', '{\"a\": \"La tenue de route est améliorée\", \"b\": \"Le risque d’aquaplaning est écarté\", \"c\": \"L’adhérence  est bonne\", \"d\": \"Le risque de dérapage augmente\"}', 'a', 'non défini', NULL),
 (575, 869, 'L’absence de bouchon sur la valve d’une roue :', '{\"a\": \"est dangereuse\", \"b\": \"peut diminuer l’étanchéité de la roue\", \"c\": \"permet de libérer une surpression d’air\", \"d\": \"permet d’augmenter l’air dans la roue\"}', 'b', 'non défini', NULL),
 (576, 870, 'Il n’est pas obligatoire de mettre  la ceinture de sécurité :', '{\"a\": \"Si le véhicule est équipé de coussin de gonflage\", \"b\": \"Si la conduite s’effectue en agglomération\", \"c\": \"Si la conduite s’effectue sur un long trajet\", \"d\": \"Rien de tout ce qui précède\"}', 'd', 'non défini', NULL),
 (577, 871, 'La profondeur des rainures principales d’un pneu doit être au minimum de :', '{\"a\": \"0,6m\", \"b\": \"1,6m\", \"c\": \"1,5m\"}', 'b', 'non défini', NULL),
-(578, 872, 'La portée minimale des feux dois être de :', '{\"a\": \"30m pour les feux de croisement\", \"b\": \"45m pour les feux de croisement\", \"c\": \"100m pour les feux de route\", \"d\": \"150m pour les feux de route\"}', 'a-c', 'non défini', NULL),
+(578, 872, 'La portée minimale des feux dois être de :', '{\"a\": \"30m pour les feux de croisement\", \"b\": \"45m pour les feux de croisement\", \"c\": \"100m pour les feux de route\", \"d\": \"150m pour les feux de route\"}', 'a', 'non défini', NULL),
 (579, 873, 'Sur un même itinéraire et dans des conditions identiques, une voiture qui roule à 90km/h \nconsomme à 130km/h :', '{\"a\": \"la même quantité d’essence\", \"b\": \"moins d’essence\", \"c\": \"plus d’essence\"}', 'c', 'non défini', NULL),
 (580, 874, 'La roue motrice est celle qui :', '{\"a\": \"a un moteur\", \"b\": \"est relié au moteur et entraine le véhicule\", \"c\": \"tire le moteur\", \"d\": \"oriente le véhicule\"}', 'b', 'non défini', NULL),
-(581, 875, 'Les roues motrices d’un véhicule peuvent être :', '{\"a\": \"à l’avant\", \"b\": \"à l’arrière\", \"c\": \"à l’avant et à l’arrière\", \"d\": \"sur le porte-à-faux\"}', 'a-b-c', 'non défini', NULL),
+(581, 875, 'Les roues motrices d’un véhicule peuvent être :', '{\"a\": \"à l’avant\", \"b\": \"à l’arrière\", \"c\": \"à l’avant et à l’arrière\", \"d\": \"sur le porte-à-faux\"}', 'a', 'non défini', NULL),
 (582, 876, 'Quand dit-on qu’un véhicule est à traction avant :', '{\"a\": \"si les roues motrices sont  à l’avant\", \"b\": \"si les roues motrices sont à l’arrière\", \"c\": \"si le moteur est à l’avant\", \"d\": \"si le moteur est à l’arrière\"}', 'a', 'non défini', NULL),
 (583, 877, 'quand dit-on qu’un véhicule est à propulsion arrière :', '{\"a\": \"si les roues motrices sont à l’avant\", \"b\": \"si les roues motrices sont à l’arrière\", \"c\": \"si le moteur est à l’avant\", \"d\": \"si le moteur est à l’arrière\"}', 'b', 'non défini', NULL),
 (584, 878, 'Les roues directrices d’une voiture sont placées :', '{\"a\": \"à l’avant\", \"b\": \"à l’arrière\", \"c\": \"à l’avant et à l’arrière\", \"d\": \"rien de tout ce qui précède\"}', 'a', 'non défini', NULL),
-(585, 879, 'Par temps de brouillard, je peux allumer les feux :', '{\"a\": \"de croisement\", \"b\": \"de route\", \"c\": \"de brouillard avant\", \"d\": \"de brouillard arrière\"}', 'a-c-d', 'non défini', NULL),
+(585, 879, 'Par temps de brouillard, je peux allumer les feux :', '{\"a\": \"de croisement\", \"b\": \"de route\", \"c\": \"de brouillard avant\", \"d\": \"de brouillard arrière\"}', 'a', 'non défini', NULL),
 (586, 880, 'Des amortisseurs usés :', '{\"a\": \"allongent la distance de freinage\", \"b\": \"diminuent la distance de freinage\"}', '', 'non défini', NULL),
-(587, 881, 'Dans une station service, l’extincteur est utilisable par :', '{\"a\": \"le technicien préposé\", \"b\": \"le pompiste\", \"c\": \"le gardien\", \"d\": \"n’importe quel client\", \"e\": \"tout usager capable de s’en servir\"}', 'a-b-c-e', 'non défini', NULL),
-(588, 882, 'Lors d’un contrôle routier, je dois présenter :', '{\"a\": \"Mon permis de conduite\", \"b\": \"La carte grise\", \"c\": \"Ma carte d’identité\", \"d\": \"Ma carte de groupe sanguin\", \"e\": \"L’assurance et la visite technique\"}', 'a-b-e', 'non défini', NULL),
-(589, 883, 'La consommation du carburant augmente :', '{\"a\": \"si le chargement fait cabrer l’avant du véhicule\", \"b\": \"si je charge des bagages sur le toit\", \"c\": \"si je tracte une caravane\", \"d\": \"rien de tout ce qui précède\"}', 'a-b-c', 'non défini', NULL),
-(590, 920, 'Quelles sont les  précautions à prendre en cas de crevaison :', '{\"a\": \"baliser les lieux,\", \"b\": \"caler le véhicule,\", \"c\": \"faire appel à son mécanicien.\"}', 'a-b', 'non défini', NULL),
-(591, 921, 'Quel type d’extincteur faut-il recommander pour combattre un feu d’hydrocarbure ?', '{\"a\": \"extincteur à poudre\", \"b\": \"extincteur à eau\", \"c\": \"extincteur à mousse ou CO2\", \"d\": \"extincteur polyvalent ABC\"}', 'a-c-d', 'non défini', NULL),
-(592, 922, 'Je fais contrôler le système de freinage :', '{\"a\": \"Si la voiture se déporte à droite ou à gauche au freinage\", \"b\": \"Si la course de la pédale est trop longue\", \"c\": \"Si j’entends des grincements au freinage\", \"d\": \"Si mes feux de position ne s’allument pas au freinage\"}', 'a-b-c', 'non défini', NULL),
-(593, 923, 'Pour réduire la consommation du carburant il faut :', '{\"a\": \"avoir le système d’allumage bien régler\", \"b\": \"rouler avec porte-bagages chargé\", \"c\": \"rouler avec des pneumatiques bien gonflés\", \"d\": \"adapter la vitesse au régime du moteur\"}', 'a-c-d', 'non défini', NULL),
+(587, 881, 'Dans une station service, l’extincteur est utilisable par :', '{\"a\": \"le technicien préposé\", \"b\": \"le pompiste\", \"c\": \"le gardien\", \"d\": \"n’importe quel client\", \"e\": \"tout usager capable de s’en servir\"}', 'a', 'non défini', NULL),
+(588, 882, 'Lors d’un contrôle routier, je dois présenter :', '{\"a\": \"Mon permis de conduite\", \"b\": \"La carte grise\", \"c\": \"Ma carte d’identité\", \"d\": \"Ma carte de groupe sanguin\", \"e\": \"L’assurance et la visite technique\"}', 'a', 'non défini', NULL),
+(589, 883, 'La consommation du carburant augmente :', '{\"a\": \"si le chargement fait cabrer l’avant du véhicule\", \"b\": \"si je charge des bagages sur le toit\", \"c\": \"si je tracte une caravane\", \"d\": \"rien de tout ce qui précède\"}', 'a', 'non défini', NULL),
+(590, 920, 'Quelles sont les  précautions à prendre en cas de crevaison :', '{\"a\": \"baliser les lieux,\", \"b\": \"caler le véhicule,\", \"c\": \"faire appel à son mécanicien.\"}', 'a', 'non défini', NULL),
+(591, 921, 'Quel type d’extincteur faut-il recommander pour combattre un feu d’hydrocarbure ?', '{\"a\": \"extincteur à poudre\", \"b\": \"extincteur à eau\", \"c\": \"extincteur à mousse ou CO2\", \"d\": \"extincteur polyvalent ABC\"}', 'a', 'non défini', NULL),
+(592, 922, 'Je fais contrôler le système de freinage :', '{\"a\": \"Si la voiture se déporte à droite ou à gauche au freinage\", \"b\": \"Si la course de la pédale est trop longue\", \"c\": \"Si j’entends des grincements au freinage\", \"d\": \"Si mes feux de position ne s’allument pas au freinage\"}', 'a', 'non défini', NULL),
+(593, 923, 'Pour réduire la consommation du carburant il faut :', '{\"a\": \"avoir le système d’allumage bien régler\", \"b\": \"rouler avec porte-bagages chargé\", \"c\": \"rouler avec des pneumatiques bien gonflés\", \"d\": \"adapter la vitesse au régime du moteur\"}', 'a', 'non défini', NULL),
 (594, 925, 'Quels sont les feux obligatoires à l’avant d’un véhicule de tourisme :', '{\"a\": \"deux feux de route – deux feux de croisement – deux feux stop – deux feux de position \\n– deux indicateurs de changement de direction – deux feux antibrouillard\", \"b\": \"deux phares – deux codes – deux clignotants – deux feux de position – feux plaque \\nd’immatriculation – deux feux anti brouillard\", \"c\": \"deux feux de route – deux indicateurs de changement de direction – deux feux de \\ncroisement – deux feux de position \\nRépons c\"}', '', 'non défini', NULL),
 (595, 926, 'Quels sont les organes essentiels pour le fonctionnement d’un moteur à 4 temps ?', '{\"a\": \"La batterie – le carburateur – l’alternateur\"}', '', 'non défini', NULL),
 (596, 927, 'Quels sont dans l’ordre les 4 temps d’un moteur à essence ?', '{\"a\": \"Admission – compression – échappement – explosion\", \"b\": \"Compression – admission – explosion – échappement\", \"c\": \"Admission – compression – explosion – échappement\"}', 'c', 'non défini', NULL),
 (597, 928, 'Ce panonceau concerne les véhicules tractant une remorque d’un PTAC de :', '{\"a\": \"Plus de 250 kilogrammes\", \"b\": \"240 kilogrammes\", \"c\": \"80 kilogrammes\"}', 'a', 'non défini', NULL),
 (598, 929, 'Les feux de stop s’allument lorsque :', '{\"a\": \"Je rétrograde\", \"b\": \"Je freine avec la pédale\", \"c\": \"J’enclenche la marche arrière\", \"d\": \"Je change de direction\"}', 'b', 'non défini', NULL),
-(599, 930, 'Les éléments qui font partie de la suspension d’un véhicule automobile sont :', '{\"a\": \"Les ressorts et la transmission\", \"b\": \"Les pneus\", \"c\": \"Les amortisseurs et la boite de vitesses\", \"d\": \"Les ressorts et les amortisseurs\"}', 'b-d', 'non défini', NULL);
+(599, 930, 'Les éléments qui font partie de la suspension d’un véhicule automobile sont :', '{\"a\": \"Les ressorts et la transmission\", \"b\": \"Les pneus\", \"c\": \"Les amortisseurs et la boite de vitesses\", \"d\": \"Les ressorts et les amortisseurs\"}', 'b', 'non défini', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('haIcHiQJbZbx0WJTxfZLCf30T2jEZey0AR1V3QWK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRXpLZlhSbjFsOHFoOWFXdDhMMVVLSTgweE1PcmRNc1MyQ0F1M00zMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jb3VycyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1750384132);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `cache`
+--
+ALTER TABLE `cache`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Index pour la table `cache_locks`
+--
+ALTER TABLE `cache_locks`
+  ADD PRIMARY KEY (`key`);
 
 --
 -- Index pour la table `definitions`
@@ -703,10 +862,57 @@ ALTER TABLE `definitions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Index pour la table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+
+--
+-- Index pour la table `job_batches`
+--
+ALTER TABLE `job_batches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
 -- Index pour la table `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -716,13 +922,37 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT pour la table `definitions`
 --
 ALTER TABLE `definitions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT pour la table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `questions`
 --
 ALTER TABLE `questions`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=600;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

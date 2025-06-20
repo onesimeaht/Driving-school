@@ -11,7 +11,6 @@ class QuestionsController extends Controller
      */
     public function startQuiz()
     {
-        // Récupérer 20 questions aléatoires et les stocker en session
         $questions = Questions::inRandomOrder()->limit(20)->get();
         
         session([
@@ -31,19 +30,16 @@ class QuestionsController extends Controller
     {
         $question_actuelle = (int) $request->get('q', 1);
         
-        // Vérifier si le quiz a été initialisé
         if (!session('quiz_questions')) {
             return redirect()->route('quiz.start');
         }
         
         $questions_ids = session('quiz_questions');
         
-        // S'assurer que le numéro de question est valide
         if ($question_actuelle < 1 || $question_actuelle > 20) {
             return redirect()->route('quiz', ['q' => 1]);
         }
         
-        // Récupérer la question spécifique
         $question_id = $questions_ids[$question_actuelle - 1];
         $question = Questions::find($question_id);
         
@@ -51,13 +47,11 @@ class QuestionsController extends Controller
             return redirect()->route('quiz.start')->with('error', 'Question non trouvée');
         }
         
-        // Récupérer la réponse déjà donnée si elle existe
         $quiz_answers = session('quiz_answers', []);
         $reponse_utilisateur = isset($quiz_answers[$question_actuelle]) ? $quiz_answers[$question_actuelle] : null;
         
         $resultat = null;
         if ($reponse_utilisateur) {
-            // Gérer les réponses multiples (ex: "b-c")
             $bonnes_reponses = explode('-', $question->bonne_reponse);
             $reponse_correcte = in_array($reponse_utilisateur, $bonnes_reponses) || 
                                $reponse_utilisateur === $question->bonne_reponse;
@@ -82,8 +76,11 @@ class QuestionsController extends Controller
         
         // Validation de base
         if (!$reponse_utilisateur) {
-            return redirect()->route('quiz', ['q' => $question_actuelle])
-                ->with('error', 'Veuillez sélectionner une réponse');
+            // Augmenter le score de 1 en cas d'erreur
+            $currentScore = session('quiz_score', 0);
+            session(['quiz_score' => $currentScore + 1]);
+            
+            return redirect()->route('quiz', ['q' => $question_actuelle]);
         }
         
         // Récupérer la question
@@ -95,7 +92,6 @@ class QuestionsController extends Controller
             return redirect()->route('quiz.start');
         }
         
-        // Sauvegarder la réponse
         $quiz_answers = session('quiz_answers', []);
         
         // Si c'est la première fois qu'on répond à cette question
@@ -129,12 +125,10 @@ class QuestionsController extends Controller
             return redirect()->route('quiz.start');
         }
         
-        // Si c'est la dernière question, aller aux résultats
         if ($question_actuelle >= 20) {
             return redirect()->route('quiz.results');
         }
         
-        // Sinon, aller à la question suivante
         return redirect()->route('quiz', ['q' => $question_actuelle + 1]);
     }
     
@@ -151,10 +145,8 @@ class QuestionsController extends Controller
         $quiz_answers = session('quiz_answers', []);
         $quiz_score = session('quiz_score', 0);
         
-        // Récupérer toutes les questions avec les réponses
         $questions = Questions::whereIn('id', $questions_ids)->get()->keyBy('id');
         
-        // Organiser les résultats
         $resultats = [];
         foreach ($questions_ids as $index => $question_id) {
             $question_numero = $index + 1;
@@ -194,7 +186,6 @@ class QuestionsController extends Controller
             return true;
         }
         
-        // Gérer les réponses multiples (ex: "b-c")
         $bonnes_reponses = explode('-', $bonne_reponse);
         return in_array($reponse_utilisateur, $bonnes_reponses);
     }

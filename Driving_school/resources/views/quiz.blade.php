@@ -64,7 +64,6 @@
             }
         });
     @else
-        // Désactiver les clics sur les réponses après validation
         document.addEventListener('DOMContentLoaded', function() {
             const reponses = document.querySelectorAll('.reponse');
             reponses.forEach(function(reponse) {
@@ -114,25 +113,32 @@
         <div class="result {{ $resultat == 'Bonne réponse !' ? 'success' : 'error' }}">
             {{ $resultat }}
             @if($resultat != 'Bonne réponse !')
-                <br><strong>La bonne réponse était : {{ strtoupper($question->bonne_reponse) }} - {{ $question->reponses[$question->bonne_reponse] }}</strong>
+                <br><strong>
+                    La bonne réponse était : {{ strtoupper($question->bonne_reponse) }} - 
+                    @if(isset($question->reponses[$question->bonne_reponse]))
+                        {{ $question->reponses[$question->bonne_reponse] }}
+                    @else
+                        <em>Réponse non disponible</em>
+                    @endif
+                </strong>
             @endif
-        </div>
-       
-        <div class="actions">
-            @if($question_actuelle < 20)
-                <a class="next-link" href="{{ route('quiz.next', ['q' => $question_actuelle]) }}">
-                    ➡ Question suivante ({{ $question_actuelle + 1 }}/20)
-                </a>
-            @else
-                <a class="next-link" href="{{ route('quiz.results') }}">
-                    🏆 Voir les résultats finaux
-                </a>
-            @endif
-           
-            <a href="{{ route('quiz.start') }}" class="secondary-link">
-                🔄 Recommencer le quiz
-            </a>
         </div>
     @endif
+
+    <div class="actions">
+        @if($question_actuelle < 20)
+            <a class="next-link" href="{{ route('quiz.next', ['q' => $question_actuelle]) }}">
+                ➡ Question suivante ({{ $question_actuelle + 1 }}/20)
+            </a>
+        @else
+            <a class="next-link" href="{{ route('quiz.results') }}">
+                🏆 Voir les résultats finaux
+            </a>
+        @endif
+        
+        <a href="{{ route('quiz.start') }}" class="secondary-link">
+            🔄 Recommencer le quiz
+        </a>
+    </div>
 </div>
 @endsection

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : ven. 20 juin 2025 à 08:26
+-- Généré le : ven. 20 juin 2025 à 10:06
 -- Version du serveur : 8.0.42-0ubuntu0.24.04.1
 -- Version de PHP : 8.3.6
 
@@ -44,6 +44,40 @@ CREATE TABLE `cache_locks` (
   `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cours_online`
+--
+
+CREATE TABLE `cours_online` (
+  `id` int NOT NULL,
+  `titre` varchar(255) DEFAULT NULL,
+  `lien` text,
+  `chapitre` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `cours_online`
+--
+
+INSERT INTO `cours_online` (`id`, `titre`, `lien`, `chapitre`) VALUES
+(1, 'Les règles de priorité', 'https://www.youtube.com/watch?v=3zNQX97yWn4', 'Circulation'),
+(2, 'Comprendre les panneaux de signalisation', 'https://www.youtube.com/watch?v=dGMIx3oQQec', 'Signalisation'),
+(3, 'Maîtriser les distances de sécurité', 'https://www.youtube.com/watch?v=OVcJ8zPY1z4', 'Sécurité'),
+(4, 'Permis B - Tout savoir', 'https://www.youtube.com/watch?v=tv36mLwFQ0c', 'Permis'),
+(5, 'Feux de croisement vs feux de route', 'https://www.youtube.com/watch?v=cYKYIR4b5VA', 'Éclairage'),
+(6, 'Comment bien s\'arrêter et se garer', 'https://www.youtube.com/watch?v=1sxSopvQlGg', 'Stationnement'),
+(7, 'Apprendre les panneaux d’interdiction', 'https://www.youtube.com/watch?v=0TX0uY9h9X8', 'Signalisation'),
+(8, 'Comprendre l\'autoroute', 'https://www.youtube.com/watch?v=w64fqp4O0I0', 'Conduite'),
+(9, 'Les angles morts en conduite', 'https://www.youtube.com/watch?v=q9JW_bsh4Xk', 'Sécurité'),
+(10, 'Les priorités à droite', 'https://www.youtube.com/watch?v=sORHHfGmiRY', 'Circulation'),
+(11, 'Utiliser un rond-point correctement', 'https://www.youtube.com/watch?v=2aBujJUI3Mg', 'Circulation'),
+(12, 'Apprendre à lire la signalisation horizontale', 'https://www.youtube.com/watch?v=ozDiSC7pVxI', 'Signalisation'),
+(13, 'Les panneaux de danger', 'https://www.youtube.com/watch?v=0kgV3JhJH2E', 'Signalisation'),
+(14, 'Cours complet sur le Code de la route', 'https://www.youtube.com/watch?v=_Fqk7WZTxxM', 'Général'),
+(15, 'Dépassements et croisements', 'https://www.youtube.com/watch?v=KZhYmnOGB1Q', 'Circulation');
 
 -- --------------------------------------------------------
 
@@ -856,6 +890,12 @@ ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
 
 --
+-- Index pour la table `cours_online`
+--
+ALTER TABLE `cours_online`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `definitions`
 --
 ALTER TABLE `definitions`
@@ -917,6 +957,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `cours_online`
+--
+ALTER TABLE `cours_online`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `definitions`
